@@ -1,0 +1,47 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=0cm,bottom=2cm]{geometry} % page
+                                                             % settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+\usepackage{graphicx}
+\usepackage{float}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Práctica 1: Ejercicio 6}
+\author{Patricia Córdoba y David Cabezas}
+\date{\today}
+\maketitle
+
+\subsection*{Características del Hardware}
+\begin{verbatim}
+
+Memoria: 7.6 GiB
+Procesador: Intel® Core™ i7-6700HQ CPU @ 2.60GHz x 8
+Gráfica: Intel® HD Graphics 530 (Skylake GT2)
+Sistema Operativo: ubuntu 17.04 64-bit
+Disco: 474.8 GB
+Compilador: GCC
+Opciones de Compilación: g++ ordenacion.cpp -o ordenacion
+                         g++ -O3 ordenacion.cpp -o ordenacion_optimizado
+
+\end{verbatim}
+
+\begin{justify}
+  Hemos representado los resultados empíricos del algoritmo compilado
+  normalmente (en tiempos\_ordenacion.dat) y los del algoritmo
+  compilado con la opción -O3 (en tiempos\_ordenacion\_optimizado.dat)
+  en la siguiente gráfica:
+\end{justify}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{ejer6.png}
+\end{figure}
+
+\end{document}
