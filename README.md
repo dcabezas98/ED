@@ -16,7 +16,7 @@ con herramientas de la biblioteca `ctime`. Y a la represetentación de resultado
 empíricos usando la herramienta ***gnuplot***. Así como a hallar la curva de 
 regresión de los datos con la orden `fit`. 
 
-### Retos propuestos por el profesor:
+#### Retos propuestos por el profesor:
 
 Contiene los enunciados y los archivos.tex de los retos, ejercicios voluntarios
 planteados por el profesor. Los archivos.pdf ya compilados se encuentran en la 
