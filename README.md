@@ -6,7 +6,8 @@
 Contine la carpeta guiones, con los enunciados de cada una de las
 prácticas y una carpeta para cada práctica con los códigos fuente en
 C++, scripts en bash, archivos.tex, resultados, etc. Los archivos.pdf ya
-compilados se encuentran en la sección *releases*.
+compilados se encuentran en la sección *releases*. Las prácticas las he
+realizado en pareja, junto con [@patriciacorhid](https://github.com/patriciacorhid).
 
 ##### Primera práctica: Eficiencia
 
