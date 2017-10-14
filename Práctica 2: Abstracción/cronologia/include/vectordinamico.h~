@@ -1,0 +1,37 @@
+#ifndef _VECTORDINAMICO_
+#define _VECTORDINAMICO_
+
+#include "vectordinamico.cpp"
+
+template <class T>
+
+class VectorDinamico{
+
+ private:
+  
+  int utilizados;
+  int reservados;
+  T *datos;
+
+  void resize(int n);
+
+ public:
+  
+  VectorDinamico();
+  
+  VectorDinamico(const VectorDinamico &original);
+  
+  VectorDinamico operator=(const VectorDinamico &original);
+  
+  ~VectorDinamico();
+  
+  void crear();
+    
+  void set(T elemento, int i);
+  
+  T get(int i);
+};
+
+#endif
+  
+  
