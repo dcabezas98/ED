@@ -10,6 +10,8 @@ class Cronologia{
 
   VectorDinamico<FechaHistorica> fechas;
 
+  void ordenar();
+  
  public:
 
   Cronologia();

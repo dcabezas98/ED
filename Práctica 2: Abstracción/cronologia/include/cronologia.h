@@ -9,8 +9,6 @@ class Cronologia{
  private:
 
   VectorDinamico<FechaHistorica> fechas;
-
-  void ordenar();
   
  public:
 
@@ -20,7 +18,7 @@ class Cronologia{
 
   Cronologia& operator=(const Cronologia &original);
 
-  void aniade(const FechaHistorica &fecha);
+  void add(const FechaHistorica &fecha);
   
   Cronología& operator+=(const Cronologia &crono);
 
