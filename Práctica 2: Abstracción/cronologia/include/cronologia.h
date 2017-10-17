@@ -1,8 +1,8 @@
 #ifndef _CRONOLOGIA_
 #define _CRONOLOGIA_
 
-#include "vectordinamico.h"
 #include "fechahistorica.h"
+#include "vectordinamico.h"
 
 class Cronologia{
 
@@ -18,13 +18,20 @@ class Cronologia{
 
   Cronologia& operator=(const Cronologia &original);
 
+  int used() const;
+
   void add(const FechaHistorica &fecha);
+
+  FechaHistorica& operator[](int i);
   
-  Cronología& operator+=(const Cronologia &crono);
-
-  friend ostream& operator<<(ostream &flujo, const Cronologia &crono);
-
-  friend istream& operator>>(istream &flujo, Cronologia &crono);
+  const FechaHistorica& operator[](int i) const;
+  
+  Cronologia& operator+=(const Cronologia &crono);
 };
+
+  ostream& operator<<(ostream &flujo, const Cronologia &crono);
+
+  istream& operator>>(istream &flujo, Cronologia &crono);
+
 
 #endif

@@ -20,17 +20,23 @@ class FechaHistorica{
 
   FechaHistorica& operator=(const FechaHistorica &original);
 
-  int nhechos();
+  int nhechos() const;
 
-  int anio();
+  int& year();
+  
+  const int year() const;
 
   void aniade(string h);
 
+  string& operator[](int i);
+  
+  const string& operator[](int i) const;
+
   FechaHistorica& operator+=(const FechaHistorica &nuevo);
-
-  friend ostream& operator<<(ostream &flujo, const FechaHistorica &fecha);
-
-  friend istream& operator>>(istream flujo, FechaHistorica &fecha);
 };
+
+  ostream& operator<<(ostream &flujo, const FechaHistorica &fecha);
+
+  istream& operator>>(istream &flujo, FechaHistorica &fecha);
 
 #endif

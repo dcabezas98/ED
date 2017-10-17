@@ -1,5 +1,9 @@
 #include <iostream>
+#include <sstream>
+#include <string>
 #include "cronologia.h"
+#include "fechahistorica.h"
+#include "vectordinamico.h"
 
 using namespace std;
 
@@ -7,9 +11,9 @@ Cronologia::Cronologia():fechas(){}
 
 Cronologia::Cronologia(const Cronologia &original){
 
-  fechas.resize(original.fechas.utilizados());
+  fechas.resize(original.fechas.used());
 
-  for(int i = 0; i < original.fechas.utilizados(); i++)
+  for(int i = 0; i < original.fechas.used(); i++)
     fechas[i] = original.fechas[i];
 }
 
@@ -17,54 +21,89 @@ Cronologia& Cronologia::operator=(const Cronologia &original){
 
   if(&original != this) {
 
-    fechas.resize(original.fechas.utilizados());
+    fechas.resize(original.fechas.used());
 
-    for(int i = 0; i < original.fechas.utilizados(); i++)
+    for(int i = 0; i < original.fechas.used(); i++)
       fechas[i] = original.fechas[i];
   }
-
+  
   return *this;
 }
 
 void Cronologia::add(const FechaHistorica &fecha){
 
-  int i = 0;
-  
-  while(i < fechas.utilizados && fecha.anio() > fechas[i].anio()){
-    i++;
-  }
-
-  if(fechas[i].anio() == fecha.anio()){
-    fechas[i] += fecha;
-  }
-  else if(fecha.anio() < fechas[i].anio()){
-    fechas.insertar(i,fecha);
-  }
-  else
+	/*if(fechas.empty())
     fechas.aniade(fecha);
+
+    else{*/
+	  
+	  int i = 0;
+	  cout << "UtilizadosS" <<fechas.used() << endl;
+	  while(i < fechas.used()){
+		  if(fechas[i].year() < fecha.year()){
+			  cout << "i vale " << i << endl;
+			  i++;
+		  }
+	  }
+
+	  if(fechas[i].year() == fecha.year()){
+		  cout << "igualdad " << endl;
+		  fechas[i] += fecha;
+	  }
+	  else if(fecha.year() < fechas[i].year()){
+		  cout << "inserta" << endl;
+		  fechas.insertar(i,fecha);
+	  }
+	  else{
+		  fechas.aniade(fecha);
+		  cout << "al final" << endl;
+	  }
+		  //}
+}
+
+int Cronologia::used() const{
+	return fechas.used();
 }
 
 Cronologia& Cronologia::operator+=(const Cronologia &crono){
 
-  for(int i = 0; i < crono.fechas.utilizados(); i++)
-    add(crono.fechas[i]);
+  for(int i = 0; i < crono.fechas.used(); i++)
+    add(crono[i]);
+
+  return *this;
 }
 
-friend ostream& operator<<(ostream &flujo, const Cronologia &crono){
+FechaHistorica& Cronologia::operator[](int i){
+	return fechas[i];
+}
 
-  for(int i = 0; i < fechas.utilizados(); i++){
-    flujo << fechas[i] << "\n";
+const FechaHistorica& Cronologia::operator[](int i) const{
+	return fechas[i];
+}
+
+ostream& operator<<(ostream &flujo, const Cronologia &crono){
+
+  for(int i = 0; i < crono.used(); i++){
+    flujo << crono[i] << "\n";
   }
+
+  return flujo;
 }
 
-friend istream& operator>>(istream &flujo, Cronologia &crono){
+istream& operator>>(istream &flujo, Cronologia &crono){
 
   FechaHistorica aux;
-  
-  while(flujo >> aux){
 
-    add(aux);
+  string s;
+  
+  while(!flujo.eof()){
+	  
+    getline(flujo, s, '\n');
+    istringstream ss(s);
+    ss >> aux;
+    crono.add(aux);
   }
+  return flujo;
 }
 
 

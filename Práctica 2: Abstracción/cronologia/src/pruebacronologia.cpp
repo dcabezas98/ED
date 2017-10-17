@@ -20,7 +20,6 @@ int main(int argc, char * argv[]){
    Cronologia mi_cronologia;
    f>>mi_cronologia; //Cargamos en memoria la cronología.
    
-
    /* Exhibir aquí la funcionalidad programada para el TDA Cronologia / TDA FechaHistorica */ 
 
    // Algunas sugerencias: 

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "fechahistorica.h"
 #include "vectordinamico.h"
 
@@ -12,73 +13,95 @@ FechaHistorica::FechaHistorica(int n){
   anio=n;
 }
 
-FechaHistorica::FechaHistorica(const FechaHistorica &original):hechos(original.hechos) {
+FechaHistorica::FechaHistorica(const FechaHistorica &original) {
+  hechos=original.hechos;
   anio=original.anio;
 }
 
-FechaHistorica&& FechaHistorica::operator=(const FechaHistorica &original){
-  anio = original.anio;
+FechaHistorica& FechaHistorica::operator=(const FechaHistorica &original){
 
-  hechos = original.hechos;
+	if(&original != this){
+
+		anio = original.anio;
+
+		hechos = original.hechos;
+	}
+	return *this;
 }
 
-int FechaHistorica::nhechos() {
-  return hechos.utilizados();
+int FechaHistorica::nhechos() const {
+  return hechos.used();
 }
 
-int FechaHistorica::anio() {
+const int FechaHistorica::year() const {
   return anio;
+}
+
+int& FechaHistorica::year(){
+	return anio;
 }
 
 void FechaHistorica::aniade(string h) {
   hechos.aniade(h);
 }
 
-FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
-  assert(anio == nuevo.anio);
-
-  bool encontrado = false;
-  
-  for(int i=0; i<nuevo.nhechos(); i++){
-    for(int j=0; j<nhechos() && !encontrado; j++) {
-      if(nuevo.hechos[i]==hechos[j])
-	encontrado = true;
-    }
-    
-    if(!encontrado)
-      hechos.aniade(nuevo.hechos[i]);
-  }
+string& FechaHistorica::operator[](int i){
+	return hechos[i];
 }
 
-friend ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
-  flujo<<anio;
+const string& FechaHistorica::operator[](int i) const{
+	return hechos[i];
+}
 
-  for (int i=0; i<nhechos(); i++){
+FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
+
+	if(&nuevo != this) {
+		assert(anio == nuevo.anio);
+
+		bool encontrado = false;
+  
+		for(int i=0; i<nuevo.nhechos(); i++){
+			for(int j=0; j<nhechos() && !encontrado; j++) {
+				if(nuevo.hechos[i]==hechos[j])
+					encontrado = true;
+			}
+    
+			if(!encontrado)
+				hechos.aniade(nuevo.hechos[i]);
+		}
+	}
+	return *this;
+}
+
+ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
+  flujo<<fecha.year();
+
+  for (int i=0; i<fecha.nhechos(); i++){
     flujo<<"#";
-    flujo<<hechos[i];
+    flujo<<fecha[i];
   }
 
   flujo<<"\n";
+
+  return flujo;
 }
 
-friend istream& operator>>(istream flujo, FechaHistorica &fecha){
+/*
+istream& operator>>(istream flujo, FechaHistorica &fecha){
 
   string s;
   char c;
 
   flujo >> c;
-  
-  while(c != '#'){
 
+  while(c != '#')
     s = s + c;
-  }
 
-  anio = stoi(s);
-
-  s = '';
+  fecha.year() = stoi(s);
+  
   flujo.get(c);
 
-  while(c != '\n'){
+  while(c != "\n"){
     while(c != '#'){
       
       s = s + c;
@@ -89,5 +112,22 @@ friend istream& operator>>(istream flujo, FechaHistorica &fecha){
     s = '';
     flujo.get(c);
   }
+  return flujo;
+}
+*/
+
+istream& operator>>(istream &flujo, FechaHistorica &fecha){
+
+	string s;
+
+	getline(flujo, s, '#');
+
+	fecha.year() = stoi(s);
+
+	while(!flujo.eof()){
+		getline(flujo, s, '#');
+		fecha.aniade(s);
+	}
+	return flujo;
 }
 
