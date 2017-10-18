@@ -32,33 +32,24 @@ Cronologia& Cronologia::operator=(const Cronologia &original){
 
 void Cronologia::add(const FechaHistorica &fecha){
 
-	/*if(fechas.empty())
-    fechas.aniade(fecha);
-
-    else{*/
 	  
 	  int i = 0;
-	  cout << "UtilizadosS" <<fechas.used() << endl;
-	  while(i < fechas.used()){
-		  if(fechas[i].year() < fecha.year()){
-			  cout << "i vale " << i << endl;
-			  i++;
-		  }
+ 
+	  while(i < fechas.used() && fecha.year() > fechas[i].year()){
+	    i++;
 	  }
 
-	  if(fechas[i].year() == fecha.year()){
-		  cout << "igualdad " << endl;
+	  if( i == fechas.used()){
+	    fechas.aniade(fecha);
+	  }
+	  
+	  else if(fechas[i].year() == fecha.year()){
 		  fechas[i] += fecha;
 	  }
-	  else if(fecha.year() < fechas[i].year()){
-		  cout << "inserta" << endl;
+	  
+	  else {
 		  fechas.insertar(i,fecha);
-	  }
-	  else{
-		  fechas.aniade(fecha);
-		  cout << "al final" << endl;
-	  }
-		  //}
+	  }		  
 }
 
 int Cronologia::used() const{

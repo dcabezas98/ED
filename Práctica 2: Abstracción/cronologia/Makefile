@@ -34,7 +34,7 @@ $(OBJ)/vectordinamico.o: $(INC)/vectordinamico.h $(SRC)/vectordinamico.cpp
 
 # ************ Limpieza ************
 clean :
-	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ $(LIB)/*.a ./*~
+	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ $(LIB)/* ./*~
 
 mrproper : clean
 	-rm $(BIN)/* doc/html/*

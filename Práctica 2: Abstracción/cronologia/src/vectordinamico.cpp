@@ -75,8 +75,7 @@ int VectorDinamico<T>::used() const
 
 template <class T>
 T& VectorDinamico<T>::operator[] (int i) {
-	cout << "i" << i;
-	cout << "utilizados " << utilizados << endl;
+	
   assert (0<=i && i<utilizados);
   return datos[i];
 }
