@@ -1,0 +1,60 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=0cm,bottom=2cm]{geometry} % page
+                                                             % settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+\usepackage{graphicx}
+\usepackage{float}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Práctica 1: Ejercicio 3}
+\author{Patricia Córdoba y David Cabezas}
+\date{\today}
+\maketitle
+
+\subsection*{Características del Hardware}
+\begin{verbatim}
+
+Memoria: 7.6 GiB
+Procesador: Intel® Core™ i7-6700HQ CPU @ 2.60GHz x 8
+Gráfica: Intel® HD Graphics 530 (Skylake GT2)
+Sistema Operativo: ubuntu 17.04 64-bit
+Disco: 474.8 GB
+Compilador: GCC
+Opciones de Compilación: g++ -o ejercicio_desc ejercicio_desc.cpp
+
+\end{verbatim}
+
+\begin{justify}
+  El algoritmo del ejercicio\_desc.cpp es el de busqueda binaria,
+  siendo su eficiencia teórica $\log_{2}n$. Aunque para realizarla el
+  vector ha de estar ordenado, y en el ejemplo no lo está.
+\end{justify}
+
+\begin{justify}
+
+  Algunos de los tiempos aparecían nulos. Para solucionarlo, hemos
+  añadido en el .cpp un bucle para ejecutar el algoritmo varias veces
+  y después hemos dividido el tiempo total entre el número de
+  ejecuciones.
+  
+\end{justify}
+
+\begin{justify}
+  Hemos representado los resultados empíricos (en
+  tiempos\_desc.dat) junto con la curva de regresión
+  $f(x)=4.10758*10^{-9}*\log_{2}x$ en la siguiente gráfica:
+\end{justify}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{ejer3.png}
+\end{figure}
+
+\end{document}

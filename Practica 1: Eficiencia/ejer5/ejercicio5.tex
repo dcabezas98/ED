@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page
+                                                             % settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+\usepackage{graphicx}
+\usepackage{float}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Práctica 1: Ejercicio 5}
+\author{Patricia Córdoba y David Cabezas}
+\date{\today}
+\maketitle
+
+\subsection*{Características del Hardware}
+\begin{verbatim}
+
+Memoria: 7.6 GiB
+Procesador: Intel® Core™ i7-6700HQ CPU @ 2.60GHz x 8
+Gráfica: Intel® HD Graphics 530 (Skylake GT2)
+Sistema Operativo: ubuntu 17.04 64-bit
+Disco: 474.8 GB
+Compilador: GCC
+Opciones de Compilación: g++ -o ordenacion_mejor ordenacion_mejor.cpp
+                         g++ -o ordenacion_mejor ordenacion_mejor.cpp (comentando el anterior 
+                         algoritmo de burbuja y añadiendo el que dispone de condición de parada)
+
+\end{verbatim}
+
+\subsection*{Eficiencia Teórica}
+
+\begin{justify}
+  Hemos analizado la eficiencia del algoritmo de la burbuja optimizada y, en el mejor caso posible, tiene una eficiencia de $O(n)$, mientras que la otra implementación tiene una eficiencia de $O(n^2)$.
+\end{justify}
+
+\subsection*{Eficiencia Empírica}
+
+\begin{justify}
+  Hemos representado los resultados empíricos del mejor caso posible
+  del algoritmo burbuja \\ (tiempos\_ordenacion\_mejor.dat) en la
+  siguiente gráfica:
+\end{justify}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{ejer51.png}
+\end{figure}
+
+\begin{justify}
+  \newpage
+  Hemos representado los resultados empíricos del mejor caso posible
+  algoritmo burbuja optimizado (tiempos\_ordenacion\_mejor\_2.dat) en la
+  siguiente gráfica:
+\end{justify}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{ejer52.png}
+\end{figure}
+
+\end{document}
