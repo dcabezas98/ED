@@ -1,0 +1,77 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=0cm,bottom=2cm]{geometry} % page settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+\usepackage{multirow}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Estructura de Datos: Reto 1}
+\author{Patricia Córdoba Hidalgo y David Cabezas Berrido}
+\date{\today}
+\maketitle
+
+
+
+\section*{Ejercicio 1.}
+
+Primer código:
+\begin{justify}
+    La primera línea es $O(1)$. El bucle \textit{do while} itera n
+    veces; las líneas 3 y 8 son $O(1)$, al igual que las líneas 4, 5 y
+    6, analizadas individualmente, sin embargo, al estar dentro del
+    bucle \textit{while}, aplicamos la regla de la multiplicación y
+    quedan como $O(\log_{2}{n})$, ya que j va tomando valores de
+    pontencias de 2. Luego este es el resultado de aplicar la regla de
+    la suma a todo el bucle \textit{while} y las líneas 3 y
+    8. Finalmente, aplicamos la regla de la multiplicación con el
+    bucle \textit{do while} y el código completo es $O(n\log_{2}{n})$.
+\end{justify}
+
+Segundo código:
+\begin{justify}
+  La primera línea es $O(1)$. El bucle \textit{do while} itera n
+  veces; las líneas 3 y 8 son $O(1)$, al igual que las líneas 4, 5 y
+  6, analizadas individualmente, sin embargo, al estar dentro del
+  bucle \textit{while}, el cual es no homogéneo, resolvemos la suma de
+  la serie para calcular la eficiencia.
+\end{justify}
+
+\[
+  \sum\limits_{i=2}^{n}\log_2i=\log_2\prod\limits_{i=2}^ni=\log_2n!
+  \]
+
+\begin{justify}
+  Entonces, el código completo es $O(\log_2n!).$
+\end{justify}
+
+\section*{Ejercicio 2.}
+
+\begin{justify}
+  Básicamente, el ejercicio consiste en despejar $n$ de la ecuación
+  $f(n)=t$ donde $t$ en cada caso es el número de microsegundos que
+  hay en un segundo, hora, semana, año o 1000 años.
+\end{justify}
+
+\begin{table}[!htbp]
+\centering
+\label{my-label}
+\begin{tabular}{|c|l|l|l|l|l|}
+\hline
+\multirow{2}{*}{\textit{\textbf{f(n)}}} & \multicolumn{5}{c|}{\textit{\textbf{t}}}   \\ \cline{2-6} 
+                                        & 1 sg. & 1h. & 1 semana & 1 año & 1000 años \\ \hline
+$\log_2n$                               & $2^{10^6}$ & $2^{3.6*10^9}$ & $2^{6.048*10^{11}}$ & $2^{3.1536*10^{13}}$ & $2^{3.1536*10^{16}}$ \\ \hline
+$n$                                     & $10^6$ & $3.6*10^9$ & $6.048*10^{11}$ & $3.1536*10^{13}$ & $3.1536*10^{16}$ \\ \hline
+$n\log_2n$                              & $62746$ & $1.33378*10^8$ & $1.77631*10^{10}$ & $7.97634*10^{11}$ & $6.41137*10^{14}$ \\ \hline
+$n^3$                                   & $100$ & $1532$ & $8456$ & $31593$ & $315938$ \\ \hline
+$2^n$                                   & $19$ & $31$ & $39$ & $44$ & $54$ \\ \hline
+$n!$                                    & $9$ & $12$ & $14$ & $16$ & $18$ \\ \hline
+\end{tabular}
+\end{table}  
+
+\end{document}

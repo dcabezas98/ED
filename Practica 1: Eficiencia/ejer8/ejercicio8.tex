@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=0cm,bottom=2cm]{geometry} % page
+                                                             % settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+\usepackage{graphicx}
+\usepackage{float}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Práctica 1: Ejercicio 8}
+\author{Patricia Córdoba y David Cabezas}
+\date{\today}
+\maketitle
+
+\subsection*{Características del Hardware}
+\begin{verbatim}
+
+Memoria: 7.6 GiB
+Procesador: Intel® Core™ i7-6700HQ CPU @ 2.60GHz x 8
+Gráfica: Intel® HD Graphics 530 (Skylake GT2)
+Sistema Operativo: ubuntu 17.04 64-bit
+Disco: 474.8 GB
+Compilador: GCC
+Opciones de Compilación: g++ -o mergesort mergesort.cpp
+
+\end{verbatim}
+
+\begin{justify}
+  Hemos representado los resultados empíricos (en tiempos\_mergesort.dat) en la siguiente gráfica, junto con la curva de regresión $1.7278*10^{-8}n\log{n} + 0.000296896$:
+\end{justify}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.6\textwidth]{ejer8.png}
+\end{figure}
+
+\begin{justify}
+  Hemos probado distintos valores del parámetro UMBRAL\_MS, y hemos
+  obtenido los siguientes resultados:
+\end{justify}
+
+\begin{figure}[H]
+  \caption{UMBRAL\_MS = 2}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Umbral/2.png}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{UMBRAL\_MS = 10}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Umbral/10.png}
+\end{figure}
+
+
+\begin{figure}[H]
+  \caption{UMBRAL\_MS = 100}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Umbral/100.png}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{UMBRAL\_MS = 500}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Umbral/500.png}
+\end{figure}
+
+\begin{figure}[H]
+  \caption{UMBRAL\_MS = 1000}
+  \centering
+  \includegraphics[width=0.4\textwidth]{Umbral/1000.png}
+\end{figure}
+
+\begin{justify}
+  Tras estos resultados, podemos concluir que, cuanto mayor sea el
+  valor de UMBRAL\_MS, mayor es el tiempo de ejecución. Sin embargo, si
+  el valor de dicha constante es muy bajo, como cuando vale 2, la
+  eficiencia también es disminuye, aunque no considerablemente.
+  
+\end{justify}
+
+\end{document}
