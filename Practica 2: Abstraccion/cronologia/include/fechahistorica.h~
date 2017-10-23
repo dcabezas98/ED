@@ -16,9 +16,7 @@ class FechaHistorica{
 
   FechaHistorica(int n);
 
-  FechaHistorica(const FechaHistorica &original);
-
-  void destruir();
+  FechaHistorica(const FechaHistorica &original); 
 
   FechaHistorica& operator=(const FechaHistorica &original);
 

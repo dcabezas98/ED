@@ -18,10 +18,6 @@ FechaHistorica::FechaHistorica(const FechaHistorica &original) {
   anio=original.anio;
 }
 
-void FechaHistorica::destruir(){
-  hechos.destruir();
-}
-
 FechaHistorica& FechaHistorica::operator=(const FechaHistorica &original){
 
   if(&original != this){
@@ -85,6 +81,9 @@ ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
     flujo<<"#";
     flujo<<fecha[i];
   }
+
+  flujo<<"\n";
+
   return flujo;
 }
 
@@ -120,8 +119,6 @@ ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
 
 istream& operator>>(istream &flujo, FechaHistorica &fecha){
 
-  fecha.destruir();
-  
   string s;
   
   getline(flujo, s, '#');
@@ -131,6 +128,7 @@ istream& operator>>(istream &flujo, FechaHistorica &fecha){
   while(!flujo.eof()){
     s = "";
     getline(flujo, s, '#');
+    // cout << s << endl;
     fecha.aniade(s);
   }
   return flujo;

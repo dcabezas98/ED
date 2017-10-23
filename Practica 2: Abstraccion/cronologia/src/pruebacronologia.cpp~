@@ -26,8 +26,7 @@ int main(int argc, char * argv[]){
    cout << mi_cronologia[1] << endl;
    cout << mi_cronologia[2].year() << endl;
    cout << mi_cronologia[2] << endl;
-
-   cout << mi_cronologia << endl;
+   
    /* Exhibir aquí la funcionalidad programada para el TDA Cronologia / TDA FechaHistorica */ 
 
    // Algunas sugerencias: 

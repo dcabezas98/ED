@@ -16,8 +16,6 @@ class Cronologia{
 
   Cronologia(const Cronologia &original);
 
-  void destruir();
-
   Cronologia& operator=(const Cronologia &original);
 
   int used() const;

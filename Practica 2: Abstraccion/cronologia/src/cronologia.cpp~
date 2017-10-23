@@ -17,10 +17,6 @@ Cronologia::Cronologia(const Cronologia &original){
     fechas[i] = original.fechas[i];
 }
 
-void Cronologia::destruir(){
-  fechas.destruir();
-}  
-
 Cronologia& Cronologia::operator=(const Cronologia &original){
 
   if(&original != this) {
@@ -87,15 +83,18 @@ ostream& operator<<(ostream &flujo, const Cronologia &crono){
 
 istream& operator>>(istream &flujo, Cronologia &crono){
 
-  crono.destruir();
+  FechaHistorica aux;
   
   while(!flujo.eof()){
     string s;	  
     getline(flujo, s, '\n');
     istringstream ss(s);
-    FechaHistorica aux;
     ss >> aux;
     crono.add(aux);
+    cout << "====" << endl;
   }
   return flujo;
 }
+
+
+

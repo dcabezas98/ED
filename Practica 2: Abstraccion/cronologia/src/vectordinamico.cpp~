@@ -58,16 +58,8 @@ VectorDinamico<T>::VectorDinamico(const VectorDinamico &original)
 template <class T>
 VectorDinamico<T>::~VectorDinamico() 
 {
-  destruir();
+  if (datos!=0) delete[] datos;
 }
-
-template < class T>
-void VectorDinamico<T>::destruir(){
-    
-  if (datos != 0) delete [] datos;
-  utilizados = 0;
-  reservados = 0;
-}   
 
 template <class T>
 int VectorDinamico<T>::reserved() const 
