@@ -25,6 +25,7 @@ int main(int argc, char * argv[]){
    // Algunas sugerencias: 
    // - Obtener los eventos acaecidos en un año dado
 
+   /*
    int y, pos;
    cout << "Introduzca el año que quiere consultar" << endl;
    cin >> y;
@@ -60,31 +61,32 @@ int main(int argc, char * argv[]){
    // - Obtener la (sub)cronología de eventos históricos asociados a una palabra clave. Ejemplo: la cronología de eventos asociados a "Einstein"
 
    string busca;
-o
+
    cout << "Inserte cadena a buscar: ";
    cin >> busca;
 
    cout << "Subcronología que la contiene:\n" << mi_cronologia.subcronologia(busca) << endl;
-     
+
+   */
    // - Operadores sobre cronologías, ejemplo: Unión de dos cronologías (la cronología resultante debería estar ordenada)
 
    Cronologia aUnir;
-   string nombre;
+   //  string nombre;
 
-   cout << "Ruta de la cronología a unir: ";
-   cin >> nombre;
+   // cout << "Ruta de la cronología a unir: ";
+   // cin >> nombre;
 
-   ifstream f1 (nombre);
+   ifstream f1 ("datos/timeline_union.txt");
    if (!f1){
-    cout<<"No puedo abrir el fichero "<< nombre <<endl;
+     //  cout<<"No puedo abrir el fichero "<< nombre <<endl;
     return 0;
    }
 
    f1 >> aUnir;
 
-   cout << "Cronología resultante de unir la anterior cronología a la nueva:" << endl;
+    cout << "Cronología resultante de unir la anterior cronología a la nueva:" << endl;
 
    aUnir += mi_cronologia;
 
-   cout << aUnir << endl;
+   // cout << aUnir << endl;
 }

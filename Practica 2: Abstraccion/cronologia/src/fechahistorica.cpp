@@ -93,12 +93,29 @@ FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
 }
 
 ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
+
+  //cout << "HOLA" << endl;
+  cout << fecha.year();
+  for (int i=0; i<fecha.nhechos(); i++){
+    cout << "#";
+    cout << fecha[i];
+  }
+  cout << endl << endl;
+
+  // Queremos que funciones sin los endl señalados
+  cout << fecha.year() << endl;  // <-
+  for (int i=0; i<fecha.nhechos(); i++){
+    cout << "#";
+    cout << fecha[i] << endl;    // <-
+  }
+  cout << endl;
   
   flujo<<fecha.year();
   for (int i=0; i<fecha.nhechos(); i++){
     flujo<<"#";
     flujo<<fecha[i];
   }
+
   return flujo;
 }
 

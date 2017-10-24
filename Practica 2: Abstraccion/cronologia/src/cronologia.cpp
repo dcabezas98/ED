@@ -69,9 +69,16 @@ int Cronologia::used() const{
 
 Cronologia& Cronologia::operator+=(const Cronologia &crono){
 
-  for(int i = 0; i < crono.fechas.used(); i++)
+  for(int i = 0; i < crono.fechas.used(); i++){
     add(crono[i]);
+  }
 
+  /*  cout << endl << fechas[0].year() << endl << endl;
+  cout << endl << fechas[0][0] << endl << endl;
+  cout << endl << fechas[0][1] << endl << endl;
+  cout << endl << fechas[0][2] << endl << endl;
+  */
+  cout << endl << fechas[0] << endl  << endl;
   return *this;
 }
 

@@ -139,7 +139,7 @@ void VectorDinamico<T>::aniade(T dato) {
     datos[0]= dato;
     utilizados=1;
   } else {
-	  if(utilizados == reservados) resize(reservados*2);
+    if(utilizados == reservados) resize(reservados*2);
 	  
     datos[utilizados]=dato;
     utilizados++;
