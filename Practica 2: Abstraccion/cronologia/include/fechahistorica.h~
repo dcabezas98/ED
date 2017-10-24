@@ -34,8 +34,6 @@ class FechaHistorica{
   
   const string& operator[](int i) const;
 
-  bool contiene(string s) const;
-
   FechaHistorica& operator+=(const FechaHistorica &nuevo);
 };
 

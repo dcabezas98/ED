@@ -28,8 +28,6 @@ class VectorDinamico{
 
   int used() const;
 
-  int& used();
-
   T& operator[](int i);
 
   const T& operator[](int i) const;

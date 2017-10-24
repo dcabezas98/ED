@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <cstring>
 #include "fechahistorica.h"
 #include "vectordinamico.h"
 
@@ -58,20 +57,6 @@ const string& FechaHistorica::operator[](int i) const{
   return hechos[i];
 }
 
-bool FechaHistorica::contiene(string s) const{
-
-  const char* cadena = s.c_str();
-  bool encontrado = false;
-
-  for(int i = 0; i < hechos.used() && !encontrado; i++){
-    const char* hecho = hechos[i].c_str();
- 
-    encontrado = (strstr(hecho, cadena) != 0);
-  }
-
-  return encontrado;
-}
-
 FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
 
   if(&nuevo != this) {
@@ -95,12 +80,43 @@ FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
 ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
   
   flujo<<fecha.year();
+
   for (int i=0; i<fecha.nhechos(); i++){
     flujo<<"#";
     flujo<<fecha[i];
   }
   return flujo;
 }
+
+/*
+  istream& operator>>(istream flujo, FechaHistorica &fecha){
+
+  string s;
+  char c;
+
+  flujo >> c;
+
+  while(c != '#')
+  s = s + c;
+
+  fecha.year() = stoi(s);
+  
+  flujo.get(c);
+
+  while(c != "\n"){
+  while(c != '#'){
+      
+  s = s + c;
+  flujo.get(c);
+  }
+
+  aniade(s);
+  s = '';
+  flujo.get(c);
+  }
+  return flujo;
+  }
+*/
 
 istream& operator>>(istream &flujo, FechaHistorica &fecha){
 
@@ -110,6 +126,8 @@ istream& operator>>(istream &flujo, FechaHistorica &fecha){
   
   getline(flujo, s, '#');
 
+  cout << "AÑO " << s << endl;
+
   fecha.year() = stoi(s);
 
   while(!flujo.eof()){
@@ -118,5 +136,6 @@ istream& operator>>(istream &flujo, FechaHistorica &fecha){
     fecha.aniade(s);
   }
 
+  cout << "HECHO   " << fecha.year() << endl;
   return flujo;
 }

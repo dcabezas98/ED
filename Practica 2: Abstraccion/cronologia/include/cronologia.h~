@@ -29,13 +29,6 @@ class Cronologia{
   const FechaHistorica& operator[](int i) const;
   
   Cronologia& operator+=(const Cronologia &crono);
-
-  int searchYear(int y) const;
-
-  //a1 <= a2
-  Cronologia subcronologia(int a1, int a2) const;
-
-  Cronologia subcronologia(string s) const;
 };
 
   ostream& operator<<(ostream &flujo, const Cronologia &crono);

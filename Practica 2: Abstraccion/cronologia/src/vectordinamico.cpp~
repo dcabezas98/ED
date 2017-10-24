@@ -77,13 +77,7 @@ int VectorDinamico<T>::reserved() const
 
 template <class T>
 int VectorDinamico<T>::used() const 
-{
-  return utilizados; 
-}
-
-template <class T>
-int& VectorDinamico<T>::used()
-{
+{ 
   return utilizados; 
 }
 
