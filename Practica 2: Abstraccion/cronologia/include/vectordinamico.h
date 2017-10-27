@@ -35,9 +35,9 @@ class VectorDinamico{
   * 0 <= utilizados <= reservados
   */
   
-  int utilizados;
-  int reservados;
-  T *datos;
+  int utilizados;  /**< posiciones utilizadas */
+  int reservados;  /**< posiciones reservadas */
+  T *datos;  /**< datos */
 
  public:
 

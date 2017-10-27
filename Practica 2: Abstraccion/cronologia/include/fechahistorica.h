@@ -34,8 +34,8 @@ class FechaHistorica{
   *
   * rep.anio#rep.hechos
   */
-  int anio;
-  VectorDinamico<std::string> hechos;
+  int anio;  /**< año */
+  VectorDinamico<std::string> hechos;  /**< eventos de dicho año */
 
  public:
 

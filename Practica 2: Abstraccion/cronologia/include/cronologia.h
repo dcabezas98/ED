@@ -31,7 +31,7 @@ class Cronologia{
   * @section faConjunto Función de abstracción
   *
   */
-  VectorDinamico<FechaHistorica> fechas;
+  VectorDinamico<FechaHistorica> fechas; /**< vector de fechas */
   
  public:
 
