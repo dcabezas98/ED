@@ -1,0 +1,262 @@
+\hypertarget{classCronologia}{}\subsection{Referencia de la Clase Cronologia}
+\label{classCronologia}\index{Cronologia@{Cronologia}}
+
+
+T.\+D.\+A \hyperlink{classCronologia}{Cronologia}.  
+
+
+
+
+{\ttfamily \#include $<$cronologia.\+h$>$}
+
+\subsubsection*{Métodos públicos}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCronologia_ac0026b1919148f6cd6cf4ca4c357771e}\label{classCronologia_ac0026b1919148f6cd6cf4ca4c357771e}} 
+\hyperlink{classCronologia_ac0026b1919148f6cd6cf4ca4c357771e}{Cronologia} ()
+\begin{DoxyCompactList}\small\item\em Constructor por defecto de la clase. Crea la {\ttfamily \hyperlink{classCronologia}{Cronologia}} con {\ttfamily \hyperlink{classVectorDinamico}{Vector\+Dinamico}} vacio usando el constructor vacio de fechas. \end{DoxyCompactList}\item 
+\hyperlink{classCronologia_a4de4592918375f3053acee2317dcc711}{Cronologia} (const \hyperlink{classCronologia}{Cronologia} \&original)
+\begin{DoxyCompactList}\small\item\em Constructor copia de la clase. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCronologia_a8a1bfaf50b128869c7be0d6041a84cbd}\label{classCronologia_a8a1bfaf50b128869c7be0d6041a84cbd}} 
+void \hyperlink{classCronologia_a8a1bfaf50b128869c7be0d6041a84cbd}{destruir} ()
+\begin{DoxyCompactList}\small\item\em Libera la memoria del {\ttfamily \hyperlink{classVectorDinamico}{Vector\+Dinamico}} fechas. \end{DoxyCompactList}\item 
+\hyperlink{classCronologia}{Cronologia} \& \hyperlink{classCronologia_a28519d10143c6587318536bebab56137}{operator=} (const \hyperlink{classCronologia}{Cronologia} \&original)
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador =. \end{DoxyCompactList}\item 
+int \hyperlink{classCronologia_a36024f9da51673ebcb5d3df90fdbf6ae}{used} () const
+\begin{DoxyCompactList}\small\item\em used nhechos \end{DoxyCompactList}\item 
+void \hyperlink{classCronologia_a6bb1e610054cf194005014767f7056d5}{add} (const \hyperlink{classFechaHistorica}{Fecha\+Historica} \&fecha)
+\begin{DoxyCompactList}\small\item\em Añade la {\ttfamily \hyperlink{classFechaHistorica}{Fecha\+Historica}} {\itshape fecha} a la cronología. \end{DoxyCompactList}\item 
+\hyperlink{classFechaHistorica}{Fecha\+Historica} \& \hyperlink{classCronologia_a61a7c1b52f071330a04f997c85ad208b}{operator\mbox{[}$\,$\mbox{]}} (int i)
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador \mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+const \hyperlink{classFechaHistorica}{Fecha\+Historica} \& \hyperlink{classCronologia_a0133e630439d19e13a8a928e914236fa}{operator\mbox{[}$\,$\mbox{]}} (int i) const
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador \mbox{[}\mbox{]}. \end{DoxyCompactList}\item 
+\hyperlink{classCronologia}{Cronologia} \& \hyperlink{classCronologia_a4423d0f1668c8af15811fc58a2c63335}{operator+=} (const \hyperlink{classCronologia}{Cronologia} \&crono)
+\begin{DoxyCompactList}\small\item\em Sobrecarga del operador +=. \end{DoxyCompactList}\item 
+int \hyperlink{classCronologia_a62515598c09d90d97ea36074c9722587}{search\+Year} (int y) const
+\begin{DoxyCompactList}\small\item\em Busca la posición donde se encuentra un año en el vector. \end{DoxyCompactList}\item 
+\hyperlink{classCronologia}{Cronologia} \hyperlink{classCronologia_a96a1e1d8eb1e51f09f1488e9100e2ed5}{subcronologia} (int a1, int a2) const
+\begin{DoxyCompactList}\small\item\em Crea una subcronología con las fechas entre los años a1 y a2. \end{DoxyCompactList}\item 
+\hyperlink{classCronologia}{Cronologia} \hyperlink{classCronologia_a59bc9f7828a6b9e34272c68cd49eb62c}{subcronologia} (string s) const
+\begin{DoxyCompactList}\small\item\em Crea una subcronología con las fechas que contengan el string s. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsubsection*{Atributos privados}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classVectorDinamico}{Vector\+Dinamico}$<$ \hyperlink{classFechaHistorica}{Fecha\+Historica} $>$ \hyperlink{classCronologia_a22756c56c89a59928e5d0f84948aa58a}{fechas}
+\end{DoxyCompactItemize}
+
+
+\subsubsection{Descripción detallada}
+T.\+D.\+A \hyperlink{classCronologia}{Cronologia}. 
+
+Un objeto {\itshape crono} del tipo de dato abstracto {\ttfamily \hyperlink{classCronologia}{Cronologia}} está formado por una serie de años con acontecimientos ocurridos en cada uno de estos. Dichos datos se guardan en el {\ttfamily \hyperlink{classVectorDinamico}{Vector\+Dinamico}} de {\ttfamily \hyperlink{classFechaHistorica}{Fecha\+Historica}} {\itshape fechas}.
+
+\begin{DoxyAuthor}{Autor}
+Patricia Cordoba Hidalgo 
+
+David Cabezas Berrido 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Fecha}
+Octubre 2017 
+\end{DoxyDate}
+
+
+Definición en la línea 25 del archivo cronologia.\+h.
+
+
+
+\subsubsection{Documentación del constructor y destructor}
+\mbox{\Hypertarget{classCronologia_a4de4592918375f3053acee2317dcc711}\label{classCronologia_a4de4592918375f3053acee2317dcc711}} 
+\index{Cronologia@{Cronologia}!Cronologia@{Cronologia}}
+\index{Cronologia@{Cronologia}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{Cronologia()}{Cronologia()}}
+{\footnotesize\ttfamily Cronologia\+::\+Cronologia (\begin{DoxyParamCaption}\item[{const \hyperlink{classCronologia}{Cronologia} \&}]{original }\end{DoxyParamCaption})}
+
+
+
+Constructor copia de la clase. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em original} & {\ttfamily \hyperlink{classCronologia}{Cronologia}} a copiar \\
+\hline
+\end{DoxyParams}
+
+
+\subsubsection{Documentación de las funciones miembro}
+\mbox{\Hypertarget{classCronologia_a6bb1e610054cf194005014767f7056d5}\label{classCronologia_a6bb1e610054cf194005014767f7056d5}} 
+\index{Cronologia@{Cronologia}!add@{add}}
+\index{add@{add}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{add()}{add()}}
+{\footnotesize\ttfamily void Cronologia\+::add (\begin{DoxyParamCaption}\item[{const \hyperlink{classFechaHistorica}{Fecha\+Historica} \&}]{fecha }\end{DoxyParamCaption})}
+
+
+
+Añade la {\ttfamily \hyperlink{classFechaHistorica}{Fecha\+Historica}} {\itshape fecha} a la cronología. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em fecha} & {\ttfamily \hyperlink{classFechaHistorica}{Fecha\+Historica}} a añadir \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCronologia_a4423d0f1668c8af15811fc58a2c63335}\label{classCronologia_a4423d0f1668c8af15811fc58a2c63335}} 
+\index{Cronologia@{Cronologia}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \hyperlink{classCronologia}{Cronologia}\& Cronologia\+::operator+= (\begin{DoxyParamCaption}\item[{const \hyperlink{classCronologia}{Cronologia} \&}]{crono }\end{DoxyParamCaption})}
+
+
+
+Sobrecarga del operador +=. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em crono} & \hyperlink{classCronologia}{Cronologia} cuyas fechas quieres añadir al objeto implicito siempre que no se encuentren ya en éste. Si se encuentra la fecha, añade los eventos que falten en dicho año. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCronologia_a28519d10143c6587318536bebab56137}\label{classCronologia_a28519d10143c6587318536bebab56137}} 
+\index{Cronologia@{Cronologia}!operator=@{operator=}}
+\index{operator=@{operator=}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \hyperlink{classCronologia}{Cronologia}\& Cronologia\+::operator= (\begin{DoxyParamCaption}\item[{const \hyperlink{classCronologia}{Cronologia} \&}]{original }\end{DoxyParamCaption})}
+
+
+
+Sobrecarga del operador =. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em original} & {\ttfamily \hyperlink{classCronologia}{Cronologia}} que se asigna al objeto implicito \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classCronologia_a61a7c1b52f071330a04f997c85ad208b}\label{classCronologia_a61a7c1b52f071330a04f997c85ad208b}} 
+\index{Cronologia@{Cronologia}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classFechaHistorica}{Fecha\+Historica}\& Cronologia\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption})}
+
+
+
+Sobrecarga del operador \mbox{[}\mbox{]}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em i} & posición del vector a modificar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+\hyperlink{classFechaHistorica}{Fecha\+Historica} guardada en la posición i 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+i debe estar entre 0 y nhechos 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{classCronologia_a0133e630439d19e13a8a928e914236fa}\label{classCronologia_a0133e630439d19e13a8a928e914236fa}} 
+\index{Cronologia@{Cronologia}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{operator[]()}{operator[]()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily const \hyperlink{classFechaHistorica}{Fecha\+Historica}\& Cronologia\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{int}]{i }\end{DoxyParamCaption}) const}
+
+
+
+Sobrecarga del operador \mbox{[}\mbox{]}. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em i} & posición del vector a consultar \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+\hyperlink{classFechaHistorica}{Fecha\+Historica} guardada en la posición i 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+i debe estar entre 0 y nhechos 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{classCronologia_a62515598c09d90d97ea36074c9722587}\label{classCronologia_a62515598c09d90d97ea36074c9722587}} 
+\index{Cronologia@{Cronologia}!search\+Year@{search\+Year}}
+\index{search\+Year@{search\+Year}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{search\+Year()}{searchYear()}}
+{\footnotesize\ttfamily int Cronologia\+::search\+Year (\begin{DoxyParamCaption}\item[{int}]{y }\end{DoxyParamCaption}) const}
+
+
+
+Busca la posición donde se encuentra un año en el vector. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em y} & año que se quiere buscar en la {\ttfamily \hyperlink{classCronologia}{Cronologia}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Posición donde se encuentra dicho año en la {\ttfamily \hyperlink{classCronologia}{Cronologia}} Si no se encuentra, devuelve la posición -\/1. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCronologia_a96a1e1d8eb1e51f09f1488e9100e2ed5}\label{classCronologia_a96a1e1d8eb1e51f09f1488e9100e2ed5}} 
+\index{Cronologia@{Cronologia}!subcronologia@{subcronologia}}
+\index{subcronologia@{subcronologia}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{subcronologia()}{subcronologia()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \hyperlink{classCronologia}{Cronologia} Cronologia\+::subcronologia (\begin{DoxyParamCaption}\item[{int}]{a1,  }\item[{int}]{a2 }\end{DoxyParamCaption}) const}
+
+
+
+Crea una subcronología con las fechas entre los años a1 y a2. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em a1} & año donde comienza la {\ttfamily \hyperlink{classCronologia}{Cronologia}} \\
+\hline
+{\em a2} & año donde finaliza la {\ttfamily \hyperlink{classCronologia}{Cronologia}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Subcronologia que comienza en {\itshape a1} y termina en {\itshape a2}. 
+\end{DoxyReturn}
+\begin{DoxyPrecond}{Precondición}
+a1 $<$= a2 
+\end{DoxyPrecond}
+\mbox{\Hypertarget{classCronologia_a59bc9f7828a6b9e34272c68cd49eb62c}\label{classCronologia_a59bc9f7828a6b9e34272c68cd49eb62c}} 
+\index{Cronologia@{Cronologia}!subcronologia@{subcronologia}}
+\index{subcronologia@{subcronologia}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{subcronologia()}{subcronologia()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \hyperlink{classCronologia}{Cronologia} Cronologia\+::subcronologia (\begin{DoxyParamCaption}\item[{string}]{s }\end{DoxyParamCaption}) const}
+
+
+
+Crea una subcronología con las fechas que contengan el string s. 
+
+
+\begin{DoxyParams}{Parámetros}
+{\em s} & string que debe contener la {\ttfamily \hyperlink{classCronologia}{Cronologia}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Devuelve}
+Subcronologia con las fechas que contienen el string s. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCronologia_a36024f9da51673ebcb5d3df90fdbf6ae}\label{classCronologia_a36024f9da51673ebcb5d3df90fdbf6ae}} 
+\index{Cronologia@{Cronologia}!used@{used}}
+\index{used@{used}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{used()}{used()}}
+{\footnotesize\ttfamily int Cronologia\+::used (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+used nhechos 
+
+\begin{DoxyReturn}{Devuelve}
+Devuelve el número de elementos guardados en el {\ttfamily \hyperlink{classVectorDinamico}{Vector\+Dinamico}} {\ttfamily fechas}. 
+\end{DoxyReturn}
+
+
+\subsubsection{Documentación de los datos miembro}
+\mbox{\Hypertarget{classCronologia_a22756c56c89a59928e5d0f84948aa58a}\label{classCronologia_a22756c56c89a59928e5d0f84948aa58a}} 
+\index{Cronologia@{Cronologia}!fechas@{fechas}}
+\index{fechas@{fechas}!Cronologia@{Cronologia}}
+\paragraph{\texorpdfstring{fechas}{fechas}}
+{\footnotesize\ttfamily \hyperlink{classVectorDinamico}{Vector\+Dinamico}$<$\hyperlink{classFechaHistorica}{Fecha\+Historica}$>$ Cronologia\+::fechas\hspace{0.3cm}{\ttfamily [private]}}
+
+vector de fechas 
+
+Definición en la línea 32 del archivo cronologia.\+h.
+
+
+
+La documentación para esta clase fue generada a partir del siguiente fichero\+:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{cronologia_8h}{cronologia.\+h}\end{DoxyCompactItemize}

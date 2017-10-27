@@ -55,18 +55,14 @@ class VectorDinamico{
 
 /**
   * @brief Operador de asignación de la clase
-  * @param original.utilizados numero de elementos utilizados
-  * @param original.reservados numero de elementos reservados
-  * @param original.datos vector de datos a copiar
+  * @param original @c VectorDinamico a copiar
   * @return el propio objeto, @b *this
   */
   VectorDinamico& operator=(const VectorDinamico &original);
 
 /**
   * @brief Constructor de copias de la clase
-  * @param original.utilizados numero de elementos utilizados
-  * @param original.reservados numero de elementos reservados
-  * @param original.datos vector de datos a copiar
+  * @param original @c VectorDinamico a copiar
   */
   VectorDinamico(const VectorDinamico &original);
 
@@ -115,15 +111,15 @@ class VectorDinamico{
   const T& operator[](int i) const;
 
 /**
-  * @brief Inserta el dato @e T en la posición @e i
+  * @brief Inserta el dato @e elemento en la posición @e i
   * @param i posición en la que se inserta el dato
-  * @param T elemento a insertar
+  * @param elemento a insertar
   */     
   void insertar(int i, T elemento);
 
 /**
-  * @brief Añade el dato @e T al final del vector
-  * @param T elemento a insertar
+  * @brief Añade el dato @e elemento al final del vector
+  * @param elemento a insertar
   */     
   void aniade(T elemento);
 

@@ -19,7 +19,7 @@
   *
   * @author Patricia Cordoba Hidalgo
   * @author David Cabezas Berrido
-  * @dato Octubre 2017
+  * @date Octubre 2017
   */
 
 class Cronologia{
@@ -27,8 +27,6 @@ class Cronologia{
  private:
 /**
   * @page repConjunto Representativo de la clase Cronologia
-  *
-  * @section faConjunto Función de abstracción
   *
   */
   VectorDinamico<FechaHistorica> fechas; /**< vector de fechas */
@@ -43,7 +41,7 @@ class Cronologia{
 
 /**
   * @brief Constructor copia de la clase.
-  * @param original.fechas @c VectorDinamico de @c FechaHistorica a construir 
+  * @param original @c Cronologia a copiar 
   */
   Cronologia(const Cronologia &original);
 

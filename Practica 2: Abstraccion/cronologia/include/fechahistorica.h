@@ -18,7 +18,7 @@
   *
   * @author Patricia Cordoba Hidalgo
   * @author David Cabezas Berrido
-  * @dato Octubre 2017
+  * @date Octubre 2017
   */
 
 
@@ -28,11 +28,6 @@ class FechaHistorica{
 /**
   * @page repConjunto Representativo de la clase FechaHistorica
   *
-  * @section faConjunto Función de abstracción
-  *
-  * Un objeto válido @ e fecha de la clase @c FechaHistorica representa al valor
-  *
-  * rep.anio#rep.hechos
   */
   int anio;  /**< año */
   VectorDinamico<std::string> hechos;  /**< eventos de dicho año */
@@ -54,8 +49,7 @@ class FechaHistorica{
 
 /**
   * @brief Constructor copia de la clase.
-  * @param original.anio año de la @c FechaHistorica a construir
-  * @param original.hechos eventos ocurridos en dicho año
+  * @param original @c FechaHistorica a copiar
   */
   FechaHistorica(const FechaHistorica &original);
 

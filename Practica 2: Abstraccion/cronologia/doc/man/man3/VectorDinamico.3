@@ -1,0 +1,281 @@
+.TH "VectorDinamico< T >" 3 "Viernes, 27 de Octubre de 2017" "Programaci�n en C++" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+VectorDinamico< T > \- TDA \fBVectorDinamico\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <vectordinamico\&.h>\fP
+.SS "Métodos públicos"
+
+.in +1c
+.ti -1c
+.RI "\fBVectorDinamico\fP ()"
+.br
+.RI "Constructor por defecto de la clase\&. Crea un vector vacío\&. "
+.ti -1c
+.RI "\fBVectorDinamico\fP (int n)"
+.br
+.RI "Constructor\&. Reserva \fIn\fP elementos\&. "
+.ti -1c
+.RI "\fBVectorDinamico\fP & \fBoperator=\fP (const \fBVectorDinamico\fP &original)"
+.br
+.RI "Operador de asignación de la clase\&. "
+.ti -1c
+.RI "\fBVectorDinamico\fP (const \fBVectorDinamico\fP &original)"
+.br
+.RI "Constructor de copias de la clase\&. "
+.ti -1c
+.RI "\fB~VectorDinamico\fP ()"
+.br
+.RI "Destructor de la clase\&. Llama al método destruir\&. "
+.ti -1c
+.RI "void \fBdestruir\fP ()"
+.br
+.RI "Libera la memoria dinámica reservada y pone a 0 todos los datos\&. "
+.ti -1c
+.RI "int \fBreserved\fP () const"
+.br
+.RI "Devuelve el número de datos reservados\&. "
+.ti -1c
+.RI "int \fBused\fP () const"
+.br
+.RI "Devuelve el número de datos utilizados\&. "
+.ti -1c
+.RI "int & \fBused\fP ()"
+.br
+.RI "Devuelve la referenca al número de datos reservados\&. "
+.ti -1c
+.RI "T & \fBoperator[]\fP (int i)"
+.br
+.RI "Devuelve la referenca al dato de la posición \fIi\fP\&. "
+.ti -1c
+.RI "const T & \fBoperator[]\fP (int i) const"
+.br
+.RI "Devuelve el dato de la posición \fIi\fP\&. "
+.ti -1c
+.RI "void \fBinsertar\fP (int i, T elemento)"
+.br
+.RI "Inserta el dato \fIelemento\fP en la posición \fIi\fP\&. "
+.ti -1c
+.RI "void \fBaniade\fP (T elemento)"
+.br
+.RI "Añade el dato \fIelemento\fP al final del vector\&. "
+.ti -1c
+.RI "void \fBelimina\fP (int i)"
+.br
+.RI "Elimina el elemento de la posición \fIi\fP\&. "
+.ti -1c
+.RI "void \fBresize\fP (int n)"
+.br
+.RI "Reserva \fIn\fP elementos (si \fIn\fP < \fIutilizados\fP, se eliminan el resto de elementos) "
+.ti -1c
+.RI "bool \fBempty\fP ()"
+.br
+.RI "Dice si el vector está vacío\&. "
+.in -1c
+.SS "Atributos privados"
+
+.in +1c
+.ti -1c
+.RI "int \fButilizados\fP"
+.br
+.ti -1c
+.RI "int \fBreservados\fP"
+.br
+.ti -1c
+.RI "T * \fBdatos\fP"
+.br
+.in -1c
+.SH "Descripción detallada"
+.PP 
+
+.SS "template<class T>
+.br
+class VectorDinamico< T >"
+TDA \fBVectorDinamico\fP\&. 
+
+La clase \fC\fBVectorDinamico\fP\fP representa una estructura de datos con \fItemplates\fP, esto permite montar sobre ella otro TDA y evitar redundancia de código\&. Esta estructura permite acceder a la posiciones en un tiempo reducido, sacrificando eficiencia a la hora de insertar\&. Permite redimensionar el vector a medida que se añaden o eliminan datos\&. Consta de un vector de datos y dos enteros que indican el número de posiciones reservadas y utilizadas\&.
+.PP
+\fBAutor:\fP
+.RS 4
+Patricia Córdoba Hidalgo 
+.PP
+David Cabezas Berrido 
+.RE
+.PP
+\fBFecha:\fP
+.RS 4
+Octubre 2017 
+.RE
+.PP
+
+.PP
+Definición en la línea 26 del archivo vectordinamico\&.h\&.
+.SH "Documentación del constructor y destructor"
+.PP 
+.SS "template<class T> \fBVectorDinamico\fP< T >::\fBVectorDinamico\fP (int n)"
+
+.PP
+Constructor\&. Reserva \fIn\fP elementos\&. 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIn\fP número de elementos a reservar 
+.RE
+.PP
+\fBPrecondición:\fP
+.RS 4
+n >= 0 
+.RE
+.PP
+
+.SS "template<class T> \fBVectorDinamico\fP< T >::\fBVectorDinamico\fP (const \fBVectorDinamico\fP< T > & original)"
+
+.PP
+Constructor de copias de la clase\&. 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIoriginal\fP \fC\fBVectorDinamico\fP\fP a copiar 
+.RE
+.PP
+
+.SH "Documentación de las funciones miembro"
+.PP 
+.SS "template<class T> void \fBVectorDinamico\fP< T >::aniade (T elemento)"
+
+.PP
+Añade el dato \fIelemento\fP al final del vector\&. 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIelemento\fP a insertar 
+.RE
+.PP
+
+.SS "template<class T> void \fBVectorDinamico\fP< T >::elimina (int i)"
+
+.PP
+Elimina el elemento de la posición \fIi\fP\&. 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIi\fP posición del elemento a borrar 
+.RE
+.PP
+\fBPrecondición:\fP
+.RS 4
+utilizados > i >= 0 
+.RE
+.PP
+
+.SS "template<class T> bool \fBVectorDinamico\fP< T >::empty ()"
+
+.PP
+Dice si el vector está vacío\&. 
+.PP
+\fBDevuelve:\fP
+.RS 4
+\fBtrue\fP si está vacío, \fBfalse\fP si no lo está 
+.RE
+.PP
+
+.SS "template<class T> void \fBVectorDinamico\fP< T >::insertar (int i, T elemento)"
+
+.PP
+Inserta el dato \fIelemento\fP en la posición \fIi\fP\&. 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIi\fP posición en la que se inserta el dato 
+.br
+\fIelemento\fP a insertar 
+.RE
+.PP
+
+.SS "template<class T> \fBVectorDinamico\fP& \fBVectorDinamico\fP< T >::operator= (const \fBVectorDinamico\fP< T > & original)"
+
+.PP
+Operador de asignación de la clase\&. 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIoriginal\fP \fC\fBVectorDinamico\fP\fP a copiar 
+.RE
+.PP
+\fBDevuelve:\fP
+.RS 4
+el propio objeto, \fB*this\fP 
+.RE
+.PP
+
+.SS "template<class T> T& \fBVectorDinamico\fP< T >::operator[] (int i)"
+
+.PP
+Devuelve la referenca al dato de la posición \fIi\fP\&. 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIi\fP posición a modificar 
+.RE
+.PP
+\fBPrecondición:\fP
+.RS 4
+utilizados > i >= 0 
+.RE
+.PP
+
+.SS "template<class T> const T& \fBVectorDinamico\fP< T >::operator[] (int i) const"
+
+.PP
+Devuelve el dato de la posición \fIi\fP\&. 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIi\fP posición a consultar 
+.RE
+.PP
+\fBPrecondición:\fP
+.RS 4
+utilizados > i >= 0 
+.RE
+.PP
+
+.SS "template<class T> void \fBVectorDinamico\fP< T >::resize (int n)"
+
+.PP
+Reserva \fIn\fP elementos (si \fIn\fP < \fIutilizados\fP, se eliminan el resto de elementos) 
+.PP
+\fBParámetros:\fP
+.RS 4
+\fIn\fP número de elementos a reservar 
+.RE
+.PP
+\fBPrecondición:\fP
+.RS 4
+n >= 0 
+.RE
+.PP
+
+.SH "Documentación de los datos miembro"
+.PP 
+.SS "template<class T> T* \fBVectorDinamico\fP< T >::datos\fC [private]\fP"
+datos 
+.PP
+Definición en la línea 40 del archivo vectordinamico\&.h\&.
+.SS "template<class T> int \fBVectorDinamico\fP< T >::reservados\fC [private]\fP"
+posiciones reservadas 
+.PP
+Definición en la línea 39 del archivo vectordinamico\&.h\&.
+.SS "template<class T> int \fBVectorDinamico\fP< T >::utilizados\fC [private]\fP"
+posiciones utilizadas 
+.PP
+Definición en la línea 38 del archivo vectordinamico\&.h\&.
+
+.SH "Autor"
+.PP 
+Generado automáticamente por Doxygen para Programaci�n en C++ del código fuente\&.
