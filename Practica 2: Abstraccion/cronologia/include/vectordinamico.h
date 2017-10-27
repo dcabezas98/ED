@@ -103,14 +103,14 @@ class VectorDinamico{
  /**
   * @brief Devuelve la referenca al dato de la posición @e i
   * @param i posición a modificar
-  * @pre utilizados >= >= 0
+  * @pre utilizados > i >= 0
   */   
   T& operator[](int i);
 
 /**
   * @brief Devuelve el dato de la posición @e i
   * @param i posición a consultar
-  * @pre utilizados >= i >= 0
+  * @pre utilizados > i >= 0
   */   
   const T& operator[](int i) const;
 
@@ -130,7 +130,7 @@ class VectorDinamico{
 /**
   * @brief Elimina el elemento de la posición @e i
   * @param i posición del elemento a borrar
-  * @pre utilizados >= i >= 0
+  * @pre utilizados > i >= 0
   */     
   void elimina(int i);
 
