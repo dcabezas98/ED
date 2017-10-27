@@ -41,38 +41,38 @@ class FechaHistorica{
 
 /**
   * @brief Constructor por defecto de la clase. Crea la @c FechaHistorica con
-  * VectorDinamico vacio y cuyo año es cero
+  * @c VectorDinamico vacio y cuyo año es cero
   */
   FechaHistorica();
 
 /**
   * @brief Constructor de la clase
-  * @param n año de la @c FechaHistorica a contruir
+  * @param n año de la @c FechaHistorica a construir
   * @return Crea una @c FechaHistorica cuyo año es n 
   */
   FechaHistorica(int n);
 
 /**
   * @brief Constructor copia de la clase.
-  * @param original.anio año de la @c FechaHistorica a corntruir
+  * @param original.anio año de la @c FechaHistorica a construir
   * @param original.hechos eventos ocurridos en dicho año
   */
   FechaHistorica(const FechaHistorica &original);
 
 /**
-  * @brief Libera la memoria del @c VectorDinamico hechos vacío
+  * @brief Libera la memoria del @c VectorDinamico hechos
   */
   void destruir();
 
 /**
   * @brief Sobrecarga del operador =
-  * @param original @cFechaHistorica que se asigna al objeto implicito
+  * @param original @c FechaHistorica que se asigna al objeto implicito
   */
   FechaHistorica& operator=(const FechaHistorica &original);
 
 /**
   * @brief nhechos
-  * @return Devuelve el numero de eventos guardados el @c VectorDinamico nhechos 
+  * @return Devuelve el número de eventos guardados el @c VectorDinamico nhechos 
   */
   int nhechos() const;
 
@@ -98,6 +98,7 @@ class FechaHistorica{
   * @brief Sobrecarga del operador []
   * @param i posición del vector a modificar
   * @return string guardado en la posición i
+  * @pre i debe estar entre 0 y nhechos
   */
   string& operator[](int i);
 
@@ -114,7 +115,6 @@ class FechaHistorica{
   * hechos de @c FechaHistorica
   * @param s string que se quiere buscar en @c FechaHistorica
   * @return @b true si el string se encuentra en hechos o @b false si no
-  * @pre i debe estar entre 0 y nhechos
   */
   bool contiene(string s) const;
   
@@ -130,7 +130,7 @@ class FechaHistorica{
 /**
   * @brief Sobrecarga del operador <<
   * @param flujo Flujo de salida
-  * @param fecha @c FechaHistorica que se quiere imprimir en pantalla
+  * @param fecha @c FechaHistorica que se quiere escribir
   */
   ostream& operator<<(ostream &flujo, const FechaHistorica &fecha);
 
