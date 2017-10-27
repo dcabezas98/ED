@@ -73,12 +73,6 @@ Cronologia& Cronologia::operator+=(const Cronologia &crono){
     add(crono[i]);
   }
 
-  /*  cout << endl << fechas[0].year() << endl << endl;
-  cout << endl << fechas[0][0] << endl << endl;
-  cout << endl << fechas[0][1] << endl << endl;
-  cout << endl << fechas[0][2] << endl << endl;
-  */
-  cout << endl << fechas[0] << endl  << endl;
   return *this;
 }
 
