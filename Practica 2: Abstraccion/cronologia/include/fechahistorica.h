@@ -13,7 +13,7 @@
   *  @brief Clase FechaHistorica
   *
   * Un objeto @e fecha de la clase @c FechaHistorica es el conjunto formado
-  * por un año y una serie de acontecimientos ocurridos en dicho año.  * Dichos acontecimientos se guardan en un @c VectorDinamico.
+  * por un año y una serie de acontecimientos ocurridos en dicho año.  * Dichos acontecimientos se guardan en un @c VectorDinamico de strings
   * Los años negativos se consideran a.C.
   *
   * @author Patricia Cordoba Hidalgo
