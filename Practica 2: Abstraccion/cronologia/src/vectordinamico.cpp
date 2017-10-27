@@ -65,6 +65,7 @@ template < class T>
 void VectorDinamico<T>::destruir(){
     
   if (datos != 0) delete [] datos;
+  datos = 0;
   utilizados = 0;
   reservados = 0;
 }   
