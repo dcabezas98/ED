@@ -33,3 +33,6 @@
 
 # Emacs security backups
 *~
+
+#DS_Store
+.DS_Store
