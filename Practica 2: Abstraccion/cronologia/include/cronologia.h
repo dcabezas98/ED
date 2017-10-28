@@ -17,6 +17,9 @@
   * una serie de años con acontecimientos ocurridos en cada uno de estos.
   * Dichos datos se guardan en el @c VectorDinamico de @c FechaHistorica @e fechas.
   *
+  * Ejemplo de uso:
+  * @include pruebacronologia.cpp
+  *
   * @author Patricia Cordoba Hidalgo
   * @author David Cabezas Berrido
   * @date Octubre 2017
