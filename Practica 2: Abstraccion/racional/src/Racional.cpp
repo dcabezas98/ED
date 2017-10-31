@@ -83,27 +83,27 @@ void Racional::operator/=(const Racional &r){
 
 //Valor real de la fracción
 double Racional::real(){
-  return num/dem;
+  return num/den;
 }
 
 //Operador <=
 bool Racional::operator<=(const Racional &r){
-  return num*r.dem <= den*r.num;
+  return num*r.den <= den*r.num;
 }
 
 //Operador >=
 bool Racional::operator>=(const Racional &r){
-  return num*r.dem >= den*r.num;
+  return num*r.den >= den*r.num;
 }
 
 //Operador <
 bool Racional::operator<(const Racional &r){
-  return num*r.dem < den*r.num;
+  return num*r.den < den*r.num;
 }
 
 //Operador >
 bool Racional::operator>(const Racional &r){
-  return num*r.dem > den*r.num;
+  return num*r.den > den*r.num;
 }
 
 //Operador ==

@@ -21,10 +21,9 @@ $(OBJ)/usoRacional.o : $(SRC)/usoRacional.cpp
 documentacion:
 	doxygen doc/doxys/Doxyfile
 
-
 # ************ Limpieza ************
 clean :
-	-rm $(OBJ)/* $(SRC)/*~ $(INC)/*~ ./*~
+	-rm $(OBJ)/* $(LIB)/*
 
 mrproper : clean
 	-rm $(BIN)/* doc/html/*

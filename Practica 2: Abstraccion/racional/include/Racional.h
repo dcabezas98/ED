@@ -25,6 +25,7 @@ using namespace std;
   *
   * @author J. Fdez-Valdivia
   * @author Revisado por J. Abad
+  * @author Ampliado por David Cabezas (Octubre 2017)
   * @date Marzo 2008
   */
 
@@ -165,25 +166,25 @@ class Racional {
   * @brief Sobrecarga del operador <=
   * @param r racional a comparar con el objeto implícito
   */ 
-  void operator<=(const Racional &r);
+  bool operator<=(const Racional &r);
 
 /**
   * @brief Sobrecarga del operador >=
   * @param r racional a comparar con el objeto implícito
   */ 
-  void operator>=(const Racional &r);
+  bool operator>=(const Racional &r);
 
 /**
   * @brief Sobrecarga del operador <
   * @param r racional a comparar con el objeto implícito
   */ 
-  void operator<(const Racional &r);
+  bool operator<(const Racional &r);
 
 /**
   * @brief Sobrecarga del operador >
   * @param r racional a comparar con el objeto implícito
   */ 
-  void operator>(const Racional &r);
+  bool operator>(const Racional &r);
   
 /**
   * @brief Sobrecarga del operador ==
@@ -215,8 +216,6 @@ class Racional {
   * @brief Convierte un racional en irreducible;
   */
   Racional  simplifica();
-
-/************* INCLUIR OTRAS FUNCIONES y OPERADORES *********/
  
 };
 

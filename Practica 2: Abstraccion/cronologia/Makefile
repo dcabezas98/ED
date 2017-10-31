@@ -37,4 +37,4 @@ clean :
 	-rm $(OBJ)/* $(LIB)/*
 
 mrproper : clean
-	-rm $(BIN)/* doc/html/*
+	-rm -r $(BIN)/* doc/html doc/latex doc/man
