@@ -22,8 +22,13 @@ const Pareja& tope() const{
   return elementos[elementos.used()-1];
 }
 
-void PilaMax:: poner(const Pareja &p){
-  elementos.aniade(p);
+void PilaMax:: poner(const int &n){
+
+  int mayor = n > maximo()?n:maximo();
+
+  Pareja p={n,mayor};
+
+  elementos.aniade(p);  
 }
 
 void PilaMax:: quitar(){
@@ -35,5 +40,7 @@ int PilaMax:: nelementos() const{
 }
 
 int PilaMax:: maximo() const{
-  return elementos.tope().max;
+
+  if(elementos.empty()) return INT_MIN;
+    return tope().max;
 }

@@ -1,4 +1,4 @@
-x3/**
+/**
  * @file pila.h
  * @brief Fichero cabecera del TDA Pila
  *
