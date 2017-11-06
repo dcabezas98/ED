@@ -20,12 +20,12 @@ regresión de los datos con la orden `fit`.
 ##### Segunda práctica: Abstracción
 
 Implementación de la clase **Cronologia**, para agrupar y ordenar acontecimientos
-históricos por años. Un objeto de la clase **Cronología** contiene una serie de
-objetos de la clase **FechaHistórica**, estructurados en un vector dinámico.
-Una **FechaHistórica** a su vez contiene un año y una serie de eventos históricos
+históricos por años. Un objeto de la clase **Cronologia** contiene una serie de
+objetos de la clase **FechaHistorica**, estructurados en un vector dinámico.
+Una **FechaHistorica** a su vez contiene un año y una serie de eventos históricos
 ocurridos en ese año, agrupados en un vector dinámico de *strings*.
 Para la implementación de estos TDA. He montado una clase **VectorDinamico**
-usando *Templates*, en la que me he apoyado para estructurar lo antes mencionado. También he documentado el código fuente usando la herramienta ***Doxigen***.
+usando *Templates*, en la que me he apoyado para estructurar lo antes mencionado. También he documentado el código fuente usando la herramienta ***Doxygen***.
 Con ayuda del Makefile, se puede compilar tanto el programa de prueba de la clase como la documentación.
 
 El programa *pruebacronologia* contiene un ejemplo de uso de la clase en el que
