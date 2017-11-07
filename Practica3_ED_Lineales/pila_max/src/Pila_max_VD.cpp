@@ -4,6 +4,11 @@
 
 using namespace std;
 
+ostream& Pareja:: operator <<(ostream &flujo, const Pareja &p){
+  flujo << p.valor << " | " << p.max << "\n";
+  return flujo;
+}
+
 PilaMax::PilaMax(const PilaMax &otra):elementos(otra.elementos){}
 
 PilaMax& PilaMax::operator= (const PilaMax& otra){

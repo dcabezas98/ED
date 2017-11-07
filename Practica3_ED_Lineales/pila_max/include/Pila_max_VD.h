@@ -11,6 +11,7 @@
 #define __PilaMax_VD__
 
 #include <cassert>
+#include <iostream>
 #include <vectordinamico.h>
 
 /**
@@ -45,6 +46,8 @@ struct Pareja{
   int valor=0;
   int max=0;
 };
+
+ostream& operator << (ostream &flujo, const Pareja &p);
 
 class PilaMax{
  private:

@@ -7,26 +7,28 @@ CXX = g++
 CPPFLAGS = -Wall -g  -I$(INC) -c
 
 
-all: $(BIN)/pruebacronologia
+all: $(BIN)/usopilas_max
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
 
-
 # ************ Compilación de módulos ************
-$(BIN)/pruebacronologia: $(OBJ)/pruebacronologia.o $(LIB)/libcrono.a
-	$(CXX) -o $@ $< -lcrono -L$(LIB)
+$(BIN)/usopilas_max: $(OBJ)/usopilas_max.o $(LIB)/libpilamax.a
+	$(CXX) -o $@ $< -lpilamax -L$(LIB)
 
-$(OBJ)/pruebacronologia.o: $(SRC)/pruebacronologia.cpp $(INC)/cronologia.h $(INC)/fechahistorica.h $(INC)/vectordinamico.h
+$(OBJ)/usopilas_max.o: $(SRC)/usopilas_max.cpp $(INC)/Pila_max.h $(INC)/Pila_max_VD.h $(INC)/Pila_max_Cola.h $(INC)/vectordinamico.h $(INC)/cola.h
 	$(CXX) $(CPPFLAGS) $< -o $@
 
-$(LIB)/libcrono.a: $(OBJ)/cronologia.o $(OBJ)/fechahistorica.o $(OBJ)/vectordinamico.o
+$(LIB)/libpilamax.a: $(OBJ)/Pila_max_VD.o $(OBJ)/Pila_max_Cola.o $(OBJ)/vectordinamico.o $(OBJ)/cola.o
 	ar -rvs $@ $^
 
-$(OBJ)/cronologia.o: $(SRC)/cronologia.cpp $(INC)/cronologia.h $(INC)/fechahistorica.h $(INC)/vectordinamico.h $(SRC)/vectordinamico.cpp
+$(OBJ)/Pila_max_VD.o: $(SRC)/Pila_max_VD.cpp $(INC)/Pila_max_VD.h $(INC)/vectordinamico.h $(SRC)/vectordinamico.cpp
 	$(CXX) $(CPPFLAGS) $< -o $@
 
-$(OBJ)/fechahistorica.o: $(SRC)/fechahistorica.cpp $(INC)/fechahistorica.h $(INC)/vectordinamico.h $(SRC)/vectordinamico.cpp
+$(OBJ)/Pila_max_Cola.o: $(SRC)/Pila_max_Cola.cpp $(INC)/Pila_max_Cola.h $(INC)/cola.h $(SRC)/cola.cpp
+	$(CXX) $(CPPFLAGS) $< -o $@
+
+$(OBJ)/cola.o: $(INC)/cola.h $(SRC)/cola.cpp
 	$(CXX) $(CPPFLAGS) $< -o $@
 
 $(OBJ)/vectordinamico.o: $(INC)/vectordinamico.h $(SRC)/vectordinamico.cpp

@@ -4,6 +4,11 @@
 
 using namespace std;
 
+ostream& Pareja:: operator <<(ostream &flujo, const Pareja &p){
+  flujo << p.valor << " | " << p.max << "\n";
+  return flujo;
+}
+
 PilaMax::PilaMax(const PilaMax &otra):elementos(otra.elementos){}
 
 PilaMax& PilaMax::operator= (const PilaMax& otra){
@@ -28,7 +33,19 @@ void PilaMax:: poner(const int &n){
 
   Pareja p={n,mayor};
 
-  
+  PilaMax aux(*this);
+  elementos.poner(p);
+
+  int n=elementos.num_elementos()-1;
+
+  for(int i=0; i<n; i++){
+    elementos.quitar();
+  }
+
+  for(int i=0; i<n; i++){
+    elementos.poner(aux.frente());
+    aux.quitar();
+  }
 }
 
 void PilaMax:: quitar(){

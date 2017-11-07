@@ -45,6 +45,8 @@ struct Pareja{
   int max=0;
 };
 
+ostream& operator << (ostream &flujo, const Pareja &p);
+
 class PilaMax{
  private:
 
