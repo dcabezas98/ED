@@ -44,6 +44,12 @@ using namespace std;
  * @date Noviembre 2017
  */
 
+ /**
+  * @brief struct Pareja
+  * Una instancia @e p del tipo Pareja es un elemento formado por el valor
+  * asociado dicha @c Pareja y el máximo de los valores de todas las parejas
+  * almacenadas
+  */
 struct Pareja{
   /**
     * @page repConjunto Representativo del struct Pareja
