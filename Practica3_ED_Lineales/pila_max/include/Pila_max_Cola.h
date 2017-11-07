@@ -11,7 +11,10 @@
 #define __PilaMax_Cola__
 
 #include <cassert>
-#include <cola.h>
+#include <iostream>
+#include "cola.h"
+
+using namespace std;
 /**
  *  @brief T.D.A. Pila
  *
@@ -50,7 +53,7 @@ ostream& operator << (ostream &flujo, const Pareja &p);
 class PilaMax{
  private:
 
-  cola<Pareja> elementos;
+  Cola<Pareja> elementos;
 
  public:
   // ---------------  Constructores ----------------

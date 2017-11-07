@@ -4,7 +4,7 @@ OBJ = obj
 BIN = bin
 LIB = lib
 CXX = g++
-CPPFLAGS = -Wall -g  -I$(INC) -c
+CPPFLAGS = -std=c++11 -Wall -g  -I$(INC) -c
 
 
 all: $(BIN)/usopilas_max

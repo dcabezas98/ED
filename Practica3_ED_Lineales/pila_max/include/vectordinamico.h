@@ -1,7 +1,7 @@
 /**
   * @file vectordinamico.h
   * @brief Fichero cabecera del TDA VectorDinamico
-  * 
+  *
   */
 
 #ifndef _VECTORDINAMICO_
@@ -9,7 +9,7 @@
 
 /**
   * @brief TDA VectorDinamico
-  * 
+  *
   * La clase @c VectorDinamico representa una estructura de datos con @e templates,
   * esto permite montar sobre ella otro TDA y evitar redundancia de código.
   * Esta estructura permite acceder a la posiciones en un tiempo reducido,
@@ -21,7 +21,7 @@
   * @author David Cabezas Berrido
   * @date Octubre 2017
   */
- 
+
 template <class T>
 class VectorDinamico{
 
@@ -31,10 +31,10 @@ class VectorDinamico{
   *
   * @section invConjunto Invariante de la representación
   *
-  * El invariante de la representación es: 
+  * El invariante de la representación es:
   * 0 <= utilizados <= reservados
   */
-  
+
   int utilizados;  /**< posiciones utilizadas */
   int reservados;  /**< posiciones reservadas */
   T *datos;  /**< datos */
@@ -75,78 +75,76 @@ class VectorDinamico{
 /**
   * @brief Libera la memoria dinámica reservada y pone a 0 todos los datos
   *
-  */  
+  */
   void destruir();
 
 /**
   * @brief Devuelve el número de datos reservados
   *
-  */  
+  */
   int reserved() const;
 
 /**
   * @brief Devuelve el número de datos utilizados
   *
-  */  
+  */
   int used() const;
-  
+
 /**
   * @brief Devuelve la referenca al número de datos reservados
   *
-  */  
+  */
   int& used();
 
  /**
   * @brief Devuelve la referenca al dato de la posición @e i
   * @param i posición a modificar
   * @pre utilizados > i >= 0
-  */   
+  */
   T& operator[](int i);
 
 /**
   * @brief Devuelve el dato de la posición @e i
   * @param i posición a consultar
   * @pre utilizados > i >= 0
-  */   
+  */
   const T& operator[](int i) const;
 
 /**
   * @brief Inserta el dato @e elemento en la posición @e i
   * @param i posición en la que se inserta el dato
   * @param elemento a insertar
-  */     
+  */
   void insertar(int i, T elemento);
 
 /**
   * @brief Añade el dato @e elemento al final del vector
   * @param elemento a insertar
-  */     
+  */
   void aniade(T elemento);
 
 /**
   * @brief Elimina el elemento de la posición @e i
   * @param i posición del elemento a borrar
   * @pre utilizados > i >= 0
-  */     
+  */
   void elimina(int i);
 
 /**
   * @brief Reserva @e n elementos (si @e n < @e utilizados, se eliminan el resto de elementos)
   * @param n número de elementos a reservar
   * @pre n >= 0
-  */     
+  */
   void resize(int n);
 
 /**
   * @brief Dice si el vector está vacío
   * @return @b true si está vacío, @b false si no lo está
-  */     
-  bool empty();
-  
+  */
+  bool empty() const;
+
 };
 
 #include "../src/vectordinamico.cpp"
 
 #endif
-  
-  

@@ -10,7 +10,7 @@ VectorDinamico<T>::VectorDinamico(){
 }
 
 template <class T>
-VectorDinamico<T>::VectorDinamico(int n) 
+VectorDinamico<T>::VectorDinamico(int n)
 {
   assert(n>=0);
   if (n>0)
@@ -29,7 +29,7 @@ VectorDinamico<T>& VectorDinamico<T>::operator= (const VectorDinamico &original)
     utilizados= original.utilizados;
 
     if(reservados>0) datos= new T[reservados];
-    
+
     for (int i=0; i<utilizados; ++i)
       datos[i]= original[i];
   }
@@ -37,7 +37,7 @@ VectorDinamico<T>& VectorDinamico<T>::operator= (const VectorDinamico &original)
 }
 
 template <class T>
-VectorDinamico<T>::VectorDinamico(const VectorDinamico &original) 
+VectorDinamico<T>::VectorDinamico(const VectorDinamico &original)
 {
   reservados= original.reservados;
 
@@ -45,10 +45,10 @@ VectorDinamico<T>::VectorDinamico(const VectorDinamico &original)
     datos= new T[reservados];
 
     utilizados = original.utilizados;
-  
-    for (int i=0; i<utilizados; i++)	    
+
+    for (int i=0; i<utilizados; i++)
       datos[i]= original[i];
-  
+
   }else {
     datos=0;
     utilizados = reservados = 0;
@@ -56,41 +56,41 @@ VectorDinamico<T>::VectorDinamico(const VectorDinamico &original)
 }
 
 template <class T>
-VectorDinamico<T>::~VectorDinamico() 
+VectorDinamico<T>::~VectorDinamico()
 {
   destruir();
 }
 
 template < class T>
 void VectorDinamico<T>::destruir(){
-    
+
   if (datos != 0) delete [] datos;
   datos = 0;
   utilizados = 0;
   reservados = 0;
-}   
-
-template <class T>
-int VectorDinamico<T>::reserved() const 
-{ 
-  return reservados; 
 }
 
 template <class T>
-int VectorDinamico<T>::used() const 
+int VectorDinamico<T>::reserved() const
 {
-  return utilizados; 
+  return reservados;
+}
+
+template <class T>
+int VectorDinamico<T>::used() const
+{
+  return utilizados;
 }
 
 template <class T>
 int& VectorDinamico<T>::used()
 {
-  return utilizados; 
+  return utilizados;
 }
 
 template <class T>
 T& VectorDinamico<T>::operator[] (int i) {
-	
+
   assert (0<=i && i<utilizados);
   return datos[i];
 }
@@ -106,14 +106,14 @@ template <class T>
 void VectorDinamico<T>::resize(int n){
 
   assert(n >= 0);
-  
+
   if(n != reservados){
     if(n != 0) {
 
       T *aux = new T[n];
 
-      int min = utilizados < n ? utilizados : n;  
-	
+      int min = utilizados < n ? utilizados : n;
+
       for(int i = 0; i < min; i++)
 	aux[i] = datos[i];
 
@@ -141,20 +141,20 @@ void VectorDinamico<T>::aniade(T dato) {
     utilizados=1;
   } else {
     if(utilizados == reservados) resize(reservados*2);
-	  
+
     datos[utilizados]=dato;
     utilizados++;
   }
 }
 
 template <class T>
-bool VectorDinamico<T>::empty(){
+bool VectorDinamico<T>::empty() const{
 	return datos == 0;
 }
 
 template <class T>
 void VectorDinamico<T>::insertar(int i, T dato) {
-  
+
   if(datos==0){
     aniade(dato);
   }else{
@@ -173,7 +173,7 @@ void VectorDinamico<T>::insertar(int i, T dato) {
     }
   }
 }
-	
+
 template <class T>
 void VectorDinamico<T>::elimina(int i){
 

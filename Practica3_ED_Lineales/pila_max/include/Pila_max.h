@@ -1,6 +1,6 @@
-#define CUAL_COMPILA 2
+#define CUAL_COMPILA 1
 #if CUAL_COMPILA==1
-#include <pila_max_vd.h>
+#include <Pila_max_VD.h>
 #else
-#include <pila_max_cola.h>
+#include <Pila_max_Cola.h>
 #endif
