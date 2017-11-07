@@ -7,12 +7,11 @@
  *
  */
 
-#ifndef __PilaMax_VD__
-#define __PilaMax_VD__
+#ifndef __PilaMax_Cola__
+#define __PilaMax_Cola__
 
 #include <cassert>
-#include <vectordinamico.h>
-
+#include <cola.h>
 /**
  *  @brief T.D.A. Pila
  *
@@ -49,7 +48,7 @@ struct Pareja{
 class PilaMax{
  private:
 
-  VectorDinamico<Pareja> elementos;
+  cola<Pareja> elementos;
 
  public:
   // ---------------  Constructores ----------------
@@ -100,4 +99,4 @@ class PilaMax{
   int maximo() const;
 };
 
-#endif // __PilaMax_VD__
+#endif // __PilaMax_Cola__
