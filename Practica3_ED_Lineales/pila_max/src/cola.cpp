@@ -71,7 +71,7 @@ Cola<T>& Cola<T>::operator=(const Cola<T> & otra){
 template <class T>
 void Cola<T>::poner(const T & elem){
   Celda *aux = new Celda(elem,0);    //Creamos un nuevo nodo
-  if (primera==0)                    //Si la lista est� vac�a,
+  if (primera==0)                    //Si la lista está vacía,
     primera = ultima = aux;          //primera y ultima apuntan a ese nodo
   else{                      //Si la lista ya tenia nodos,
     ultima->siguiente = aux; //Actualizamos el puntero siguiente del ultimo nodo
