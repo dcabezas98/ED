@@ -23,6 +23,7 @@ bool PilaMax::vacia() const{
 }
 
 Pareja& PilaMax:: tope(){
+  assert(!elementos.empty());
   return elementos[elementos.used()-1];
 }
 
@@ -42,6 +43,7 @@ void PilaMax:: poner(const int &n){
 }
 
 void PilaMax:: quitar(){
+  assert(!elementos.empty());
   elementos.elimina(elementos.used()-1);
 }
 
