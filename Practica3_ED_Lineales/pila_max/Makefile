@@ -7,13 +7,13 @@ CXX = g++
 CPPFLAGS = -std=c++11 -Wall -g  -I$(INC) -c
 
 
-all: $(BIN)/usopilas_max
+all: $(BIN)/usopilas_max.out
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
 
 # ************ Compilación de módulos ************
-$(BIN)/usopilas_max: $(OBJ)/usopilas_max.o $(LIB)/libpilamax.a
+$(BIN)/usopilas_max.out: $(OBJ)/usopilas_max.o $(LIB)/libpilamax.a
 	$(CXX) -o $@ $< -lpilamax -L$(LIB)
 
 $(OBJ)/usopilas_max.o: $(SRC)/usopilas_max.cpp $(INC)/Pila_max.h $(INC)/Pila_max_VD.h $(INC)/Pila_max_Cola.h $(INC)/vectordinamico.h $(INC)/cola.h

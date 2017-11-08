@@ -1,5 +1,5 @@
-#include <iostream>
 #include <cassert>
+#include <iostream>
 
 using namespace std;
 
@@ -184,4 +184,6 @@ void VectorDinamico<T>::elimina(int i){
   }
 
   utilizados--;
+
+  if(utilizados==0) datos=0;
 }

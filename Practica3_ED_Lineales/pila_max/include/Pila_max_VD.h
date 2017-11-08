@@ -15,7 +15,7 @@
 #include <vectordinamico.h>
 
 /**
- *  @brief T.D.A. Pila
+ *  @brief T.D.A. PilaMax
  *
  *
  * Una instancia @e v del tipo de datos abstracto Pila sobre el tipo @c T es
@@ -38,20 +38,33 @@
  * El espacio requerido para el almacenamiento es O(n). Donde n es el número de
  * elementos de la Pila.
  *
- * @author J.Fdez-Valdivia.
- * @date Octubre 2011
+ * @author Patricia Córdoba Hidalgo
+ * @author David Cabezas Berrido
+ * @date Noviembre 2017
  */
 
-struct Pareja{
-  int valor=0;
-  int max=0;
-};
+ struct Pareja{
+   /**
+     * @page repConjunto Representativo del struct Pareja
+     *
+     */
+   int valor=0;   /**< valor del elemento */
+   int max=0;     /**< valor máximo almacenado en la pila */
+ };
 
+ /**
+   * @brief Sobrecarga del operador <<
+   * @param flujo Flujo de salida
+   * @param p @c Pareja que se quiere escribir
+   */
 ostream& operator << (ostream &flujo, const Pareja &p);
 
 class PilaMax{
  private:
-
+   /**
+     * @page repConjunto Representativo del TDA PilaMax
+     *
+     */
   VectorDinamico<Pareja> elementos;
 
  public:
@@ -68,7 +81,7 @@ class PilaMax{
 
   // --------------- Otras funciones ---------------
   /**
-   * @brief Operador de asignación
+   * @brief Sobrecarga del operador de asignación
    * @param otra La pila que se va a asignar.
    */
   PilaMax& operator= (const PilaMax& otra);
@@ -100,6 +113,9 @@ class PilaMax{
    */
   int nelementos() const;
 
+  /**
+   * @brief Devuelve el valor máximo almacenado en la pila
+   */
   int maximo() const;
 };
 

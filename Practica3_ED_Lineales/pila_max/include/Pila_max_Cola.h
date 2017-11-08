@@ -16,7 +16,7 @@
 
 using namespace std;
 /**
- *  @brief T.D.A. Pila
+ *  @brief T.D.A. PilaMax
  *
  *
  * Una instancia @e v del tipo de datos abstracto Pila sobre el tipo @c T es
@@ -39,28 +39,49 @@ using namespace std;
  * El espacio requerido para el almacenamiento es O(n). Donde n es el número de
  * elementos de la Pila.
  *
- * @author J.Fdez-Valdivia.
- * @date Octubre 2011
+ * @author Patricia Córdoba Hidalgo
+ * @author David Cabezas Berrido
+ * @date Noviembre 2017
  */
 
+ /**
+  * @brief struct Pareja
+  * Una instancia @e p del tipo Pareja es un elemento formado por el valor
+  * asociado dicha @c Pareja y el máximo de los valores de todas las parejas
+  * almacenadas
+  */
 struct Pareja{
-  int valor=0;
-  int max=0;
+  /**
+    * @page repConjunto Representativo del struct Pareja
+    *
+    */
+  int valor=0;   /**< valor del elemento */
+  int max=0;     /**< valor máximo almacenado en la pila */
 };
 
+/**
+  * @brief Sobrecarga del operador <<
+  * @param flujo Flujo de salida
+  * @param p @c Pareja que se quiere escribir
+  */
 ostream& operator << (ostream &flujo, const Pareja &p);
 
 class PilaMax{
  private:
-
-  Cola<Pareja> elementos;
+   /**
+     * @page repConjunto Representativo del TDA PilaMax
+     *
+     */
+  Cola<Pareja> elementos;     /**< Cola con elementos de la PilaMax */
 
  public:
   // ---------------  Constructores ----------------
+
   /**
    * @brief Constructor por defecto
    */
  PilaMax():elementos(){}
+
   /**
    * @brief Constructor de copias
    * @param otra La pila de la que se hará la copia.
@@ -68,8 +89,9 @@ class PilaMax{
   PilaMax(const PilaMax & otra);
 
   // --------------- Otras funciones ---------------
+
   /**
-   * @brief Operador de asignación
+   * @brief Sobrecarga del operador de asignación
    * @param otra La pila que se va a asignar.
    */
   PilaMax& operator= (const PilaMax& otra);
@@ -78,19 +100,23 @@ class PilaMax{
    * @brief Comprueba si la pila está vacía
    */
   bool vacia() const;
+
   /**
    * @brief Devuelve el elemento del tope de la pila
    */
   Pareja& tope ();
+
   /**
    * @brief Devuelve el elemento del tope de una pila constante
    */
   const Pareja& tope () const;
+
   /**
    * @brief Añade un elemento "encima" del tope de la pila
    * @param elem Elemento que se va a añadir.
    */
   void poner(const int &n);
+
   /**
    * @brief Quita el elemento del tope de la pila
    */
@@ -101,6 +127,9 @@ class PilaMax{
    */
   int nelementos() const;
 
+  /**
+   * @brief Devuelve el valor máximo almacenado en la pila
+   */
   int maximo() const;
 };
 
