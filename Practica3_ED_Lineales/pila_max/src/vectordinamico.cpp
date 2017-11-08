@@ -63,7 +63,6 @@ VectorDinamico<T>::~VectorDinamico()
 
 template < class T>
 void VectorDinamico<T>::destruir(){
-
   if (datos != 0) delete [] datos;
   datos = 0;
   utilizados = 0;
@@ -90,7 +89,6 @@ int& VectorDinamico<T>::used()
 
 template <class T>
 T& VectorDinamico<T>::operator[] (int i) {
-
   assert (0<=i && i<utilizados);
   return datos[i];
 }
@@ -185,5 +183,8 @@ void VectorDinamico<T>::elimina(int i){
 
   utilizados--;
 
-  if(utilizados==0) datos=0;
+  if(utilizados==0){
+    delete [] datos;
+    datos=0;
+  }
 }

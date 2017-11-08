@@ -80,7 +80,7 @@ class PilaMax{
   /**
    * @brief Constructor por defecto
    */
- PilaMax():elementos(){}
+  PilaMax():elementos(){}
 
   /**
    * @brief Constructor de copias

@@ -4,10 +4,11 @@
   *
   */
 #include <cassert>
+#include <iostream>
+using namespace std;
 // #include <cola.h>  El codigo ya se incluye en cola.h
 
 /* _________________________________________________________________________ */
-
 
 template <class T>
 Cola<T>::Cola(const Cola<T> & original){
@@ -84,11 +85,12 @@ void Cola<T>::poner(const T & elem){
 
 template <class T>
 void Cola<T>::quitar(){
-  assert(primera!=0);             //Si la cola est� vac�a, abortar
+  assert(primera!=0);             //Si la cola está vacía, abortar
   Celda *aux = primera;           //Copiamos el puntero al primer nodo
   primera = primera->siguiente;   //Actualizamos primera
   delete aux;                     //Borramos el primer nodo
-  if (primera == 0)               //Si no quedan nodos,
+  if (primera == 0){               //Si no quedan nodos,
     ultima=0;                     //actualizamos ultima
-  num_elem--;                     //Actualizamos el n�mero de elementos
+  }
+  num_elem--;                     //Actualizamos el número de elementos
 }

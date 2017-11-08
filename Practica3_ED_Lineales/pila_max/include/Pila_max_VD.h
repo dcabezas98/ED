@@ -12,7 +12,7 @@
 
 #include <cassert>
 #include <iostream>
-#include <vectordinamico.h>
+#include "vectordinamico.h"
 
 /**
  *  @brief T.D.A. PilaMax

@@ -16,7 +16,7 @@
  *
  *
  * Una instancia @e c del tipo de dato abstracto Cola sobre un dominio @e T es
- * una sucesi�n finita de elementos del mismo con un funcionamiento @e FIFO
+ * una sucesión finita de elementos del mismo con un funcionamiento @e FIFO
  * (First In, First Out}). En una cola, las operaciones de inserci�n tienen
  * lugar en uno de los extremos, denominado @e final de la cola, mientras que
  * el borrado y consulta se lleva a cabo en el otro extremo, denominado
@@ -123,6 +123,6 @@ class Cola{
     }
 };
 
-#include <../src/cola.cpp>
+#include "../src/cola.cpp" 
 
 #endif // __Cola_H__

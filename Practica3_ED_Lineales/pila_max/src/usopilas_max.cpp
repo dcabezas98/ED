@@ -22,5 +22,6 @@ int main(){
     cout << x <<endl;
     p.quitar();
   }
-    return 0;
+
+  return 0;
 }
