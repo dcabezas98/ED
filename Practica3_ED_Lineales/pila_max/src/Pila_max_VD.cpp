@@ -43,6 +43,7 @@ void PilaMax:: poner(const int &n){
 }
 
 void PilaMax:: quitar(){
+  
   assert(!elementos.empty());
   elementos.elimina(elementos.used()-1);
 }

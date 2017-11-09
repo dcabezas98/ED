@@ -6,6 +6,7 @@ using namespace std;
 int main(){
   PilaMax p;
   int i;
+
   for ( i=10; i>=0 ; i--){
     p.poner(i);
   }

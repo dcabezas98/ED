@@ -85,6 +85,7 @@ void Cola<T>::poner(const T & elem){
 
 template <class T>
 void Cola<T>::quitar(){
+  
   assert(primera!=0);             //Si la cola está vacía, abortar
   Celda *aux = primera;           //Copiamos el puntero al primer nodo
   primera = primera->siguiente;   //Actualizamos primera

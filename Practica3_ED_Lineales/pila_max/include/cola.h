@@ -2,7 +2,7 @@
   * @file cola.h
   * @brief Fichero cabecera del TDA Cola
   *
-  * Gestiona una secuencia de elementos con facilidades para la inserci�n y
+  * Gestiona una secuencia de elementos con facilidades para la inserción y
   * borrado de elementos en un extremo
   */
 
@@ -17,21 +17,21 @@
  *
  * Una instancia @e c del tipo de dato abstracto Cola sobre un dominio @e T es
  * una sucesión finita de elementos del mismo con un funcionamiento @e FIFO
- * (First In, First Out}). En una cola, las operaciones de inserci�n tienen
+ * (First In, First Out}). En una cola, las operaciones de inserción tienen
  * lugar en uno de los extremos, denominado @e final de la cola, mientras que
  * el borrado y consulta se lleva a cabo en el otro extremo, denominado
  * @e frente de la cola. Una cola de longitud @e n la denotamos
 
  * - <a1,a2,a3,..,an<
 
- * En esta cola, tendremos acceso �nicamente al elemento del @e Frente,
- * es decir, a @e a1. El borrado o consulta de un elemento ser� sobre @e a1,
- * mientras que la inserci�n de un nuevo elemento se har� despu�s de
+ * En esta cola, tendremos acceso únicamente al elemento del @e Frente,
+ * es decir, a @e a1. El borrado o consulta de un elemento será sobre @e a1,
+ * mientras que la inserciñon de un nuevo elemento se haré después de
  * @e an (final de la cola).
  *
- * Si n=0 diremos que la cola est� vac�a.
+ * Si n=0 diremos que la cola está vacía.
  *
- * El espacio requerido para el almacenamiento es O(n), donde n es el n�mero
+ * El espacio requerido para el almacenamiento es O(n), donde n es el número
  * de elementos de la cola.
  *
  * @author J. Fdez-Valdivia
@@ -41,6 +41,14 @@ template <class T>
 class Cola{
 
   private:
+
+    /**
+     * @brief struct Celda
+     * Una instancia @e c del tipo Celda es una estructura formada por un elemento
+     * y un puntero a la siguiente Celda, de forma que sólo se pueden recorrer las
+     * celdas hacia delante, y para acceder a una celda tenemos que pasar por
+     * todas las anteriores.
+     */
     struct Celda {
       T elemento;        ///< Elemento de información.
       Celda * siguiente; ///< Puntero al siguiente nodo.
@@ -123,6 +131,6 @@ class Cola{
     }
 };
 
-#include "../src/cola.cpp" 
+#include "../src/cola.cpp"
 
 #endif // __Cola_H__

@@ -16,10 +16,10 @@ documentacion:
 $(BIN)/usopilas_max.out: $(OBJ)/usopilas_max.o $(LIB)/libpilamax.a
 	$(CXX) -o $@ $< -lpilamax -L$(LIB)
 
-$(OBJ)/usopilas_max.o: $(SRC)/usopilas_max.cpp $(INC)/Pila_max.h $(INC)/Pila_max_VD.h $(INC)/Pila_max_Cola.h $(INC)/vectordinamico.h $(INC)/cola.h
+$(OBJ)/usopilas_max.o: $(SRC)/usopilas_max.cpp $(INC)/Pila_max.h $(INC)/Pila_max_VD.h $(INC)/vectordinamico.h $(INC)/Pila_max_Cola.h $(INC)/cola.h
 	$(CXX) $(CPPFLAGS) $< -o $@
 
-$(LIB)/libpilamax.a: $(OBJ)/Pila_max_VD.o $(OBJ)/Pila_max_Cola.o $(OBJ)/vectordinamico.o $(OBJ)/cola.o
+$(LIB)/libpilamax.a: $(OBJ)/Pila_max_VD.o $(OBJ)/vectordinamico.o $(OBJ)/Pila_max_Cola.o $(OBJ)/cola.o 
 	ar -rvs $@ $^
 
 $(OBJ)/Pila_max_VD.o: $(SRC)/Pila_max_VD.cpp $(INC)/Pila_max_VD.h $(INC)/vectordinamico.h $(SRC)/vectordinamico.cpp

@@ -1,5 +1,5 @@
 /**
- * @file pila.h
+ * @file Pila_max_VD.h
  * @brief Fichero cabecera del TDA Pila
  *
  * Gestiona una secuencia de elementos con facilidades para la inserción y
@@ -15,8 +15,29 @@
 #include "vectordinamico.h"
 
 /**
+ * @brief struct Pareja
+ * Una instancia @e p del tipo Pareja es un elemento formado por el valor
+ * asociado dicha @c Pareja y el máximo de los valores de todas las parejas
+ * almacenadas
+ */
+struct Pareja{
+   /**
+     * @page repConjunto Representativo del struct Pareja
+     *
+     */
+  int valor=0;   /**< valor del elemento */
+  int max=0;     /**< valor máximo almacenado en la pila */
+ };
+
+ /**
+   * @brief Sobrecarga del operador <<
+   * @param flujo Flujo de salida
+   * @param p @c Pareja que se quiere escribir
+   */
+ostream& operator << (ostream &flujo, const Pareja &p);
+
+/**
  *  @brief T.D.A. PilaMax
- *
  *
  * Una instancia @e v del tipo de datos abstracto Pila sobre el tipo @c T es
  * una lista de elementos del mismo con un funcionamiento @e LIFO (Last In,
@@ -38,34 +59,24 @@
  * El espacio requerido para el almacenamiento es O(n). Donde n es el número de
  * elementos de la Pila.
  *
+ * Además, esta Pila almacena parejas de @b valor @b | @b máximo, donde máximo
+ * denota el valor máximo de los elementos inferiores en la Pila. Esto permite
+ * conocer el máximo de los valores de la pila en todo momento.
+ *
+ * Para la implementación de la Pila, Hemos usado una estructura VectorDinamico,
+ * situando el @e tope de la Pila en la última posición ocupada del Vector.
+ *
  * @author Patricia Córdoba Hidalgo
  * @author David Cabezas Berrido
  * @date Noviembre 2017
  */
-
- struct Pareja{
-   /**
-     * @page repConjunto Representativo del struct Pareja
-     *
-     */
-   int valor=0;   /**< valor del elemento */
-   int max=0;     /**< valor máximo almacenado en la pila */
- };
-
- /**
-   * @brief Sobrecarga del operador <<
-   * @param flujo Flujo de salida
-   * @param p @c Pareja que se quiere escribir
-   */
-ostream& operator << (ostream &flujo, const Pareja &p);
-
 class PilaMax{
  private:
    /**
      * @page repConjunto Representativo del TDA PilaMax
      *
      */
-  VectorDinamico<Pareja> elementos;
+  VectorDinamico<Pareja> elementos; /**< VectorDinamico de elementos de la Pila */
 
  public:
   // ---------------  Constructores ----------------
@@ -100,7 +111,7 @@ class PilaMax{
   const Pareja& tope () const;
   /**
    * @brief Añade un elemento "encima" del tope de la pila
-   * @param elem Elemento que se va a añadir.
+   * @param n Elemento que se va a añadir.
    */
   void poner(const int &n);
   /**
