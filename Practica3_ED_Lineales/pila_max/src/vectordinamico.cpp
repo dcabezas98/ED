@@ -5,6 +5,7 @@ using namespace std;
 
 template <class T>
 VectorDinamico<T>::VectorDinamico(){
+
   datos=0;
   reservados = utilizados = 0;
 }
@@ -132,6 +133,7 @@ void VectorDinamico<T>::resize(int n){
 
 template <class T>
 void VectorDinamico<T>::aniade(T dato) {
+
   if (datos == 0){
     reservados=1;
     datos= new T[reservados];
@@ -174,7 +176,7 @@ void VectorDinamico<T>::insertar(int i, T dato) {
 
 template <class T>
 void VectorDinamico<T>::elimina(int i){
-  
+
   assert(i>=0 && i<utilizados);
 
   for(int j=i; j<utilizados-1; j++){

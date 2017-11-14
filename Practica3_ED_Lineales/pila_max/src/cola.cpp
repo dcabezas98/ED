@@ -4,8 +4,7 @@
   *
   */
 #include <cassert>
-#include <iostream>
-using namespace std;
+
 // #include <cola.h>  El codigo ya se incluye en cola.h
 
 /* _________________________________________________________________________ */
@@ -31,6 +30,7 @@ Cola<T>::Cola(const Cola<T> & original){
 
 template <class T>
 Cola<T>::~Cola(){
+
   Celda * aux;
   while (primera!=0){             //Mientras queden elementos
     aux = primera;                //Copiamos el puntero
@@ -71,6 +71,7 @@ Cola<T>& Cola<T>::operator=(const Cola<T> & otra){
 
 template <class T>
 void Cola<T>::poner(const T & elem){
+
   Celda *aux = new Celda(elem,0);    //Creamos un nuevo nodo
   if (primera==0)                    //Si la lista está vacía,
     primera = ultima = aux;          //primera y ultima apuntan a ese nodo
@@ -85,7 +86,7 @@ void Cola<T>::poner(const T & elem){
 
 template <class T>
 void Cola<T>::quitar(){
-  
+
   assert(primera!=0);             //Si la cola está vacía, abortar
   Celda *aux = primera;           //Copiamos el puntero al primer nodo
   primera = primera->siguiente;   //Actualizamos primera
