@@ -6,9 +6,6 @@ LIB = lib
 CXX = g++
 CPPFLAGS = -std=c++11 -Wall -g  -I$(INC) -c
 
-
-all: vd cola
-
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
@@ -31,7 +28,7 @@ $(OBJ)/Pila_max_Cola.o: $(SRC)/Pila_max_Cola.cpp $(INC)/Pila_max_Cola.h $(INC)/c
 
 $(OBJ)/cola.o: $(INC)/cola.h $(SRC)/cola.cpp
 	$(CXX) $(CPPFLAGS) $< -o $@
-	
+
 vd: $(BIN)/usopilas_max_VD.out
 
 $(BIN)/usopilas_max_VD.out: $(OBJ)/usopilas_max_VD.o $(LIB)/libpilamaxVD.a
