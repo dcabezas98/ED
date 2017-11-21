@@ -1,75 +1,55 @@
 #include <iostream>
+#include <pair>
+#include <set>
 #include <string>
-#include <cstring>
 #include "fechahistorica.h"
-#include "vectordinamico.h"
 
 using namespace std;
 
 FechaHistorica::FechaHistorica() {
-  anio=0; 
+  pareja.first = 0;
 }
 
 FechaHistorica::FechaHistorica(int n){
-  anio=n;
+  pareja.first = n;
 }
 
 FechaHistorica::FechaHistorica(const FechaHistorica &original) {
-  hechos=original.hechos;
-  anio=original.anio;
+  pareja.first = original.pareja.first;
+  pareja.second = original.second;
 }
 
 void FechaHistorica::destruir(){
-  hechos.destruir();
+  pareja.second.clear();
 }
 
 FechaHistorica& FechaHistorica::operator=(const FechaHistorica &original){
 
   if(&original != this){
-
-    anio = original.anio;
-
-    hechos = original.hechos;
+    pareja.first = original.pareja.first;
+    pareja.second = original.pareja.second;
   }
   return *this;
 }
 
 int FechaHistorica::nhechos() const {
-  return hechos.used();
+  return pareja.second.size();
 }
 
 const int FechaHistorica::year() const {
-  return anio;
+  return pareja.first;
 }
 
 int& FechaHistorica::year(){
-  return anio;
+  return pareja.first;
 }
 
 void FechaHistorica::aniade(string h) {
-  hechos.aniade(h);
-}
-
-string& FechaHistorica::operator[](int i){
-  return hechos[i];
-}
-
-const string& FechaHistorica::operator[](int i) const{
-  return hechos[i];
+  pareja.second.insert(h);
 }
 
 bool FechaHistorica::contiene(string s) const{
-
-  const char* cadena = s.c_str();
-  bool encontrado = false;
-
-  for(int i = 0; i < hechos.used() && !encontrado; i++){
-    const char* hecho = hechos[i].c_str();
- 
-    encontrado = (strstr(hecho, cadena) != 0);
-  }
-
-  return encontrado;
+  return pareja.second.count(s);
 }
 
 FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
@@ -77,27 +57,17 @@ FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
   if(&nuevo != this) {
     assert(anio == nuevo.anio);
 
-    bool encontrado = false;
-  
-    for(int i=0; i<nuevo.nhechos(); i++){
-      for(int j=0; j<nhechos() && !encontrado; j++) {
-	if(nuevo.hechos[i]==hechos[j])
-	  encontrado = true;
-      }
-    
-      if(!encontrado)
-	hechos.aniade(nuevo.hechos[i]);
-    }
+    for(auto it = nuevo.pareja.second.cbegin(); it != nuevo.pareja.second.cend(); it++)
+      pareja.second.insert(*it);
   }
   return *this;
 }
 
 ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
-  
-  flujo << fecha.year();
-  for (int i=0; i<fecha.nhechos(); i++){
-    flujo << "#" << fecha[i] << "\n";
-  }
+
+  flujo << fecha.pareja.first;
+  for (auto it = fecha.pareja.second.cbegin(); it != nuevo.pareja.second.cend(); it++)
+    flujo << "#" << *it;
 
   return flujo;
 }
@@ -105,14 +75,14 @@ ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
 istream& operator>>(istream &flujo, FechaHistorica &fecha){
 
   fecha.destruir();
-  
+
   string s;
-  
+
   getline(flujo, s, '#');
 
   fecha.year() = stoi(s);
 
-  while(!flujo.eof()){
+  while(flujo.good()){
     s = "";
     getline(flujo, s, '#');
     fecha.aniade(s);
