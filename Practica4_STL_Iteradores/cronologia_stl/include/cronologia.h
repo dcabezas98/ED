@@ -7,7 +7,6 @@
 #ifndef _CRONOLOGIA_
 #define _CRONOLOGIA_
 
-#include <map>
 #include "fechahistorica.h"
 
 /**
