@@ -16,7 +16,7 @@ FechaHistorica::FechaHistorica(int n){
 
 FechaHistorica::FechaHistorica(const FechaHistorica &original) {
   pareja.first = original.pareja.first;
-  pareja.second = original.second;
+  pareja.second = original.pareja.second;
 }
 
 void FechaHistorica::destruir(){
@@ -85,7 +85,7 @@ istream& operator>>(istream &flujo, FechaHistorica &fecha){
   while(flujo.good()){
     s = "";
     getline(flujo, s, '#');
-    fecha.aniade(s);
+    fecha.aniade();
   }
 
   return flujo;
