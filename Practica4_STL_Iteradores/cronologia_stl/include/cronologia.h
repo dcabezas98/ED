@@ -7,11 +7,11 @@
 #ifndef _CRONOLOGIA_
 #define _CRONOLOGIA_
 
+#include <map>
 #include "fechahistorica.h"
-#include "vectordinamico.h"
 
 /**
-  *  @brief T.D.A Cronologia 
+  *  @brief T.D.A Cronologia
   *
   * Un objeto @e crono del tipo de dato abstracto @c Cronologia está formado por
   * una serie de años con acontecimientos ocurridos en cada uno de estos.
@@ -32,8 +32,8 @@ class Cronologia{
   * @page repConjunto Representativo de la clase Cronologia
   *
   */
-  VectorDinamico<FechaHistorica> fechas; /**< vector de fechas */
-  
+  map<FechaHistorica> fechas; /**< vector de fechas */
+
  public:
 
 /**
@@ -44,7 +44,7 @@ class Cronologia{
 
 /**
   * @brief Constructor copia de la clase.
-  * @param original @c Cronologia a copiar 
+  * @param original @c Cronologia a copiar
   */
   Cronologia(const Cronologia &original);
 

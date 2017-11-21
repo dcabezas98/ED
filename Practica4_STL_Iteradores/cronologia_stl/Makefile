@@ -4,7 +4,7 @@ OBJ = obj
 BIN = bin
 LIB = lib
 CXX = g++
-CPPFLAGS = -Wall -g  -I$(INC) -c
+CPPFLAGS = -Wall -g -std=c++17 -I$(INC) -c
 
 
 all: $(BIN)/pruebacronologia

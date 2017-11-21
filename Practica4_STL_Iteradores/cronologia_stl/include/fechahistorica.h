@@ -19,7 +19,6 @@
   * @date Octubre 2017
   */
 
-
 class FechaHistorica{
 
  private:
@@ -27,11 +26,8 @@ class FechaHistorica{
   * @page repConjunto Representativo de la clase FechaHistorica
   *
   */
-  std::pair<int year, std::set<std::string> hechos> pareja;
-  i=pareja.second.begin()
-    pareja.second
+  std::pair<int, std::set<std::string> > pareja;
 
-    pareja.second.add(string)
  public:
 
 /**
@@ -43,7 +39,7 @@ class FechaHistorica{
 /**
   * @brief Constructor de la clase
   * @param n año de la @c FechaHistorica a construir
-  * @return Crea una @c FechaHistorica cuyo año es n 
+  * @return Crea una @c FechaHistorica cuyo año es n
   */
   FechaHistorica(int n);
 
@@ -66,7 +62,7 @@ class FechaHistorica{
 
 /**
   * @brief nhechos
-  * @return Devuelve el número de eventos guardados el @c VectorDinamico nhechos 
+  * @return Devuelve el número de eventos guardados el @c VectorDinamico nhechos
   */
   int nhechos() const;
 
@@ -89,29 +85,13 @@ class FechaHistorica{
   void aniade(string h);
 
 /**
-  * @brief Sobrecarga del operador []
-  * @param i posición del vector a modificar
-  * @return string guardado en la posición i
-  * @pre i debe estar entre 0 y nhechos
-  */
-  string& operator[](int i);
-
-/**
-  * @brief Sobrecarga del operador []
-  * @param i posición del vector a consultar
-  * @return string guardado en la posición i
-  * @pre i debe estar entre 0 y nhechos
-  */
-  const string& operator[](int i) const;
-
-/**
-  * @brief Busca si un string está contenido en alguno del @c VectorDinamico 
+  * @brief Busca si un string está contenido en alguno del @c VectorDinamico
   * hechos de @c FechaHistorica
   * @param s string que se quiere buscar en @c FechaHistorica
   * @return @b true si el string se encuentra en hechos o @b false si no
   */
   bool contiene(string s) const;
-  
+
 /**
   * @brief Sobrecarga del operador +=
   * @param nuevo FechaHistorica cuyos hechos quieres añadir al objeto implicito
