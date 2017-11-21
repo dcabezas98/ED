@@ -85,7 +85,7 @@ istream& operator>>(istream &flujo, FechaHistorica &fecha){
   while(flujo.good()){
     s = "";
     getline(flujo, s, '#');
-    fecha.aniade();
+    fecha.aniade(s);
   }
 
   return flujo;
