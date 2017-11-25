@@ -7,7 +7,7 @@ int main(){
   Stack<int> p;
   int i;
 
-  for (i=10; i>= 0; i++){
+  for (i = 10; i >= 0; i--){
     p.push(i);
   }
 
@@ -19,8 +19,7 @@ int main(){
 
   while(!p.empty()){
 
-    cout<< p.top() <<endl;
+    cout << p.top() << endl;
     p.pop();
   }
-
 }
