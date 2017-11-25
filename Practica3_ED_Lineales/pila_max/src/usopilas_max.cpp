@@ -11,11 +11,11 @@ int main(){
     p.poner(i);
   }
 
-    p.poner(100);
-    p.poner(25);
-    p.poner(75);
-    p.poner(1000);
-    p.poner(500);
+  p.poner(100);
+  p.poner(25);
+  p.poner(75);
+  p.poner(1000);
+  p.poner(500);
 
   while (!p.vacia() ){
 
