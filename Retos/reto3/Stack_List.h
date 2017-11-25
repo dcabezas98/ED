@@ -9,12 +9,14 @@
 #ifndef __Stack_List__
 #define __Stack_List__
 
+#include <list>
+
 template <class T>
 class Stack{
 
   private:
 
-  list<T> datos;
+  std::list<T> datos;
 
   public:
 

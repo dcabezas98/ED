@@ -4,42 +4,42 @@
 using namespace std;
 
 template <class T>
-Stack:: Stack(): datos(){}
+Stack<T>:: Stack(): datos(){}
 
 template <class T>
-Stack:: Stack(const Stack &original): datos(original.datos){}
+Stack<T>:: Stack(const Stack &original): datos(original.datos){}
 
 template <class T>
-Stack& Stack:: operatos=(const Stack& original){
+Stack<T>& Stack<T>:: operator=(const Stack& original){
   datos=original.datos;
 }
 
 template <class T>
-bool Stack:: empty() const{
+bool Stack<T>:: empty() const{
   return datos.empty();
 }
 
 template <class T>
-T& Stack:: top(){
-  return list.back();
+T& Stack<T>:: top(){
+  return datos.back();
 }
 
 template <class T>
-const T& Stack:: top () const{
-  return list.back();
+const T& Stack<T>:: top () const{
+  return datos.back();
 }
 
 template <class T>
-void Stack:: push(const T& n){
+void Stack<T>:: push(const T& n){
   datos.push_back(n);
 }
 
 template <class T>
-void Stack:: pop(){
-  datos.pop_back(n);
+void Stack<T>:: pop(){
+  datos.pop_back();
 }
 
 template <class T>
-int Stack:: size() const{
+int Stack<T>:: size() const{
   return datos.size;
 }
