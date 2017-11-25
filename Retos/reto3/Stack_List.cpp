@@ -41,5 +41,5 @@ void Stack<T>:: pop(){
 
 template <class T>
 int Stack<T>:: size() const{
-  return datos.size;
+  return datos.size();
 }

@@ -10,3 +10,8 @@ teststack.o: teststack.cpp Stack_List.h
 
 Stack_List.o: Stack_List.h Stack_List.cpp
 	g++ $(CPPFLAGS) -o $@ $<
+
+clean: rm *.o
+
+mrproper: clean
+	rm teststack.out
