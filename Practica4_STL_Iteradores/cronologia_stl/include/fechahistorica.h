@@ -21,14 +21,26 @@
 
 class FechaHistorica{
 
- private:
+private:
 /**
   * @page repConjunto Representativo de la clase FechaHistorica
   *
   */
   std::pair<int, std::set<std::string> > pareja;
 
- public:
+public:
+
+ typedef typename set<string>::iterator iterator;
+
+ typedef typename set<string>::const_iterator const_iterator;
+
+ iterator begin();
+
+ const_iterator begin() const;
+
+ iterator end();
+
+ const_iterator end() const;
 
 /**
   * @brief Constructor por defecto de la clase. Crea la @c FechaHistorica con

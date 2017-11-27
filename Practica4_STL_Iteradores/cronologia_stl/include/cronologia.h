@@ -26,14 +26,26 @@
 
 class Cronologia{
 
- private:
+private:
 /**
   * @page repConjunto Representativo de la clase Cronologia
   *
   */
-  map<FechaHistorica> fechas; /**< vector de fechas */
+  map<int, FechaHistorica> fechas; /**< vector de fechas */
 
- public:
+public:
+
+  typedef typename map<int, EventoHistorico>::iterator iterator;
+
+  typedef typename map<int, EventoHistorico>::const_iterator const_iterator;
+
+  iterator begin();
+
+  const_iterator begin() const;
+
+  iterator end();
+
+  const_iterator end() const;
 
 /**
   * @brief Constructor por defecto de la clase. Crea la @c Cronologia con
@@ -93,14 +105,6 @@ class Cronologia{
   * eventos que falten en dicho año.
   */
   Cronologia& operator+=(const Cronologia &crono);
-
-/**
-  * @brief Busca la posición donde se encuentra un año en el vector
-  * @param y año que se quiere buscar en la  @c Cronologia
-  * @return Posición donde se encuentra dicho año en la @c Cronologia
-  * Si no se encuentra, devuelve la posición -1.
-  */
-  int searchYear(int y) const;
 
 /**
   * @brief Crea una subcronología con las fechas entre los años a1 y a2
