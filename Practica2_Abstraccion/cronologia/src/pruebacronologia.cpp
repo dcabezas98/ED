@@ -20,8 +20,6 @@ int main(int argc, char * argv[]){
    Cronologia mi_cronologia;
    f>>mi_cronologia; //Cargamos en memoria la cronología.
 
-   cout << mi_cronologia << endl;
-
    /* Exhibir aquí la funcionalidad programada para el TDA Cronologia / TDA FechaHistorica */
 
    // Algunas sugerencias:
@@ -30,6 +28,8 @@ int main(int argc, char * argv[]){
    int y, pos;
    cout << "Introduzca el año que quiere consultar" << endl;
    cin >> y;
+
+   pos = mi_cronologia.searchYear(y);
 
    if (pos != -1){
      cout << "Los acontecimientos ocurridos en el año " << y <<" son:\n";
