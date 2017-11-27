@@ -41,48 +41,7 @@ Cronologia& Cronologia::operator+=(const Cronologia &crono){
   return *this;
 }
 
-int Cronologia::searchYear(int y) const{
-
-  int right=used(), left=0, center;
-  bool found=false;
-  int pos=-1;
-
-  while(left < right && !found){
-    center=(left + right)/2;
-
-    if(y == fechas[center].year()){
-      pos = center;
-      found = true;
-    } else if (y < fechas[center].year()){
-      right = center-1;
-    } else {
-      left = center+1;
-    }
-  }
-
-  return pos;
-}
-
 Cronologia Cronologia::subcronologia(int a1, int a2) const{
-  int pos1=0, pos2=fechas.used()-1;
-
-  while(pos1 < fechas.used() && fechas[pos1].year() < a1){
-    pos1++;
-  }
-
-  while(pos2 >= 0 && fechas[pos2].year() > a2){
-    pos2--;
-  }
-
-  Cronologia crono;
-
-  int used = pos2-pos1+1;
-
-  for(int i=0; i < used; i++){
-    crono.add(fechas[pos1+i]);
-  }
-
-  return crono;
 }
 
 Cronologia Cronologia::subcronologia(string s) const{
