@@ -4,17 +4,16 @@ OBJ = obj
 BIN = bin
 LIB = lib
 CXX = g++
-CPPFLAGS = -Wall -g  -I$(INC) -c
+CPPFLAGS = -Wall -g -std=c++17 -I$(INC) -c
 
 
-all: $(BIN)/pruebacronologia
+all: $(BIN)/pruebacronologia.out
 # ************ Generación de documentación ******************
 documentacion:
 	doxygen doc/doxys/Doxyfile
 
-
 # ************ Compilación de módulos ************
-$(BIN)/pruebacronologia: $(OBJ)/pruebacronologia.o $(LIB)/libcrono.a
+$(BIN)/pruebacronologia.out: $(OBJ)/pruebacronologia.o $(LIB)/libcrono.a
 	$(CXX) -o $@ $< -lcrono -L$(LIB)
 
 $(OBJ)/pruebacronologia.o: $(SRC)/pruebacronologia.cpp $(INC)/cronologia.h $(INC)/fechahistorica.h $(INC)/vectordinamico.h

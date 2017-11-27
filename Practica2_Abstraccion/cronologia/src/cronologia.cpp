@@ -13,8 +13,8 @@ Cronologia::Cronologia(const Cronologia &original){
 
   fechas.resize(original.fechas.reserved());
 
-  fechas.used() = original.fechas.used(); 
-  
+  fechas.used() = original.fechas.used();
+
   for(int i = 0; i < original.fechas.used(); i++){
     fechas[i] = original.fechas[i];
   }
@@ -22,7 +22,7 @@ Cronologia::Cronologia(const Cronologia &original){
 
 void Cronologia::destruir(){
   fechas.destruir();
-}  
+}
 
 Cronologia& Cronologia::operator=(const Cronologia &original){
 
@@ -37,15 +37,15 @@ Cronologia& Cronologia::operator=(const Cronologia &original){
     for(int i = 0; i < original.fechas.used(); i++)
       fechas[i] = original.fechas[i];
   }
-  
+
   return *this;
 }
 
 void Cronologia::add(const FechaHistorica &fecha){
 
-	  
+
   int i = 0;
- 
+
   while(i < fechas.used() && fecha.year() > fechas[i].year()){
     i++;
   }
@@ -53,14 +53,14 @@ void Cronologia::add(const FechaHistorica &fecha){
   if( i == fechas.used()){
     fechas.aniade(fecha);
   }
-	  
+
   else if(fechas[i].year() == fecha.year()){
     fechas[i] += fecha;
   }
-	  
+
   else {
     fechas.insertar(i,fecha);
-  }		  
+  }
 }
 
 int Cronologia::used() const{
@@ -86,7 +86,7 @@ const FechaHistorica& Cronologia::operator[](int i) const{
 
 int Cronologia::searchYear(int y) const{
 
-  int right=used(), left=0, center;
+  int right=used()-1, left=0, center;
   bool found=false;
   int pos=-1;
 
@@ -112,7 +112,7 @@ Cronologia Cronologia::subcronologia(int a1, int a2) const{
   while(pos1 < fechas.used() && fechas[pos1].year() < a1){
     pos1++;
   }
-  
+
   while(pos2 >= 0 && fechas[pos2].year() > a2){
     pos2--;
   }
@@ -124,15 +124,15 @@ Cronologia Cronologia::subcronologia(int a1, int a2) const{
   for(int i=0; i < used; i++){
     crono.add(fechas[pos1+i]);
   }
-  
+
   return crono;
 }
 
 Cronologia Cronologia::subcronologia(string s) const{
 
   Cronologia crono;
-  
-  for(int i = 0; i < fechas.used(); i++) 
+
+  for(int i = 0; i < fechas.used(); i++)
     if(fechas[i].contiene(s)) crono.add(fechas[i]);
 
   return crono;
@@ -153,7 +153,7 @@ istream& operator>>(istream &flujo, Cronologia &crono){
 
   string s;
   getline(flujo, s, '\n');
-  
+
   while(flujo.eof() == 0){
     istringstream ss(s);
     FechaHistorica aux;
@@ -162,6 +162,6 @@ istream& operator>>(istream &flujo, Cronologia &crono){
     s = "";
     getline(flujo, s, '\n');
   }
-  
+
   return flujo;
 }
