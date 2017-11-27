@@ -12,7 +12,6 @@ all: $(BIN)/pruebacronologia
 documentacion:
 	doxygen doc/doxys/Doxyfile
 
-
 # ************ Compilación de módulos ************
 $(BIN)/pruebacronologia: $(OBJ)/pruebacronologia.o $(LIB)/libcrono.a
 	$(CXX) -o $@ $< -lcrono -L$(LIB)
