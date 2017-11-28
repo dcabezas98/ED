@@ -6,6 +6,22 @@
 
 using namespace std;
 
+iterator FechaHistorica::begin(){
+  return pareja.second.begin();
+}
+
+const_iterator FechaHistorica::begin() const{
+  return pareja.second.cbegin();
+}
+
+iterator FechaHistorica::end(){
+  return pareja.second.end();
+}
+
+const_iterator FechaHistorica::end() const{
+  return pareja.second.cend();
+}
+
 FechaHistorica::FechaHistorica() {
   pareja.first = 0;
 }
@@ -21,6 +37,10 @@ FechaHistorica::FechaHistorica(const FechaHistorica &original) {
 
 void FechaHistorica::destruir(){
   pareja.second.clear();
+}
+
+bool FechaHistorica::empty(){
+  return pareja.second.empty();
 }
 
 FechaHistorica& FechaHistorica::operator=(const FechaHistorica &original){
@@ -44,12 +64,8 @@ int& FechaHistorica::year(){
   return pareja.first;
 }
 
-void FechaHistorica::aniade(string h) {
+void FechaHistorica::add(string h) {
   pareja.second.insert(h);
-}
-
-bool FechaHistorica::contiene(string s) const{
-  return pareja.second.count(s);
 }
 
 FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
