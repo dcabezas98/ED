@@ -94,15 +94,9 @@ public:
   * @brief Añade un evento al final del @c VectorDinamico hechos
   * @param h string con el evento a añadir
   */
-  void aniade(string h);
+  void add(string h);
 
-/**
-  * @brief Busca si un string está contenido en alguno del @c VectorDinamico
-  * hechos de @c FechaHistorica
-  * @param s string que se quiere buscar en @c FechaHistorica
-  * @return @b true si el string se encuentra en hechos o @b false si no
-  */
-  bool contiene(string s) const;
+  bool empty();
 
 /**
   * @brief Sobrecarga del operador +=

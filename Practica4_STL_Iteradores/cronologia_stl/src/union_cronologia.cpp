@@ -5,12 +5,16 @@
 using namespace std;
 
 // Esta funcion también puede implementarse como método de la clase Cronologia (A vuestra elección)
-Cronologia & Union(const Cronologia & c1, const Cronologia & c2){
-  //completar implementacion
+Cronologia Union(const Cronologia & c1, const Cronologia & c2){
+
+  Cronologia res(c1);
+
+  res += c2;
+
+  return res;
 }
 
-
-// Este método también puede implementarse como operator<< asociado a la clase Cronología (A vuestra elección).  
+// Este método también puede implementarse como operator<< asociado a la clase Cronología (A vuestra elección).
 void ImprimeCronologia (const Cronologia &c, ostream &os){
    Cronologia::const_iterator it;
    for (it=c.begin(); it!=c.end();++it){
@@ -19,10 +23,7 @@ void ImprimeCronologia (const Cronologia &c, ostream &os){
        for (it_ev=(*it).second.begin(); it_ev!=(*it).second.end();++it_ev)
         os<<(*it_ev)<<"#";
    }
-}   
-
-
-
+}
 
 int main(int argc, char * argv[]){
 
@@ -45,19 +46,19 @@ int main(int argc, char * argv[]){
 
    Cronologia c1, c2, cUnion;
    f1 >> c1;    // Cargamos los datos de los ficheros en las cronologías.
-   f2 >> c2; 
+   f2 >> c2;
 
    cUnion = Union(c1, c2);
-   
+
    if (argc==3)   //No se dio fichero de salida, imprimimos en cout
       ImprimeCronologia(cUnion,cout);
-   else{          
+   else{
      ofstream fout(argv[3]);  
      if (!fout){
       cout<<"No puedo crear el fichero "<<argv[3]<<endl;
       return 0;
      }
      ImprimeCronologia(cUnion,fout);
-      
+
    }
 }
