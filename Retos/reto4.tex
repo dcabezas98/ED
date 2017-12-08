@@ -1,0 +1,71 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page
+                                                             % settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+
+% Images
+\usepackage{graphicx}
+\usepackage{float}
+
+% Code
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\n}[1]{{\color{gray}#1}}
+\lstset{numbers=left,numberstyle=\small\color{gray}}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Reto 4: \\ Árboles}
+\author{David Cabezas Berrido y Patricia Córdoba Hidalgo}
+\date{\today}
+\maketitle
+
+\begin{justify}
+  Procedimiento para guardar un árbol binario en disco de forma que
+  se recupere la estructura jerárquica de manera unívoca usando el
+  mínimo número de centinelas posibles.
+\end{justify}
+
+\begin{justify}
+  La primera solución que se propuso fue colocar justo despues de la
+  etiqueta de cada nodo, las etiquetas de sus hijos izquierdo y
+  derecho, y colocar un centinela en caso de que el hijo no
+  exista. Por tanto, después de una hoja, aparecen dos centinelas.
+\end{justify}
+
+\begin{justify}
+  Esta solución siempre almacena $2n+1$ datos en memoria, siendo $n$
+  el número de nodos del árbol. A continuación proponemos una solución
+  para reducir el espacio necesario.
+\end{justify}
+
+\begin{justify}
+  Nuestro método consiste en usar un centinela especial en caso de que
+  no exista ni el hijo izquierda ni el hijo derrecha, es decir, en
+  caso de que el nodo sea una hoja.
+\end{justify}
+
+\begin{justify}
+  De esta forma consegumos ahorrar un centinela por cada hoja del
+  árbol.  En el peor de los casos necesitaríamos $2n$ datos en memoria
+  para reconstruir el árbol a partir del preorden de manera
+  unívoca. Este sería el caso de un árbol con una sola hoja. El mejor
+  caso sería el de un árbol estrictamente binario, es decir, un árbol
+  en el que cada nodo que no es una hoja tiene tanto hijo izquierdo
+  como derecho. Dicho árbol tiene el máximo número posible de hojas,
+  $\frac{n+1}{2}$. Luego necesitaríamos
+  $n+\frac{n+1}{2}=\frac{3n+1}{2}$ datos en memoria.
+\end{justify}
+
+\begin{justify}
+  
+\end{justify}
+
+\end{document}

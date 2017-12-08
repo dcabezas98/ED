@@ -1,0 +1,139 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page
+                                                             % settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+
+% Images
+\usepackage{graphicx}
+\usepackage{float}
+
+% Code
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\n}[1]{{\color{gray}#1}}
+\lstset{numbers=left,numberstyle=\small\color{gray}}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Rotación simple a la izquierda del AVL}
+\author{David Cabezas Berrido}
+\date{\today}
+\maketitle
+
+\begin{justify}
+  Comentario del código de la función rotacionSimpleAIzquierda,
+  que toma como parámetro el nodo a rotar, el desequilibrado.
+\end{justify}
+
+\begin{verbatim}
+template <class Tbase>
+void AVL<Tbase>::rotacionSimpleAIzquierda(Nodo &n){
+  assert(n!=nodonulo);
+  enum hijo {izquierdo, derecho};
+  hijo que_hijo;
+  Nodo padre = arbolb.padre(n);
+  
+  cout << "RSI " << arbolb.etiqueta(n) << endl;
+  
+  ArbolBinario<Tbase> a;
+
+  /*
+  Podamos el subárbol derecho del nodo
+  en el que se ha producido el desequilibrio
+  y lo guardamos en a
+  */
+  arbolb.podar_derecha(n, a);
+  
+  ArbolBinario<Tbase> aux;
+  
+  if(padre!=nodonulo){  // Comprobamos que el padre no es nulo, es decir, que n no sea la raíz
+    
+    /*
+    Podamos el nodo en el que se ha producido el desequilibrio
+    y lo guardamos en aux. Anotamos si era el hijo derecho o el 
+    hijo izquierdo de su padre
+    */
+    if(arbolb.izquierda(padre)==n){    
+      arbolb.podar_izquierda(padre, aux);
+      que_hijo = izquierdo;
+    }
+    else{
+      arbolb.podar_derecha(padre, aux);
+      que_hijo = derecho;
+    }
+    
+    ArbolBinario<Tbase> b;
+    /*
+    Podamos el hijo izquierdo del subárbol derecho del
+    nodo desequilibrado que habíamos podado y guardado
+    en a y lo guardamos en b
+    */
+    a.podar_izquierda(a.raiz(), b);
+
+
+
+    /*
+    Insertamos la rama podada en b a la derecha
+    del nodo n, el que estaba desequilibrado
+    */
+    aux.insertar_derecha(aux.raiz(), b);
+    
+    /*
+    Insertamos el nodo n a la izquierda 
+    del que era el hijo derecho
+    */
+    a.insertar_izquierda(a.raiz(), aux);
+    
+    //Reubicamos la rama rotada como hija del padre de n
+    if(que_hijo == izquierdo){
+      arbolb.insertar_izquierda(padre, a);
+      n = arbolb.izquierda(padre);  // n sigue siendo el mismo nodo, pero sus datos han cambiado
+    }
+    else{
+      arbolb.insertar_derecha(padre, a);
+      n = arbolb.derecha(padre);
+    }
+  }
+  else{
+    
+    /*
+    En el caso en el que n es la raíz del árbol,
+    la rotación se simplifica, ya que no tenemos
+    que reenganchar la rama rotada como hija del padre.
+    Directamente, esa rama es el árbol
+    */
+
+    aux = arbolb; // El nodo n es la raíz del árbol
+    
+    ArbolBinario<Tbase> b;
+
+    /*
+    Se guarda en b el subárbol a la derecha de a
+    */
+    a.podar_izquierda(a.raiz(), b);
+
+    /*
+    Se inserta dicho subárbol a la derecha del nodo n
+    */
+    aux.insertar_derecha(aux.raiz(), b);
+
+    /*
+    Se inserta n a la izquierda del que era su hijo derecho
+    */
+    a.insertar_izquierda(a.raiz(), aux);
+
+    // Ahora el que era el hijo derecho es la raíz del árbol
+    arbolb = a;
+    n = arbolb.raiz();  // n sigue siendo el mismo nodo, pero sus datos han cambiado
+  }
+}
+\end{verbatim}
+
+\end{document}
