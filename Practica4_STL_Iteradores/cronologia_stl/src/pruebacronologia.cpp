@@ -37,7 +37,7 @@ int main(int argc, char * argv[]){
    // Y la definición de los métodos begin() y end() en EventoHistorico
    FechaHistorica::const_iterator it;
 
-   cout << anio << ":";              //Imprimimos el anio
+   cout << anio;              //Imprimimos el anio
    for (it=eventos.begin(); it!=eventos.end();++it)
      cout<< "#" << (*it);
 

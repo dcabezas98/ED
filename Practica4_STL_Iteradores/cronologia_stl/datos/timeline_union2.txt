@@ -1,0 +1,9 @@
+1909#The Country Doctor#A Corner in Wheat#Les Misérables#Princess Nicotine; or, The Smoke Fairy
+1910#In Old California
+1928#Paul Dirac: Dirac equation (Quantum mechanics)
+1929#– Edwin Hubble: Hubble's law of the expanding universe
+1985#Simulated annealing independently developed by V. Cerny#Splay trees discovered by Sleator and Tarjan
+1986#Blum Blum Shub proposed by L. Blum, M. Blum, and M. Shub
+1981#Quadratic sieve developed by Carl Pomerance
+1983#Simulated annealing developed by S. Kirkpatrick, C. D. Gelatt and M. P. Vecchi#Classification and regression tree (CART) algorithm developed by Leo Breiman, et al.
+1984#LZW algorithm developed from LZ78 by Terry Welch#Karmarkar's interior-point algorithm developed by Narendra Karmarkar

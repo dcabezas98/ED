@@ -26,9 +26,8 @@ int main(int argc, char * argv[]){
    }
 
    if(argc == 3){
-     cout << "3 argumentos" << endl;
      if(strstr(argv[2],".txt") != 0){
-       salida = argv[2];
+       salida = string(argv[2]);
 
        cout << "Inserte cadena a buscar:";
        cin >> clave;
@@ -46,6 +45,10 @@ int main(int argc, char * argv[]){
      cout << "Inserte cadena a buscar:";
      cin >> clave;
    }
+   else {
+     salida = argv[3];
+     clave = argv[2];
+   }
 
    Cronologia c1, c2;
 
@@ -57,13 +60,11 @@ int main(int argc, char * argv[]){
      cout << c2;
 
    else{
-     cout << "Entra aqui" << endl;
-     ofstream fout(argv[3]);
+     ofstream fout(salida);
      if (!fout){
-      cout<<"No puedo crear el fichero "<<argv[3]<<endl;
+      cout<<"No puedo crear el fichero "<<salida<<endl;
       return 0;
      }
-     cout << "HOLA" << endl;
 
      fout << c2;
   }

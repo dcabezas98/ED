@@ -42,7 +42,12 @@ Cronologia& Cronologia::operator=(const Cronologia &original){
 }
 
 void Cronologia::add(const FechaHistorica &fecha){
-  fechas.insert(pair<int, FechaHistorica>(fecha.year(), fecha));
+
+  if(!esta(fecha.year()))
+    fechas.insert(pair<int, FechaHistorica>(fecha.year(), fecha));
+
+  else
+    fechas.find(fecha.year())->second += (fecha);
 }
 
 int Cronologia::size() const{
