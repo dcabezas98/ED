@@ -1,25 +1,26 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <cassert>
 #include <map>
 #include "cronologia.h"
 #include "fechahistorica.h"
 
 using namespace std;
 
-iterator Cronologia::begin(){
+Cronologia::iterator Cronologia::begin(){
   return fechas.begin();
 }
 
-const_iterator Cronologia::begin() const{
+Cronologia::const_iterator Cronologia::begin() const{
   return fechas.cbegin();
 }
 
-iterator Cronologia::end(){
+Cronologia::iterator Cronologia::end(){
   return fechas.end();
 }
 
-const_iterator Cronologia::end() const{
+Cronologia::const_iterator Cronologia::end() const{
   return fechas.cend();
 }
 
@@ -51,10 +52,23 @@ int Cronologia::size() const{
 Cronologia& Cronologia::operator+=(const Cronologia &crono){
 
   for(auto it = crono.fechas.cbegin(); it != crono.fechas.cend(); it++){
-    add(*it);
+    add(it->second);
   }
 
   return *this;
+}
+
+bool Cronologia::esta(int a) const {
+  return fechas.find(a) != fechas.end();
+}
+
+FechaHistorica Cronologia::getFecha(int a) const {
+
+  assert(this->esta(a));
+
+  FechaHistorica f = fechas.find(a)->second;
+
+  return f;
 }
 
 Cronologia Cronologia::subcronologia(int a1, int a2) const{
@@ -62,7 +76,7 @@ Cronologia Cronologia::subcronologia(int a1, int a2) const{
 
   for(int i= a1; i<=a2; i++){
     if(fechas.find(i) != fechas.end()){
-      crono.add(fechas[i]);
+      crono.add(fechas.find(i)->second);
     }
   }
   return crono;
@@ -74,7 +88,7 @@ Cronologia Cronologia::subcronologia(string s) const{
   FechaHistorica fecha;
 
   for(auto itc=fechas.begin(); itc != fechas.end(); itc++){
-    for(auto itf=(*itc).begin(); itf != (*itc).end(); itf++){
+    for(auto itf=itc->second.begin(); itf != itc->second.end(); itf++){
       if((*itf).find(s) != string::npos){
         fecha.add(*itf);
       }
@@ -88,23 +102,35 @@ Cronologia Cronologia::subcronologia(string s) const{
   return crono;
 }
 
+void Cronologia::recuento() const{
+
+  int yearnum = 0, eventnum = 0, maxevent = 0, yearmax = -1;
+
+  for(auto itc = fechas.begin(); itc != fechas.end(); itc++){
+
+    yearnum++; // No se repiten años
+    eventnum += itc->second.nhechos();
+
+    if(itc->second.nhechos() > maxevent){
+      maxevent = itc->second.nhechos();
+      yearmax = itc->second.year();
+    }
+  }
+
+  cout << "Esta cronología tiene:\n";
+  cout << yearnum << " años\n";
+  cout << eventnum << " eventos\n";
+  cout << maxevent << " eventos en el año con más eventos: " << yearmax << "\n";
+  cout << "Un promedio de " << (float) eventnum/yearnum << " eventos por año\n";
+}
+
 ostream& operator<<(ostream &flujo, const Cronologia &crono){
 
-  for(int i = 0; i < crono.used(); i++){
-    flujo << crono[i] << "\n";
+  for(auto it = crono.begin(); it != crono.end(); it ++){
+    flujo << it->second << "\n";
   }
 
   return flujo;
-}
-
-void ImprimeCronologia (const Cronologia &c, ostream &os){
-   Cronologia::const_iterator it;
-   for (it=c.begin(); it!=c.end();++it){
-       os<<(*it).first<<"#";          //año esta en el key del map
-       EventoHistorico::const_iterator it_ev;
-       for (it_ev=(*it).second.begin(); it_ev!=(*it).second.end();++it_ev)
-        os<<(*it_ev)<<"#";
-   }
 }
 
 istream& operator>>(istream &flujo, Cronologia &crono){

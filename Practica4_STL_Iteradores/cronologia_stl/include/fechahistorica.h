@@ -7,6 +7,10 @@
 #ifndef _FECHAHISTORICA_
 #define _FECHAHISTORICA_
 
+#include <utility>
+#include <set>
+#include <string>
+
 /**
   *  @brief Clase FechaHistorica
   *
@@ -30,9 +34,9 @@ private:
 
 public:
 
- typedef typename set<string>::iterator iterator;
+ typedef typename std::set<std::string>::iterator iterator;
 
- typedef typename set<string>::const_iterator const_iterator;
+ typedef typename std::set<std::string>::const_iterator const_iterator;
 
  iterator begin();
 
@@ -94,7 +98,7 @@ public:
   * @brief Añade un evento al final del @c VectorDinamico hechos
   * @param h string con el evento a añadir
   */
-  void add(string h);
+  void add(std::string h);
 
   bool empty();
 
@@ -112,13 +116,13 @@ public:
   * @param flujo Flujo de salida
   * @param fecha @c FechaHistorica que se quiere escribir
   */
-  ostream& operator<<(ostream &flujo, const FechaHistorica &fecha);
+  std::ostream& operator<<(std::ostream &flujo, const FechaHistorica &fecha);
 
 /**
   * @brief Sobrecarga del operador >>
   * @param flujo Flujo de entrada
   * @param fecha @c FechaHistorica que se quiere leer
   */
-  istream& operator>>(istream &flujo, FechaHistorica &fecha);
+  std::istream& operator>>(std::istream &flujo, FechaHistorica &fecha);
 
 #endif

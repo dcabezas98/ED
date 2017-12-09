@@ -24,21 +24,22 @@ int main(int argc, char * argv[]){
    cout<<"Dime un año a consultar:";
    cin >> anio;
 
-   FechaHistorica eventos;
-   eventos = mi_cronologia.GetEventos(anio);  //Asumimos que Cronologia::GetEventos() devuelve objeto de clase EventoHistorico
+   if(!mi_cronologia.esta(anio)){
+     cout << "El año introducido no está en la cronología" << endl;
+     return 0;
+   }
 
+   FechaHistorica eventos;
+   eventos = mi_cronologia.getFecha(anio);
 
    // Recorremos con iterador los acontecimientos para mostrarlos por pantalla
    // Este proceso requiere la definición de un tipo iterator // const_iterator en EventoHistorico
    // Y la definición de los métodos begin() y end() en EventoHistorico
    FechaHistorica::const_iterator it;
+
    cout << anio << ":";              //Imprimimos el anio
-   for (it=eventos.begin(); it!=eventos.end();++it){
-     cout<<(*it)<<'#';
+   for (it=eventos.begin(); it!=eventos.end();++it)
+     cout<< "#" << (*it);
+
    cout<<endl;
-
-
-
-
-
 }

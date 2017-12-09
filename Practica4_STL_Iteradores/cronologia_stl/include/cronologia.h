@@ -7,6 +7,7 @@
 #ifndef _CRONOLOGIA_
 #define _CRONOLOGIA_
 
+#include <map>
 #include "fechahistorica.h"
 
 /**
@@ -31,13 +32,13 @@ private:
   * @page repConjunto Representativo de la clase Cronologia
   *
   */
-  map<int, FechaHistorica> fechas; /**< vector de fechas */
+  std::map<int, FechaHistorica> fechas; /**< vector de fechas */
 
 public:
 
-  typedef typename map<int, EventoHistorico>::iterator iterator;
+  typedef typename std::map<int, FechaHistorica>::iterator iterator;
 
-  typedef typename map<int, EventoHistorico>::const_iterator const_iterator;
+  typedef typename std::map<int, FechaHistorica>::const_iterator const_iterator;
 
   iterator begin();
 
@@ -74,29 +75,13 @@ public:
   * @brief used nhechos
   * @return Devuelve el número de elementos guardados en el @c VectorDinamico @c fechas.
   */
-  int used() const;
+  int size() const;
 
 /**
   * @brief Añade la @c FechaHistorica @e fecha a la cronología
   * @param fecha @c FechaHistorica a añadir
   */
   void add(const FechaHistorica &fecha);
-
-/**
-  * @brief Sobrecarga del operador []
-  * @param i posición del vector a modificar
-  * @return FechaHistorica guardada en la posición i
-  * @pre i debe estar entre 0 y nhechos
-  */
-  FechaHistorica& operator[](int i);
-
-/**
-  * @brief Sobrecarga del operador []
-  * @param i posición del vector a consultar
-  * @return FechaHistorica guardada en la posición i
-  * @pre i debe estar entre 0 y nhechos
-  */
-  const FechaHistorica& operator[](int i) const;
 
 /**
   * @brief Sobrecarga del operador +=
@@ -120,7 +105,13 @@ public:
   * @param s string que debe contener la @c Cronologia
   * @return Subcronologia con las fechas que contienen el string s.
   */
-  Cronologia subcronologia(string s) const;
+  Cronologia subcronologia(std::string s) const;
+
+  FechaHistorica getFecha(int a) const;
+
+  void recuento() const;
+
+  bool esta(int a) const;
 };
 
 /**
@@ -128,13 +119,13 @@ public:
   * @param flujo Flujo de salida
   * @param crono @c Cronologia que se quiere escribir
   */
-  ostream& operator<<(ostream &flujo, const Cronologia &crono);
+  std::ostream& operator<<(std::ostream &flujo, const Cronologia &crono);
 
 /**
   * @brief Sobrecarga del operador >>
   * @param flujo Flujo de entrada
   * @param crono @c Cronologia que se quiere leer
   */
-  istream& operator>>(istream &flujo, Cronologia &crono);
+  std::istream& operator>>(std::istream &flujo, Cronologia &crono);
 
 #endif

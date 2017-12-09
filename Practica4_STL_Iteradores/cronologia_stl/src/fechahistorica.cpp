@@ -1,24 +1,25 @@
 #include <iostream>
-#include <pair>
+#include <utility>
 #include <set>
 #include <string>
+#include <cassert>
 #include "fechahistorica.h"
 
 using namespace std;
 
-iterator FechaHistorica::begin(){
+FechaHistorica::iterator FechaHistorica::begin(){
   return pareja.second.begin();
 }
 
-const_iterator FechaHistorica::begin() const{
+FechaHistorica::const_iterator FechaHistorica::begin() const{
   return pareja.second.cbegin();
 }
 
-iterator FechaHistorica::end(){
+FechaHistorica::iterator FechaHistorica::end(){
   return pareja.second.end();
 }
 
-const_iterator FechaHistorica::end() const{
+FechaHistorica::const_iterator FechaHistorica::end() const{
   return pareja.second.cend();
 }
 
@@ -71,7 +72,7 @@ void FechaHistorica::add(string h) {
 FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
 
   if(&nuevo != this) {
-    assert(anio == nuevo.anio);
+    assert(pareja.first == nuevo.pareja.first);
 
     for(auto it = nuevo.pareja.second.cbegin(); it != nuevo.pareja.second.cend(); it++)
       pareja.second.insert(*it);
@@ -81,8 +82,8 @@ FechaHistorica& FechaHistorica::operator+=(const FechaHistorica &nuevo){
 
 ostream& operator<<(ostream &flujo, const FechaHistorica &fecha){
 
-  flujo << fecha.pareja.first;
-  for (auto it = fecha.pareja.second.cbegin(); it != nuevo.pareja.second.cend(); it++)
+  flujo << fecha.year();
+  for (auto it = fecha.begin(); it != fecha.end(); it++)
     flujo << "#" << *it;
 
   return flujo;
@@ -101,7 +102,7 @@ istream& operator>>(istream &flujo, FechaHistorica &fecha){
   while(flujo.good()){
     s = "";
     getline(flujo, s, '#');
-    fecha.aniade(s);
+    fecha.add(s);
   }
 
   return flujo;
