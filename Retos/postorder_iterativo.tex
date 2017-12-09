@@ -1,0 +1,68 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page
+                                                             % settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+
+% Images
+\usepackage{graphicx}
+\usepackage{float}
+
+% Code
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\n}[1]{{\color{gray}#1}}
+\lstset{numbers=left,numberstyle=\small\color{gray}}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Recorrido en postorder iterativo de un árbol binario}
+\author{David Cabezas Berrido}
+\date{\today}
+\maketitle
+
+\begin{justify}
+  
+\end{justify}
+
+\begin{verbatim}
+template <typename T>
+typename bintree <T>::postorder_iterator&
+bintree<T>::postorder_iterator::operator++(){
+
+  if(elnodo.null())  // El nodo es nulo
+    return *this;
+
+  if(elnodo.parent().null())
+    elnodo = typename bintree<T>::node();  // Estamos en la raíz, fin del recorrido
+
+  else if(elnodo.parent().right().null() ||  // Somos el hijo a la derecha del padre
+	  elnodo.parent().right() == elnodo) // o somos el hijo a la izquierda y no hay hijo a la derecha
+    elnodo = elnodo.parent();  // Pasamos al padre
+
+  else{                                // Somos el hijo a la izquierda y hay hijo a la derecha
+
+    elnodo = elnodo.parent().right();  // Pasamos al hijo a la derecha, y bajamos
+
+    while(!elnodo.left().null() || !elnodo.right().null()){  // Hasta encontrar una hoja
+
+      if(!elnodo.left().null())  // Siempre bajamos por el hijo de la izquierda (si lo hay)
+        elnodo = elnodo.left();
+
+      else
+        elnodo = elnodo.right();  // En caso negativo bajamos por el de la derecha
+
+    }
+  }
+
+  return *this;
+}  
+\end{verbatim}
+
+\end{document}
