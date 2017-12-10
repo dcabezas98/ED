@@ -5,7 +5,7 @@
 
 Contine la carpeta guiones, con los enunciados de cada una de las
 prácticas y una carpeta para cada práctica con los códigos fuente en
-C++, scripts en bash, archivos.tex, resultados, etc. Los archivos.pdf ya
+C++, scripts en bash, archivos.tex, resultados, etc. Los archivos ya
 compilados se encuentran en la sección *releases*. Las prácticas las he
 realizado en pareja, junto con [@patriciacorhid](https://github.com/patriciacorhid).
 
@@ -55,6 +55,6 @@ sección *releases*, al igual que el programa de prueba *pruebacronologia*.
 
 #### Retos propuestos por el profesor:
 
-Contiene los enunciados y los archivos.tex de los retos, ejercicios voluntarios
-planteados por el profesor. Los archivos.pdf ya compilados se encuentran en la 
+Contiene los enunciados y los asociados de los retos y ejercicios voluntarios
+planteados por el profesor. Los archivos ya compilados se encuentran en la 
 sección *releases*.
