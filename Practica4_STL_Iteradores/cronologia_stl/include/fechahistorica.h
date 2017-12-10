@@ -47,23 +47,27 @@ public:
  typedef typename std::set<std::string>::const_iterator const_iterator;
 
  /**
-   * @return devuelve un iterador al principio del objeto
+   * @brief Método begin para el iterador
+   * @return devuelve un iterador al principio del set
    */
  iterator begin();
 
  /**
-   * @return devuelve un iterador al principio del objeto sin alterar el
+   * @brief Método begin para el iterador constante
+   * @return devuelve un iterador al principio del set sin alterar el
    * contenido de éste
    */
  const_iterator begin() const;
 
  /**
-   * @return devuelve un iterador al final del objeto
+   + @brief Método end para el iterador
+   * @return devuelve un iterador al final del set
    */
  iterator end();
 
  /**
-   * @return devuelve un iterador al final del objeto sin alterar el
+   * @brief Método end para el iterador constante
+   * @return devuelve un iterador al final del set sin alterar el
    * contenido de éste
    */
  const_iterator end() const;

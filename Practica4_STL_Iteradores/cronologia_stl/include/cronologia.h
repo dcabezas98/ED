@@ -53,24 +53,28 @@ public:
   typedef typename std::map<int, FechaHistorica>::const_iterator const_iterator;
 
   /**
+    * @brief Método begin para el iterador
     * @return iterator a la primera pareja <año, FechaHistorica>
     *
     */
   iterator begin();
 
   /**
+    * @brief Método begin para el iterador constante
     * @return const_iterator a la primera pareja <año, FechaHistorica>
     *
     */
   const_iterator begin() const;
 
   /**
+    * @brief Método end para el iterador
     * @return iterator al final del map
     *
     */
   iterator end();
 
   /**
+    * @brief Método end para el iterador constante
     * @return const_iterator al final del map
     *
     */
