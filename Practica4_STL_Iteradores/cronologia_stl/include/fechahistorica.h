@@ -15,7 +15,8 @@
   *  @brief Clase FechaHistorica
   *
   * Un objeto @e fecha de la clase @c FechaHistorica es el conjunto formado
-  * por un año y una serie de acontecimientos ocurridos en dicho año.  * Dichos acontecimientos se guardan en un @c Vector***@hsdofmsdaifhPELIGRO***Dinamico de strings
+  * por un año y una serie de acontecimientos ocurridos en dicho año.
+  * Dichos acontecimientos se guardan en un @c Set de strings
   * Los años negativos se consideran a.C.
   *
   * @author Patricia Cordoba Hidalgo
@@ -34,21 +35,42 @@ private:
 
 public:
 
+  /**
+    * @brief iterador que recorre los acontecimientos de una @c FechaHistorica
+    */
  typedef typename std::set<std::string>::iterator iterator;
 
+ /**
+   * @brief iterador que recorre los acontecimientos de una @c FechaHistorica de
+   * manera que no altera su contenido
+   */
  typedef typename std::set<std::string>::const_iterator const_iterator;
 
+ /**
+   * @return devuelve un iterador al principio del objeto
+   */
  iterator begin();
 
+ /**
+   * @return devuelve un iterador al principio del objeto sin alterar el
+   * contenido de éste
+   */
  const_iterator begin() const;
 
+ /**
+   * @return devuelve un iterador al final del objeto
+   */
  iterator end();
 
+ /**
+   * @return devuelve un iterador al final del objeto sin alterar el
+   * contenido de éste
+   */
  const_iterator end() const;
 
 /**
   * @brief Constructor por defecto de la clase. Crea la @c FechaHistorica con
-  * @c VectorDinamico vacio y cuyo año es cero
+  * @c Set vacio y cuyo año es cero
   */
   FechaHistorica();
 
@@ -66,7 +88,7 @@ public:
   FechaHistorica(const FechaHistorica &original);
 
 /**
-  * @brief Libera la memoria del @c VectorDinamico hechos
+  * @brief Vacía el @c Set
   */
   void destruir();
 
@@ -78,7 +100,7 @@ public:
 
 /**
   * @brief nhechos
-  * @return Devuelve el número de eventos guardados el @c VectorDinamico nhechos
+  * @return Devuelve el número de eventos guardados el @c Set
   */
   int nhechos() const;
 
@@ -95,11 +117,15 @@ public:
   const int year() const;
 
 /**
-  * @brief Añade un evento al final del @c VectorDinamico hechos
+  * @brief Añade un evento al @c Set
   * @param h string con el evento a añadir
   */
   void add(std::string h);
 
+  /**
+    * @brief Comprueba si el @c Set de eventos está vacío
+    * @return true si está vacío, false en caso contrario
+    */
   bool empty();
 
 /**
