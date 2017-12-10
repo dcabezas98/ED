@@ -21,7 +21,7 @@
   *
   * @author Patricia Cordoba Hidalgo
   * @author David Cabezas Berrido
-  * @date Octubre 2017
+  * @date Diciembre 2017
   */
 
 class FechaHistorica{
@@ -31,7 +31,7 @@ private:
   * @page repConjunto Representativo de la clase FechaHistorica
   *
   */
-  std::pair<int, std::set<std::string> > pareja;
+  std::pair<int, std::set<std::string> > pareja; /**< pair que almacena el año y el conjunto de eventos ocurridos en éste*/
 
 public:
 
