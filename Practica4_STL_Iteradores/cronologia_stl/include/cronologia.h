@@ -15,16 +15,20 @@
   *
   * Un objeto @e crono del tipo de dato abstracto @c Cronologia está formado por
   * una serie de años con acontecimientos ocurridos en cada uno de estos.
-  * Dichos datos se guardan en el @c VectorDinamico de @c FechaHistorica @e fechas.
+  * Dichos datos se guardan en un @c map que relaciona los años con los objetos
+  * de la clase @c FechaHistorica
   *
-  * Ejemplo de uso:
+  * Ejemplos de uso:
   * @include pruebacronologia.cpp
+  * @include estadisticaEventos.cpp
+  * @include filtradoIntervalo.cpp
+  * @include filtradoPalabraClave.cpp
+  * @include unionCronologias.cpp
   *
   * @author Patricia Cordoba Hidalgo
   * @author David Cabezas Berrido
-  * @date Octubre 2017
+  * @date Diciembre 2017
   */
-
 class Cronologia{
 
 private:
@@ -32,25 +36,49 @@ private:
   * @page repConjunto Representativo de la clase Cronologia
   *
   */
-  std::map<int, FechaHistorica> fechas; /**< vector de fechas */
+  std::map<int, FechaHistorica> fechas; /**< map que relaciona cada año con una FechaHistorica*/
 
 public:
 
+  /**
+    * @brief Iterador para recorrer una @e FechaHistorica
+    *
+    */
   typedef typename std::map<int, FechaHistorica>::iterator iterator;
 
+  /**
+    * @brief Iterador constante para recorrer una @e FechaHistorica
+    *
+    */
   typedef typename std::map<int, FechaHistorica>::const_iterator const_iterator;
 
+  /**
+    * @return iterator a la primera pareja <año, FechaHistorica>
+    *
+    */
   iterator begin();
 
+  /**
+    * @return const_iterator a la primera pareja <año, FechaHistorica>
+    *
+    */
   const_iterator begin() const;
 
+  /**
+    * @return iterator al final del map
+    *
+    */
   iterator end();
 
+  /**
+    * @return const_iterator al final del map
+    *
+    */
   const_iterator end() const;
 
 /**
   * @brief Constructor por defecto de la clase. Crea la @c Cronologia con
-  * @c VectorDinamico vacio usando el constructor vacio de fechas.
+  * @c map vacío
   */
   Cronologia();
 
@@ -61,7 +89,7 @@ public:
   Cronologia(const Cronologia &original);
 
 /**
-  * @brief Libera la memoria del @c VectorDinamico fechas
+  * @brief La cronologia queda vacía
   */
   void destruir();
 
@@ -72,8 +100,8 @@ public:
   Cronologia& operator=(const Cronologia &original);
 
 /**
-  * @brief used nhechos
-  * @return Devuelve el número de elementos guardados en el @c VectorDinamico @c fechas.
+  * @brief Tamaño del @c map fechas
+  * @return Devuelve el número de elementos guardados en el @c map @c fechas.
   */
   int size() const;
 
@@ -95,22 +123,38 @@ public:
   * @brief Crea una subcronología con las fechas entre los años a1 y a2
   * @param a1 año donde comienza la @c Cronologia
   * @param a2 año donde finaliza la @c Cronologia
-  * @return Subcronologia que comienza en @e a1 y termina en @e a2.
+  * @return Subcronologia resultante
   * @pre a1 <= a2
   */
   Cronologia subcronologia(int a1, int a2) const;
 
 /**
-  * @brief Crea una subcronología con las fechas que contengan el string s.
-  * @param s string que debe contener la @c Cronologia
-  * @return Subcronologia con las fechas que contienen el string s.
+  * @brief Crea una subcronología con los acontecimientos que contengan el string s.
+  * @param s string a buscar
+  * @return Subcronologia con los acontecimientos que contienen el string s.
   */
   Cronologia subcronologia(std::string s) const;
 
+  /**
+    * @brief Devuelve la @c FechaHistorica correspondiente al año a
+    * @param a año
+    * @return @c FechaHistorica con el año dado como parámetro
+    * @pre El año a está en la @c Cronologia
+    */
   FechaHistorica getFecha(int a) const;
 
+  /**
+    * @brief Imprime estadísticas sobre la @c Cronologia: número años, número de eventos,
+    * máximo de eventos en un año y promedio de eventos por año
+    *
+    */
   void recuento() const;
 
+  /**
+    * @brief Averigua si un año está en la @c Cronología
+    * @param a año a consultar
+    * @return 1 si a pertenece a la @c Cronología y 0 en caso contrario
+    */
   bool esta(int a) const;
 };
 
