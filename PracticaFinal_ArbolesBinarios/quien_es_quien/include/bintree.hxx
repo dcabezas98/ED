@@ -2,18 +2,18 @@
 
 
 /*
-************************************************************ 
-* Implementación
+************************************************************
+* Implementaci贸n
 ************************************************************
 */
 
 /*
-  Función de Abstracción:
+  Funci贸n de Abstracci贸n:
   ----------------------
   Dado el objeto del tipo rep r, r = {laraiz}, el objeto
   abstracto al que representa es:
   a) Arbol nulo, si r.laraiz.null().
-  b) Arbol con un único nodo de etiqueta *(r.laraiz)
+  b) Arbol con un inico nodo de etiqueta *(r.laraiz)
      si r.laraiz.left().null() y r.laraiz.dcha().null()
 
   c)                    *(r.laraiz)
@@ -22,12 +22,12 @@
       Arbol(r.laraiz.left())    Arbol(r.laraiz.right())
 
 
-  Invariante de Representación:
+  Invariante de Representaci贸n:
   ----------------------------
   Si !r.laraiz.null(),
   -   r.laraiz.parent().null().
 
-  Para cualquier nodo n del árbol:
+  Para cualquier nodo n del 锟斤拷rbol:
   Si !n.left().null()
       n.left().parent() == n;
   Si !n.right().null()
@@ -115,7 +115,7 @@ bool bintree<T>::equals(bintree<T>::node n1, bintree<T>::node n2) const
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::bintree()
   : num_nodos(0)
 {
@@ -125,7 +125,7 @@ bintree<T>::bintree()
 
 template <typename T>
 inline
-bintree<T>::bintree(const T & e) 
+bintree<T>::bintree(const T & e)
   : laraiz(e), num_nodos(1)
 {
 }
@@ -154,7 +154,7 @@ void bintree<T>::assign_subtree(const bintree<T> & a,
     copy(laraiz, n);
     if (!laraiz.null())
       laraiz.parent(typename bintree<T>::node());
-  } else {  // Reemplazar el receptor por un sub醨bol suyo.
+  } else {  // Reemplazar el receptor por un sub谩rbol suyo.
     if (laraiz != n) {
       typename bintree<T>::node nod(laraiz);
       num_nodos = count(n);
@@ -175,7 +175,7 @@ void bintree<T>::assign_subtree(const bintree<T> & a,
 /*____________________________________________________________ */
 
 template <typename T>
-inline 
+inline
 bintree<T>::~bintree()
 {
   destroy(laraiz);
@@ -185,7 +185,7 @@ bintree<T>::~bintree()
 
 template <typename T>
 inline
-bintree<T> & 
+bintree<T> &
 bintree<T>::operator=(const bintree<T> & a)
 {
   if (&a != this) {
@@ -201,7 +201,7 @@ bintree<T>::operator=(const bintree<T> & a)
 /*____________________________________________________________ */
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::node bintree<T>::root() const
 {
   return laraiz;
@@ -210,7 +210,7 @@ typename bintree<T>::node bintree<T>::root() const
 /*____________________________________________________________ */
 
 template <typename T>
-inline 
+inline
 void bintree<T>::prune_left(typename bintree<T>::node n,
 			    bintree<T> & orig)
 {
@@ -245,7 +245,7 @@ void bintree<T>::prune_right(typename bintree<T>::node n,
 
 /*____________________________________________________________ */
 template <typename T>
-inline 
+inline
 void bintree<T>::insert_left(const typename bintree<T>::node & n, const T & e)
 {
   bintree<T> aux(e);
@@ -264,7 +264,7 @@ void bintree<T>::insert_left(typename bintree<T>::node n,
   typename bintree<T>::node aux(n.left());
   destroy(aux);
   n.left(rama.laraiz);
-  if (!n.left().null()) 
+  if (!n.left().null())
     n.left().parent(n);
   rama.laraiz = typename bintree<T>::node();
 }
@@ -281,11 +281,11 @@ void bintree<T>::insert_right(typename bintree<T>::node n, const T & e)
 
 template <typename T>
 inline
-void bintree<T>::insert_right(typename bintree<T>::node n, 
+void bintree<T>::insert_right(typename bintree<T>::node n,
 			      bintree<T> & rama)
 {
   assert(!n.null());
-  
+
   num_nodos = num_nodos - count(n.right()) + rama.num_nodos;
   typename bintree<T>::node aux(n.right());
   destroy(aux);
@@ -307,7 +307,7 @@ void bintree<T>::clear()
 /*____________________________________________________________ */
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::size_type bintree<T>::size() const
 {
   return num_nodos;
@@ -316,7 +316,7 @@ typename bintree<T>::size_type bintree<T>::size() const
 /*____________________________________________________________ */
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::empty() const
 {
   return laraiz == bintree<T>::node();
@@ -325,7 +325,7 @@ bool bintree<T>::empty() const
 /*____________________________________________________________ */
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::operator==(const bintree<T> & a) const
 {
   return equals(laraiz, a.laraiz);
@@ -336,7 +336,7 @@ bool bintree<T>::operator==(const bintree<T> & a) const
 template <typename T>
 inline bool bintree<T>::operator!=(const bintree<T> & a) const
 {
-  return !(*this == a);  
+  return !(*this == a);
 }
 
 /*
@@ -351,7 +351,7 @@ inline bool bintree<T>::operator!=(const bintree<T> & a) const
 */
 
 template <typename T>
-inline 
+inline
 bintree<T>::preorder_iterator::preorder_iterator()
 {
   elnodo = typename bintree<T>::node();
@@ -359,23 +359,23 @@ bintree<T>::preorder_iterator::preorder_iterator()
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::preorder_iterator::preorder_iterator(
-                 const bintree<T>::preorder_iterator & i) 
+                 const bintree<T>::preorder_iterator & i)
   : elnodo(i.elnodo)
 {
 }
 
 
 template <typename T>
-inline 
-bintree<T>::preorder_iterator::preorder_iterator(bintree<T>::node n) 
+inline
+bintree<T>::preorder_iterator::preorder_iterator(bintree<T>::node n)
   : elnodo(n)
 {
 }
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::preorder_iterator::operator!=(
         const bintree<T>::preorder_iterator & i) const
 {
@@ -384,7 +384,7 @@ bool bintree<T>::preorder_iterator::operator!=(
 
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::preorder_iterator::operator==(
               const bintree<T>::preorder_iterator & i) const
 {
@@ -393,8 +393,8 @@ bool bintree<T>::preorder_iterator::operator==(
 
 
 template <typename T>
-inline 
-typename bintree<T>::preorder_iterator & 
+inline
+typename bintree<T>::preorder_iterator &
 bintree<T>::preorder_iterator::operator=(									const bintree<T>::preorder_iterator & i)
 {
   elnodo = i.elnodo;
@@ -403,7 +403,7 @@ bintree<T>::preorder_iterator::operator=(									const bintree<T>::preorder_ite
 
 
 template <typename T>
-inline 
+inline
 T & bintree<T>::preorder_iterator::operator*()
 {
   return *elnodo;
@@ -437,7 +437,7 @@ bintree<T>::preorder_iterator::operator++()
 
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::preorder_iterator
 bintree<T>::begin_preorder()
 {
@@ -445,7 +445,7 @@ bintree<T>::begin_preorder()
 }
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::preorder_iterator
 bintree<T>::end_preorder()
 {
@@ -460,7 +460,7 @@ bintree<T>::end_preorder()
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::inorder_iterator::inorder_iterator()
 {
 }
@@ -490,8 +490,8 @@ const typename bintree<T>::inorder_iterator & i) const
 
 
 template <typename T>
-inline 
-typename bintree<T>::inorder_iterator & 
+inline
+typename bintree<T>::inorder_iterator &
 bintree<T>::inorder_iterator::operator=(
     const bintree<T>::inorder_iterator & i)
 {
@@ -544,7 +544,7 @@ bintree<T>::begin_inorder()
 
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::inorder_iterator
 bintree<T>::end_inorder()
 {
@@ -559,13 +559,13 @@ bintree<T>::end_inorder()
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::postorder_iterator::postorder_iterator()
 {
 }
 
 template <typename T>
-inline 
+inline
 bintree<T>::postorder_iterator::postorder_iterator(
   bintree<T>::node n)
   : elnodo(n)
@@ -573,7 +573,7 @@ bintree<T>::postorder_iterator::postorder_iterator(
 }
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::postorder_iterator::operator!=(
 const bintree<T>::postorder_iterator & i) const
 {
@@ -581,7 +581,7 @@ const bintree<T>::postorder_iterator & i) const
 }
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::postorder_iterator::operator==(
 const bintree<T>::postorder_iterator & i) const
 {
@@ -590,8 +590,8 @@ const bintree<T>::postorder_iterator & i) const
 
 
 template <typename T>
-inline 
-typename bintree<T>::postorder_iterator & 
+inline
+typename bintree<T>::postorder_iterator &
 bintree<T>::postorder_iterator::operator=(
     const bintree<T>::postorder_iterator & i)
 {
@@ -601,7 +601,7 @@ bintree<T>::postorder_iterator::operator=(
 
 
 template <typename T>
-inline 
+inline
 T & bintree<T>::postorder_iterator::operator*()
 {
   return *elnodo;
@@ -639,7 +639,7 @@ bintree<T>::postorder_iterator::operator++()
 }
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::postorder_iterator bintree<T>::begin_postorder()
 {
   node n(laraiz);
@@ -655,7 +655,7 @@ typename bintree<T>::postorder_iterator bintree<T>::begin_postorder()
 }
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::postorder_iterator
 bintree<T>::end_postorder()
 {
@@ -669,7 +669,7 @@ bintree<T>::end_postorder()
 */
 
 template <typename T>
-inline 
+inline
 bintree<T>::level_iterator::level_iterator()
 {
 }
@@ -697,7 +697,7 @@ const bintree<T>::level_iterator & i) const
 }
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::level_iterator::operator==(
 const bintree<T>::level_iterator & i) const
 {
@@ -705,8 +705,8 @@ const bintree<T>::level_iterator & i) const
 }
 
 template <typename T>
-inline 
-typename bintree<T>::level_iterator & 
+inline
+typename bintree<T>::level_iterator &
 bintree<T>::level_iterator::operator=(
     const bintree<T>::level_iterator & i)
 {
@@ -716,7 +716,7 @@ bintree<T>::level_iterator::operator=(
 
 
 template <typename T>
-inline 
+inline
 T & bintree<T>::level_iterator::operator*()
 {
   return *cola_Nodos.front();
@@ -769,16 +769,16 @@ bintree<T>::end_level()
 */
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_preorder_iterator::const_preorder_iterator()
 {
 }
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_preorder_iterator::const_preorder_iterator(
-    bintree<T>::node n) 
+    bintree<T>::node n)
   : elnodo(n)
 {
 }
@@ -789,7 +789,7 @@ bintree<T>::const_preorder_iterator::const_preorder_iterator(const typename bint
 }
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::const_preorder_iterator::operator!=(
      const bintree<T>::const_preorder_iterator & i) const
 {
@@ -798,7 +798,7 @@ bool bintree<T>::const_preorder_iterator::operator!=(
 
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::const_preorder_iterator::operator==(
    const bintree<T>::const_preorder_iterator & i) const
 {
@@ -807,8 +807,8 @@ bool bintree<T>::const_preorder_iterator::operator==(
 
 
 template <typename T>
-inline 
-typename bintree<T>::const_preorder_iterator & 
+inline
+typename bintree<T>::const_preorder_iterator &
 bintree<T>::const_preorder_iterator::operator=(
     const bintree<T>::const_preorder_iterator & i)
 {
@@ -818,7 +818,7 @@ bintree<T>::const_preorder_iterator::operator=(
 
 
 template <typename T>
-inline 
+inline
 const T & bintree<T>::const_preorder_iterator::operator*() const
 {
   return *elnodo;
@@ -838,7 +838,7 @@ bintree<T>::const_preorder_iterator::operator++()
       elnodo = elnodo.right();
   else {
     while ((!elnodo.parent().null()) &&
-	   (elnodo.parent().right() == elnodo 
+	   (elnodo.parent().right() == elnodo
 	    || elnodo.parent().right().null()))
          elnodo = elnodo.parent();
     if (elnodo.parent().null())
@@ -852,7 +852,7 @@ bintree<T>::const_preorder_iterator::operator++()
 
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::const_preorder_iterator
 bintree<T>::begin_preorder() const
 {
@@ -860,7 +860,7 @@ bintree<T>::begin_preorder() const
 }
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::const_preorder_iterator
 bintree<T>::end_preorder() const
 {
@@ -875,21 +875,21 @@ bintree<T>::end_preorder() const
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_inorder_iterator::const_inorder_iterator()
 {
   elnodo = typename bintree<T>::node();
 }
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_inorder_iterator::const_inorder_iterator(const const_inorder_iterator &i)
 {
   elnodo = i.elnodo;
 }
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_inorder_iterator::const_inorder_iterator(
   bintree<T>::node n)
   : elnodo(n)
@@ -897,7 +897,7 @@ bintree<T>::const_inorder_iterator::const_inorder_iterator(
 }
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::const_inorder_iterator::operator!=(
 const bintree<T>::const_inorder_iterator & i) const
 {
@@ -906,7 +906,7 @@ const bintree<T>::const_inorder_iterator & i) const
 
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::const_inorder_iterator::operator==(
 const bintree<T>::const_inorder_iterator & i) const
 {
@@ -914,8 +914,8 @@ const bintree<T>::const_inorder_iterator & i) const
 }
 
 template <typename T>
-inline 
-typename bintree<T>::const_inorder_iterator & 
+inline
+typename bintree<T>::const_inorder_iterator &
 bintree<T>::const_inorder_iterator::operator=(
     const bintree<T>::const_inorder_iterator & i)
 {
@@ -925,7 +925,7 @@ bintree<T>::const_inorder_iterator::operator=(
 
 
 template <typename T>
-inline 
+inline
 const T & bintree<T>::const_inorder_iterator::operator*() const
 {
   return *elnodo;
@@ -956,7 +956,7 @@ bintree<T>::const_inorder_iterator::operator++()
 }
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::const_inorder_iterator
 bintree<T>::begin_inorder() const
 {
@@ -970,7 +970,7 @@ bintree<T>::begin_inorder() const
 
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::const_inorder_iterator
 bintree<T>::end_inorder() const
 {
@@ -985,7 +985,7 @@ bintree<T>::end_inorder() const
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_postorder_iterator::const_postorder_iterator()
 {
   elnodo = typename bintree<T>::node();
@@ -993,7 +993,7 @@ bintree<T>::const_postorder_iterator::const_postorder_iterator()
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_postorder_iterator::const_postorder_iterator(
   typename bintree<T>::node n)
   : elnodo(n)
@@ -1001,7 +1001,7 @@ bintree<T>::const_postorder_iterator::const_postorder_iterator(
 }
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::const_postorder_iterator::operator!=(
 const bintree<T>::const_postorder_iterator & i) const
 {
@@ -1010,7 +1010,7 @@ const bintree<T>::const_postorder_iterator & i) const
 
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::const_postorder_iterator::operator==(
 const bintree<T>::const_postorder_iterator & i) const
 {
@@ -1019,8 +1019,8 @@ const bintree<T>::const_postorder_iterator & i) const
 
 
 template <typename T>
-inline 
-typename bintree<T>::const_postorder_iterator & 
+inline
+typename bintree<T>::const_postorder_iterator &
 bintree<T>::const_postorder_iterator::operator=(
     const bintree<T>::const_postorder_iterator & i)
 {
@@ -1030,7 +1030,7 @@ bintree<T>::const_postorder_iterator::operator=(
 
 
 template <typename T>
-inline 
+inline
 const T & bintree<T>::const_postorder_iterator::operator*() const
 {
   return *elnodo;
@@ -1069,7 +1069,7 @@ bintree<T>::const_postorder_iterator::operator++()
 
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::const_postorder_iterator
 bintree<T>::begin_postorder() const
 {
@@ -1086,7 +1086,7 @@ bintree<T>::begin_postorder() const
 }
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::const_postorder_iterator
 bintree<T>::end_postorder() const
 {
@@ -1101,14 +1101,14 @@ bintree<T>::end_postorder() const
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_level_iterator::const_level_iterator()
 {
 }
 
 
 template <typename T>
-inline 
+inline
 bintree<T>::const_level_iterator::const_level_iterator(
   bintree<T>::node n)
 {
@@ -1117,7 +1117,7 @@ bintree<T>::const_level_iterator::const_level_iterator(
 
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::const_level_iterator::operator!=(
 const bintree<T>::const_level_iterator & i) const
 {
@@ -1130,7 +1130,7 @@ const bintree<T>::const_level_iterator & i) const
 
 
 template <typename T>
-inline 
+inline
 bool bintree<T>::const_level_iterator::operator==(
 const bintree<T>::const_level_iterator & i) const
 {
@@ -1139,8 +1139,8 @@ const bintree<T>::const_level_iterator & i) const
 
 
 template <typename T>
-inline 
-typename bintree<T>::const_level_iterator & 
+inline
+typename bintree<T>::const_level_iterator &
 bintree<T>::const_level_iterator::operator=(
     const bintree<T>::const_level_iterator & i)
 {
@@ -1174,7 +1174,7 @@ bintree<T>::const_level_iterator::operator++()
 
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::const_level_iterator
 bintree<T>::begin_level() const
 {
@@ -1185,7 +1185,7 @@ bintree<T>::begin_level() const
 }
 
 template <typename T>
-inline 
+inline
 typename bintree<T>::const_level_iterator
 bintree<T>::end_level() const
 {
