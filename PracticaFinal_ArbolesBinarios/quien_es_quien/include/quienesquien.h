@@ -60,6 +60,9 @@ private:
 	  *        actual.
 	  */
 	bintree<Pregunta>::node jugada_actual;
+
+	vector<int> elige_preguntas();
+
 public:
 	/**
 	  * @brief Constructor básico de la clase

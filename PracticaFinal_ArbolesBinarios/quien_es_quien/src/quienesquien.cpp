@@ -8,8 +8,8 @@
 QuienEsQuien::QuienEsQuien(): personajes(), atributos(),
  															tablero(), arbol(), jugada_actual(){}
 }
-QuienEsQuien::QuienEsQuien(const QuienEsQuien &quienEsQuien){
-	//TODO :)
+QuienEsQuien::QuienEsQuien(const QuienEsQuien &quienEsQuien):personajes(quienEsQuien.personaje), atributos(quienEsQuien.atributos),
+                                                             tablero(quienEsQuien.tablero), arbol(quienEsQuien.arbol), jugada_actual(quienEsQuien.jugada_actual){
 }
 QuienEsQuien& QuienEsQuien::operator= (const QuienEsQuien &quienEsQuien){
 	personajes = quienEsQuien.personajes;
@@ -24,7 +24,11 @@ QuienEsQuien::~QuienEsQuien(){
 }
 
 void QuienEsQuien::limpiar(){
-	//TODO :)
+	personajes.clear();
+	atributos.clear();
+	tablero.clear();
+	arbol.clear();
+	jugada_actual.remove();
 }
 
 template <typename T>
@@ -206,7 +210,7 @@ vector<int> QuienEsQuien::elige_preguntas(){
 	int i, j;
 	for(i = 0; i < tablero[0].size(); i++){
 		for(j = 0; j < tablero.size(); j++){
-			
+
 		}
 	}
 
@@ -287,7 +291,7 @@ void QuienEsQuien::tablero_aleatorio(int numero_de_personajes){
 
 	int numero_de_atributos = ceil(log_2_numero_de_personajes);
 
-	cout << "Petici�n para generar "<< numero_de_personajes<<" personajes ";
+	cout << "Petición para generar "<< numero_de_personajes<<" personajes ";
 	cout << "con "<<numero_de_atributos<< " atributos"<<endl;
 	cout << "Paso 1: generar "<< pow(2,numero_de_atributos) << " personajes"<<endl;
 
