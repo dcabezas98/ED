@@ -12,7 +12,7 @@
   a Y.
 
   Definimos la suma de esta forma porque le da a los conjuntos estructura de
-  grupo, con el vacío como elemento neutro y el propio conjunto como el inverso.
+  grupo, con el vacío como elemento neutro y el propio conjunto como el inverso. Se conoce como suma simétrica.
 */
 
 #include <set>
