@@ -5,9 +5,9 @@
 
 Contine la carpeta guiones, con los enunciados de cada una de las
 prácticas y una carpeta para cada práctica con los códigos fuente en
-C++, scripts en bash, archivos.tex, resultados, etc. Los archivos ya
-compilados se encuentran en la sección *releases*. Las prácticas las he
-realizado en pareja, junto con [@patriciacorhid](https://github.com/patriciacorhid).
+C++, scripts en bash, archivos.tex, resultados, documentación, etc. Los 
+archivos ya compilados se encuentran en la sección *releases*. Las prácticas 
+las he realizado en pareja, junto con [@patriciacorhid](https://github.com/patriciacorhid).
 
 ##### Primera práctica: Eficiencia
 
@@ -49,6 +49,21 @@ sección *releases*, al igual que el programa de prueba *pruebacronologia*.
 
 ##### Tercera práctica: Estructuras de datos lineales
 
+Implementación de la clase **PilaMax**, que almacena parejas con un entero y el
+máximo de todos los valores que están debajo en la pila, de esta forma podemos
+acceder con facilidad al máximo de la pila en todo momento.
+
+Hemos implementado esta clase de dos maneras, con dos clases de templates distintas:
+
+- **PilaMax_VD** está implementada a partir de la clase template **VectorDinamico**.
+- **PilaMax_Cola** está implementada a partir de la clase template **Cola**.
+ 
+Para compilar una u otra versión, hay que cambiar la variable **CUALCOMPILA** en el
+fichero *Pila_max.h*, y ejecutar la orden correspondiente del *Makefile*: **make vd** 
+o **make cola**. 
+
+En la sección releases están los ejecutables correspondientes del programa de prueba
+para las dos versiones, y la documentación en *LaTeX* y en *HTML* ya compiladas.
 
 ##### Cuarta práctica: STL e iteradores
 
