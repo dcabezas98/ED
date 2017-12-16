@@ -62,6 +62,9 @@ Para compilar una u otra versión, hay que cambiar la variable **CUALCOMPILA** e
 fichero *Pila_max.h*, y ejecutar la orden correspondiente del *Makefile*: **make vd** 
 o **make cola**. 
 
+En la sección releases están los ejecutables correspondientes del programa de prueba
+para las dos versiones, y la documentación en *LaTeX* y en *HTML* ya compiladas.
+
 ##### Cuarta práctica: STL e iteradores
 
 
