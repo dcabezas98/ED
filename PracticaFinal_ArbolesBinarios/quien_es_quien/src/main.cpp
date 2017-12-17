@@ -12,7 +12,7 @@ int main(int argc, char * argv[]){
 	bool jugar = false;
 	bool limpiar = false;
 	QuienEsQuien quienEsQuien;
-	
+
 	if(argc == 2){
 		string parametroAleatorio = "aleatorio";
 		if(argv[1]== parametroAleatorio){
@@ -71,22 +71,34 @@ int main(int argc, char * argv[]){
 		return 1;
 	}
 
+  // Al iniciar la partida, todos los personajes están elvantados y podemos preguntar por cualquier atributo
+	list<int> pers;
+	list<int> atrib;
+
+	int i;
+
+	for(i = 0; i < quienEsQuien.size_personajes(); i++);
+		pers.push_back(i);
+
+	for(i = 0; i < quienEsQuien.size_atributos(); i++);
+		atrib.push_back(i);
+
 	quienEsQuien.mostrar_estructuras_leidas();
-	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol());
-	
+	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol(pers, atrib));
+
 	cout << "=========== Arbol en crudo ===========" << endl;
 	quienEsQuien.escribir_arbol_completo();
-	
+
 	cout << "Profundidad promedio de las hojas del arbol: ";
-	cout << quienEsQuien.profundidad_promedio_hojas() << endl; 
+	cout << quienEsQuien.profundidad_promedio_hojas() << endl;
 	cout << "======================================" << endl << endl << endl;
 
 	quienEsQuien.eliminar_nodos_redundantes();
-	
+
 	cout << "=========== Arbol ===================="<<endl;
 	quienEsQuien.escribir_arbol_completo();
 	cout << "Profundidad promedio de las hojas del arbol: ";
-	cout << quienEsQuien.profundidad_promedio_hojas()<<endl; 
+	cout << quienEsQuien.profundidad_promedio_hojas()<<endl;
 	cout << "======================================" << endl << endl << endl;
 
 	if(jugar){
