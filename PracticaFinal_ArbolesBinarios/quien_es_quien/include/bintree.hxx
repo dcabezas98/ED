@@ -395,7 +395,7 @@ bool bintree<T>::preorder_iterator::operator==(
 template <typename T>
 inline
 typename bintree<T>::preorder_iterator &
-bintree<T>::preorder_iterator::operator=(									const bintree<T>::preorder_iterator & i)
+bintree<T>::preorder_iterator::operator=(const bintree<T>::preorder_iterator & i)
 {
   elnodo = i.elnodo;
   return *this;
