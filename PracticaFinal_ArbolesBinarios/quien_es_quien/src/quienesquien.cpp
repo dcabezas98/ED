@@ -4,13 +4,21 @@
 #include <iterator>
 #include <math.h>
 #include <algorithm>
+#include <limits.h>
+#include <list>
+
+using namespace std;
 
 QuienEsQuien::QuienEsQuien(): personajes(), atributos(),
  															tablero(), arbol(), jugada_actual(){}
 }
-QuienEsQuien::QuienEsQuien(const QuienEsQuien &quienEsQuien):personajes(quienEsQuien.personaje), atributos(quienEsQuien.atributos),
-                                                             tablero(quienEsQuien.tablero), arbol(quienEsQuien.arbol), jugada_actual(quienEsQuien.jugada_actual){
-}
+
+QuienEsQuien::QuienEsQuien(const QuienEsQuien &quienEsQuien):personajes(quienEsQuien.personaje),
+                                                             atributos(quienEsQuien.atributos),
+                                                             tablero(quienEsQuien.tablero),
+                                                             arbol(quienEsQuien.arbol),
+                                                             jugada_actual(quienEsQuien.jugada_actual){}
+
 QuienEsQuien& QuienEsQuien::operator= (const QuienEsQuien &quienEsQuien){
 	personajes = quienEsQuien.personajes;
 	atributos = quienEsQuien.atributos;
@@ -19,6 +27,7 @@ QuienEsQuien& QuienEsQuien::operator= (const QuienEsQuien &quienEsQuien){
 	jugada_actual = quienEsQuien.jugada_actual;
 	return *this;
 }
+
 QuienEsQuien::~QuienEsQuien(){
 	this->limpiar();
 }
@@ -75,7 +84,6 @@ void QuienEsQuien::mostrar_estructuras_leidas(){
 
 		indice_personaje++;
 	}
-
 }
 
 /**
@@ -135,9 +143,9 @@ istream& operator >> (istream& is, QuienEsQuien &quienEsQuien) {
 
 	    		linea = linea.erase(0,linea.find('\t')+1);
 	    		indice_atributo++;
-			}
+			  }
 
-			string nombre_personaje = linea;
+			  string nombre_personaje = linea;
 
 	    	quienEsQuien.personajes.push_back(nombre_personaje);
 	    	quienEsQuien.tablero.push_back(atributos_personaje);
@@ -171,16 +179,15 @@ ostream& operator << (ostream& os, const QuienEsQuien &quienEsQuien){
 }
 
 /**
-  * @brief Convierte un n�mero a un vector de bool que corresponde
-  *        con su representaci�n en binario con un numero de digitos
+  * @brief Convierte un número a un vector de bool que corresponde
+  *        con su representación en binario con un numero de digitos
   *        fijo.
   *
-  * @param n N�mero a convertir en binario.
-  * @param digitos N�mero de d�gitos de la representaci�n binaria.
+  * @param n Número a convertir en binario.
+  * @param digitos Número de dígitos de la representación binaria.
   *
-  * @return Vector de booleanos con la representaci�n en binario de @e n
-  *      con el n�mero de elementos especificado por @e digitos.
-
+  * @return Vector de booleanos con la representación en binario de @e n
+  *      con el número de elementos especificado por @e digitos.
   */
 vector<bool> convertir_a_vector_bool(int n, int digitos) {
   vector<bool> ret;
@@ -201,28 +208,64 @@ vector<bool> convertir_a_vector_bool(int n, int digitos) {
   return ret;
 }
 
-vector<int> QuienEsQuien::elige_preguntas(){
+bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
 
-	vector<int> n; // Número de personas con el atributo
+  /*Si sólo queda un personaje, se coloca el nombre del personaje */
+  if(pers.size() == 1){
+    Pregunta pregunta(personajes[pers.front()],1);
+    bintree<Pregunta> arbol(pregunta);
 
-	int objetivo = personajes.size()/2;
+    return arbol;
+  }
 
-	int i, j;
-	for(i = 0; i < tablero[0].size(); i++){
-		for(j = 0; j < tablero.size(); j++){
+  /* Seleccionar pregunta con mayor entropía entre los atributos y personajes
+     dados como argumento, consultando el tablero de juego */
+  float objetivo = pers.size()/2;             // Buscamos el atributo que divida en grupos más similares
+  int suma, mas_cercano = INT_MAX;            // Número de personajes con el atributo y distancia del mejor atributo al objetivo
+  list<int>::iterator it_atrib_max_entrop;  // Iterador al atributo con más entropía
+  bool continua = true;                       // Para evitar ciclos innecesarios
 
-		}
-	}
+	list<int>::iterator it_p, it_a;
 
-}
+	for(it_a = atrib.begin(); it_a != atrib.end() && continua; it_a++){
+		for(it_p = pers.begin(), suma = 0 && continua; it_p != pers.end(); it_p++)
+      suma += tablero[*it_p][*it_a];
 
-bintree<Pregunta> QuienEsQuien::crear_arbol(){
+    if((int)abs(suma - objetivo) == 0){ // Es el mejor atributo
+      it_atrib_max_entrop = it_a;
+      continua = false;
+    }
+    else if((int)abs(suma - objerivo) < mas_cercano){
+      mas_cercano = (int)abs(suma - objetivo);
+      it_atrib_max_entrop = it_a;
+    }
+  }
 
-	bintree<Pregunta> arbol;
+  /*Conocido el atributo con mayor entropía, separamos la lista de personajes dada en dos listas*/
+  list<int> si; // Posiciones de los personajes que lo tienen
+  list<int> no; // Posiciones de los personajes que no lo tienen
 
+  //Relleno las listas de personajes que tienen o no el atributo con mayor entropía
+  for(it_p = pers.begin(), it_p != pers.end(), it_p++){ //Recorro la columna de personajes del atributo
+    if(tablero[*it_p][*it_atrib_max_entrop]) //Si el personaje tiene el atributo
+      si.push_back(*it_p); //Lo añado a la lista de los que lo tienen
+    else //Si no tiene el atributo
+      no.push_back(*it_p); //Lo añado a la lista de los que no lo tienen
+  }
 
+  /* Asigno la pregunta sobre el atributo con más entropía */
+  Pregunta pregunta(atributos[*it_atrib_max_entrop], si.size());
 
-	return arbol;
+  bintree<Pregunta> arbol(pregunta); // La pongo en la raíz
+
+  atrib.erase(it_atrib_max_entrop); // La próxima vez eligiré el atributo con más entropía entre el resto
+
+  /* A la izquierda, busco la mejor pregunta para los que tienen este atributo */
+  arbol.insert_left(arbol.root(),crear_arbol(si, atrib); // root() constante???
+  /* A la derecha, busco la mejor pregunta para los que no lo tienen */
+  arbol.insert_right(arbol.root(),crear_arbol(no, atrib);
+
+  return arbol;
 }
 
 void QuienEsQuien::usar_arbol(bintree<Pregunta> arbol_nuevo){
