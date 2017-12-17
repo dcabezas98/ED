@@ -254,7 +254,7 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
   }
 
   /* Asigno la pregunta sobre el atributo con más entropía */
-  Pregunta pregunta(atributos[*it_atrib_max_entrop], si.size());
+  Pregunta pregunta(atributos[*it_atrib_max_entrop], pers.size());
 
   bintree<Pregunta> arbol(pregunta); // La pongo en la raíz
 
