@@ -121,7 +121,7 @@ public:
 	friend ostream& operator << (ostream& os, const QuienEsQuien &quienEsQuien);
 
 	/**
-	  * @brief Escribe en la salida estandard las estructuras atributos, personajes y tablero.
+	  * @brief Escribe en la salida estandar las estructuras atributos, personajes y tablero.
 	  */
 	void mostrar_estructuras_leidas();
 
@@ -186,6 +186,16 @@ public:
 	  * @param numero_de_personajes Número de personajes que tiene el tablero a crear.
 	  */
 	void tablero_aleatorio(int numero_de_personajes);
+
+	/**
+		* @brief Devuelve el número de personajes
+		*/
+	int size_personajes() const;
+
+	/**
+		* @brief Devuelve el número de atributos
+		*/
+	int size_atributos() const;
 };
 
 #endif
