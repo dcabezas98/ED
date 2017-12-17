@@ -254,7 +254,7 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
   }
 
   /* Asigno la pregunta sobre el atributo con más entropía */
-  Pregunta pregunta(atributos[*it_atrib_max_entrop], si.size());
+  Pregunta pregunta(atributos[*it_atrib_max_entrop], pers.size());
 
   bintree<Pregunta> arbol(pregunta); // La pongo en la raíz
 
@@ -273,13 +273,35 @@ void QuienEsQuien::usar_arbol(bintree<Pregunta> arbol_nuevo){
 }
 
 void QuienEsQuien::iniciar_juego(){
-	//TODO :)
+  jugada_actual=arbol.root();
+  bool answer;
+
+  while((*jugada_actual).es_pregunta()){
+    cout << *jugada_actual;
+    cin >> answer;
+
+    if(answer)
+      jugada_actual = jugada_actual.left();
+    else
+      jugada_actual = jugada_actual.right();
+  }
+
+  cout<< *jugada_actual;
 }
 
 set<string> QuienEsQuien::informacion_jugada(bintree<Pregunta>::node jugada_actual){
-
-	//TODO :)
 	set<string> personajes_levantados;
+
+  bintree<Pregunta> rama;
+  rama.assign_subtree(arbol, jugada_actual);
+
+  bintree<Pregunta>::const_preorder_iterator it;
+
+  for(it = rama.begin_preorder(); it = rama.end_preorder(), it++){
+    if((*it).es_personaje())
+      personajes_levantados.insert((*it).obtener_personaje());
+  }
+
 	return personajes_levantados;
 }
 
@@ -362,4 +384,12 @@ void QuienEsQuien::tablero_aleatorio(int numero_de_personajes){
 		personajes.erase(personajes.begin()+personaje_a_eliminar);
 		tablero.erase(tablero.begin()+personaje_a_eliminar);
 	}
+
+  int QuienEsQuien::size_personajes() const{
+    return personajes.size();
+  }
+
+  int QuienEsQuien::size_atributos() const{
+    return atributos.size();
+  }
 }
