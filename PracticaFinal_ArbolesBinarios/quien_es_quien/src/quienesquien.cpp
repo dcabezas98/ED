@@ -208,6 +208,43 @@ vector<bool> convertir_a_vector_bool(int n, int digitos) {
   return ret;
 }
 
+bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
+
+    /*Si sólo queda un personaje, se coloca el nombre del personaje */
+    if(pers.size() == 1){
+      Pregunta pregunta(personajes[pers.front()],1);
+      bintree<Pregunta> arbol(pregunta);
+
+      return arbol;
+    }
+
+    list<int> si; // Posiciones de los personajes que tienen el primer atributo de la lista
+    list<int> no; // Posiciones de los personajes que no tienen el primer atributo de la lista
+    list<int>:: iterator it_p;
+
+    //Relleno las listas de personajes que tienen o no el atributo con mayor entropía
+    for(it_p = pers.begin(), it_p != pers.end(), it_p++){ //Recorro la columna de personajes del atributo
+      if(tablero[*it_p][atrib.front()]) //Si el personaje tiene el atributo
+        si.push_back(*it_p); //Lo añado a la lista de los que lo tienen
+      else //Si no tiene el atributo
+        no.push_back(*it_p); //Lo añado a la lista de los que no lo tienen
+    }
+
+    /* Asigno la pregunta sobre el primer atributo*/
+    Pregunta pregunta(atributos[atrib.front()], pers.size());
+
+    bintree<Pregunta> arbol(pregunta); // La pongo en la raíz
+
+    atrib.pop_front();
+
+    /* A la izquierda, busco la siguiente pregunta para los que tienen este atributo */
+    arbol.insert_left(arbol.root(),crear_arbol(si, atrib));
+    /* A la derecha, busco la siguiente pregunta para los que no lo tienen */
+    arbol.insert_right(arbol.root(),crear_arbol(no, atrib));
+
+    return arbol;
+}
+
 bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(list<int> &pers, list<int> &atrib){
 
   /*Si sólo queda un personaje, se coloca el nombre del personaje */
@@ -261,9 +298,9 @@ bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(list<int> &pers, list<int> 
   atrib.erase(it_atrib_max_entrop); // La próxima vez eligiré el atributo con más entropía entre el resto
 
   /* A la izquierda, busco la mejor pregunta para los que tienen este atributo */
-  arbol.insert_left(arbol.root(),crear_arbol(si, atrib)); // root() constante???
+  arbol.insert_left(arbol.root(),crear_arbol_mejorado(si, atrib));
   /* A la derecha, busco la mejor pregunta para los que no lo tienen */
-  arbol.insert_right(arbol.root(),crear_arbol(no, atrib));
+  arbol.insert_right(arbol.root(),crear_arbol_mejorado(no, atrib));
 
   return arbol;
 }
@@ -329,7 +366,32 @@ void QuienEsQuien::escribir_arbol_completo() const{
 }
 
 void QuienEsQuien::eliminar_nodos_redundantes(){
-	// TODO ^^
+
+	bintree<Preguntas>::preorder_iterator it;
+  bintree<Preguntas>:: node *p;
+  enum lado {dcha, izq};
+  bintree<Preguntas> rama;
+
+  for(it = begin_preorder(); it != end_preorder(); it++){
+    if(p!=NULL){
+      if(lado==dcha){
+        prune_right((*p), rama);
+        insert_left((*p).parent(), rama);
+      } else{
+        prune_left((*p), rama);
+        inset_right((*p).parent(), rama);
+      }
+      p=NULL;
+    }
+
+    if((*it).right().null() && !(*it).left().null()){
+      p=it;
+      lado=izq;
+    } else if (!(*it).right().null() && (*it).left().null()){
+      p=it;
+      lado=dcha;
+    }
+  }
 }
 
 int QuienEsQuien::profundidad(bintree<Pregunta>::node nodo){
