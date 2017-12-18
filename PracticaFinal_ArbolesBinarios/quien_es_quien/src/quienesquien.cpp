@@ -367,29 +367,31 @@ void QuienEsQuien::escribir_arbol_completo() const{
 
 void QuienEsQuien::eliminar_nodos_redundantes(){
 
-	bintree<Preguntas>::preorder_iterator it;
-  bintree<Preguntas>:: node *p;
+	bintree<Pregunta>::preorder_iterator it;
+  bintree<Pregunta>:: node *p;
   enum lado {dcha, izq};
-  bintree<Preguntas> rama;
+  bintree<Pregunta> rama;
 
-  for(it = begin_preorder(); it != end_preorder(); it++){
+  lado l;
+
+  for(it = arbol.begin_preorder(); it != arbol.end_preorder(); it++){
     if(p!=NULL){
       if(lado==dcha){
-        prune_right((*p), rama);
-        insert_left((*p).parent(), rama);
+        arbol.prune_right((*p), rama);
+        arbol.insert_left((*p).parent(), rama);
       } else{
-        prune_left((*p), rama);
-        inset_right((*p).parent(), rama);
+        arbol.prune_left((*p), rama);
+        arbol.inset_right((*p).parent(), rama);
       }
       p=NULL;
     }
 
     if((*it).right().null() && !(*it).left().null()){
-      p=it;
-      lado=izq;
+      p = it;
+      l = lado.izq;
     } else if (!(*it).right().null() && (*it).left().null()){
-      p=it;
-      lado=dcha;
+      p = it;
+      l = lado.dcha;
     }
   }
 }
@@ -464,12 +466,51 @@ void QuienEsQuien::tablero_aleatorio(int numero_de_personajes){
 		personajes.erase(personajes.begin()+personaje_a_eliminar);
 		tablero.erase(tablero.begin()+personaje_a_eliminar);
 	}
+}
 
-  int QuienEsQuien::size_personajes() const{
-    return personajes.size();
+int QuienEsQuien::size_personajes() const{
+  return personajes.size();
+}
+
+int QuienEsQuien::size_atributos() const{
+  return atributos.size();
+}
+
+void QuienEsQuien::preguntas_formuladas(bintree<Pregunta>::node jugada){
+
+  bintree<Pregunta>::node p = jugada;
+
+  cout << "El personaje oculto tiene las siguientes características:\n";
+
+  while(!p.parent().null()){
+
+    cout << (*p.parent()).obtener_pregunta() << ": ";
+
+    if(p == p.parent().left())
+      cout << "Sí\n";
+
+    else
+      cout << "No\n";
   }
 
-  int QuienEsQuien::size_atributos() const{
-    return atributos.size();
+  cout << "pero aún no sé cuál es.\n";
+}
+
+void QuienEsQuien::elimina_personaje(string nombre){
+
+  bintree<Pregunta>::preorder_iterator it;
+  bintree<Pregunta>::node *p;
+  bool encontrado = false;
+
+  for(it = arbol.begin_preorder(); it != arbol.end_preorder() && !encontrado; it++){
+    if((*(*it)).es_personaje() && (*(*it)).obtener_personaje() == nombre){
+      encontrado = true;
+      p = it;
+    }
+  }
+
+  if(encontrado){
+    p->remove();
+    eliminar_nodos_redundantes();
   }
 }
