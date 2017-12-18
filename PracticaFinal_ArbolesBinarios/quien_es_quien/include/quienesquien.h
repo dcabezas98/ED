@@ -61,6 +61,12 @@ private:
 	  */
 	bintree<Pregunta>::node jugada_actual;
 
+	/**
+		* @brief Devuelve la profundidad de un nodo del árbol de preguntas.
+		*
+		*/
+	int profundidad(bintree<Pregunta>::node nodo);
+
 public:
 	/**
 	  * @brief Constructor básico de la clase
