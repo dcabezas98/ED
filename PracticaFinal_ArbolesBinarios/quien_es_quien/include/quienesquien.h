@@ -68,23 +68,28 @@ private:
 	int profundidad(bintree<Pregunta>::node nodo);
 
 public:
+
 	/**
 	  * @brief Constructor básico de la clase
 	  */
 	QuienEsQuien();
+
 	/**
 	  * @brief Constructor de copia.
 	  * @param quienEsQuien QuienEsQuien a copiar.
 	  */
 	QuienEsQuien(const QuienEsQuien &quienEsQuien);
+
 	/**
 	* @brief Destructor del pregunta.
 	*/
 	~QuienEsQuien();
+
 	/**
 	  * @brief Vacia todos los datos del QuienEsQuien receptor.
 	  */
 	void limpiar();
+
 	/**
 	* @brief Sobrecarga del operador de asignación.
 	* @param quienEsQuien objeto a copiar.
@@ -133,17 +138,8 @@ public:
 
 	/**
 	  * @brief Este método construye el árbol de preguntas para todos los personajes del tablero.
-		* @param pers Lista de índices de los personajes
-		* @param atrib Lista de índices de los atributos
 	  */
-	bintree<Pregunta> crear_arbol(list<int> &pers, list<int> &atrib);
-
-	/**
-		* @brief Este método construye el árbol óptimo de preguntas para todos los personajes del tablero.
-		* @param pers Lista de índices de los personajes
-		* @param atrib Lista de índices de los atributos
-		*/
-	bintree<Pregunta> crear_arbol_mejorado(list<int> &pers, list<int> &atrib);
+	bintree<Pregunta> crear_arbol();
 
 	/**
 	  * @brief Sustituye el árbol actual por el árbol pasado por parámetro.
