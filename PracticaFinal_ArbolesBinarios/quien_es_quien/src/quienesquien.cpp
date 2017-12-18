@@ -168,7 +168,7 @@ ostream& operator << (ostream& os, const QuienEsQuien &quienEsQuien){
 
 	//Rellenamos con ceros y unos cada l�nea y al final ponemos el nombre del personaje.
 	for(int indice_personaje=0;indice_personaje<quienEsQuien.personajes.size();indice_personaje++){
-		for(int indice_atributo=0;indice_atributo<quienEsQuien.personajes.size();indice_atributo++){
+		for(int indice_atributo=0;indice_atributo<quienEsQuien.atributos.size();indice_atributo++){
 
 			os  << quienEsQuien.tablero[indice_personaje][indice_atributo] << "\t";
 		}
@@ -208,7 +208,7 @@ vector<bool> convertir_a_vector_bool(int n, int digitos) {
   return ret;
 }
 
-bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
+bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(list<int> &pers, list<int> &atrib){
 
   /*Si sólo queda un personaje, se coloca el nombre del personaje */
   if(pers.size() == 1){
@@ -261,9 +261,9 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
   atrib.erase(it_atrib_max_entrop); // La próxima vez eligiré el atributo con más entropía entre el resto
 
   /* A la izquierda, busco la mejor pregunta para los que tienen este atributo */
-  arbol.insert_left(arbol.root(),crear_arbol(si, atrib); // root() constante???
+  arbol.insert_left(arbol.root(),crear_arbol(si, atrib)); // root() constante???
   /* A la derecha, busco la mejor pregunta para los que no lo tienen */
-  arbol.insert_right(arbol.root(),crear_arbol(no, atrib);
+  arbol.insert_right(arbol.root(),crear_arbol(no, atrib));
 
   return arbol;
 }
@@ -332,10 +332,28 @@ void QuienEsQuien::eliminar_nodos_redundantes(){
 	// TODO ^^
 }
 
-float QuienEsQuien::profundidad_promedio_hojas(){
-	//TODO :)
+int QuienEsQuien::profundidad(bintree<Pregunta>::node nodo){
+  bintree<Pregunta>::node *p = &nodo;
+  int prof = 0;
 
-	return -1;
+  while(!(*p).parent().null()){
+    p = &(*p).parent();
+    prof++;
+  }
+
+  return prof;
+}
+
+float QuienEsQuien::profundidad_promedio_hojas(){
+  int suma=0;
+  bintree<Pregunta>::const_preorder_iterator it;
+
+  for(it = arbol.begin_preorder(); it = arbol.end_preorder(), it++){
+    if((*(*it)).es_personaje()){
+      suma += profundidad(*it);
+    }
+  }
+	return (float)suma/personajes.size();
 }
 
 /**
