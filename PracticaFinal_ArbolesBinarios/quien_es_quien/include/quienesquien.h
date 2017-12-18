@@ -155,11 +155,18 @@ public:
 	void escribir_arbol_completo() const;
 
 	/**
-	   @brief Método que modifica el árbol de preguntas para que haya
-	          preguntas redundantes.
-	   @post El árbol de preguntas se modifica.
-	*/
+	  * @brief Método que modifica el árbol de preguntas para que haya
+	  *       preguntas redundantes.
+	  * @post El árbol de preguntas se modifica.
+		*/
 	void eliminar_nodos_redundantes();
+
+	/**
+		* @brief Elimina el personaje con el nombre dado como argumento
+		* @param Nombre del personaje a eliminar
+	  */
+
+	void elimina_personaje(string nombre);
 
 	/**
 	 * @brief Inicializa el juego.
@@ -167,6 +174,13 @@ public:
 	 *        pierde el progreso.
 	 */
 	void iniciar_juego();
+
+	/**
+	 * @brief Muestra por pantalla todas las preguntas formuladas hasta el momento
+	 * en la partida y su correspondiente respuesta
+	 *
+	 */
+	void preguntas_formuladas(bintree<Pregunta>::node jugada);
 
 	/**
 	  * @brief Dado un estado del tablero devuelve los nombres de
