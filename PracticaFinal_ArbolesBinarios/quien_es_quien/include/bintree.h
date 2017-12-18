@@ -490,13 +490,13 @@ public:
     node parent() const;
 
     /**
-       @brief Devuelve el hizo izquierdo del nodo receptor
+       @brief Devuelve el hijo izquierdo del nodo receptor
        @pre !null()
     */
     node left() const;
 
     /**
-       @brief Devuelve el hizo izquierdo del nodo receptor
+       @brief Devuelve el hijo izquierdo del nodo receptor
        @pre !null()
     */
     node right() const;
