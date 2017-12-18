@@ -84,7 +84,7 @@ int main(int argc, char * argv[]){
 		atrib.push_back(i);
 
 	quienEsQuien.mostrar_estructuras_leidas();
-	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol(pers, atrib));
+	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol_mejorado(pers, atrib));
 
 	cout << "=========== Arbol en crudo ===========" << endl;
 	quienEsQuien.escribir_arbol_completo();
