@@ -137,10 +137,18 @@ public:
 	void mostrar_estructuras_leidas();
 
 	/**
-	  * @brief Este método construye el árbol de preguntas para todos los personajes del tablero.
-		*
-		*/
-	bintree<Pregunta> crear_arbol();
+ 	  * @brief Este método construye el árbol de preguntas para todos los personajes del tablero.
+-		* @param pers Lista de índices de los personajes
+-		* @param atrib Lista de índices de los atributos
+ 	  */
+-	bintree<Pregunta> crear_arbol(list<int> &pers, list<int> &atrib);
+-
+-	/**
+-		* @brief Este método construye el árbol óptimo de preguntas para todos los personajes del tablero.
+-		* @param pers Lista de índices de los personajes
+-		* @param atrib Lista de índices de los atributos
+-		*/
+-	bintree<Pregunta> crear_arbol_mejorado(list<int> &pers, list<int> &atrib);
 
 	/**
 	  * @brief Sustituye el árbol actual por el árbol pasado por parámetro.
