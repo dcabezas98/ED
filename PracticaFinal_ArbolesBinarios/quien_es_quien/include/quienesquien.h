@@ -17,6 +17,7 @@
 #include <cassert>
 #include <set>
 #include <sstream>
+#include <list>
 
 #include "pregunta.h"
 #include "bintree.h"
@@ -141,14 +142,14 @@ public:
 		* @param pers Lista de índices de los personajes
 		* @param atrib Lista de índices de los atributos
  	  */
-	bintree<Pregunta> crear_arbol(list<int> &pers, list<int> &atrib);
+	bintree<Pregunta> crear_arbol(list<int> pers, list<int> atrib);
 
 	/**
 		* @brief Este método construye el árbol óptimo de preguntas para todos los personajes del tablero.
 		* @param pers Lista de índices de los personajes
 		* @param atrib Lista de índices de los atributos
 		*/
-	bintree<Pregunta> crear_arbol_mejorado(list<int> &pers, list<int> &atrib);
+	bintree<Pregunta> crear_arbol_mejorado(list<int> pers, list<int> atrib);
 
 	/**
 	  * @brief Sustituye el árbol actual por el árbol pasado por parámetro.

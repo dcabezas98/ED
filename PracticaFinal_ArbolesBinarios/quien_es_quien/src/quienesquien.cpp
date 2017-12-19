@@ -11,9 +11,8 @@ using namespace std;
 
 QuienEsQuien::QuienEsQuien(): personajes(), atributos(),
  															tablero(), arbol(), jugada_actual(){}
-}
 
-QuienEsQuien::QuienEsQuien(const QuienEsQuien &quienEsQuien):personajes(quienEsQuien.personaje),
+QuienEsQuien::QuienEsQuien(const QuienEsQuien &quienEsQuien):personajes(quienEsQuien.personajes),
                                                              atributos(quienEsQuien.atributos),
                                                              tablero(quienEsQuien.tablero),
                                                              arbol(quienEsQuien.arbol),
@@ -208,7 +207,7 @@ vector<bool> convertir_a_vector_bool(int n, int digitos) {
   return ret;
 }
 
-bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
+bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> pers, list<int> atrib){
 
     /*Si sólo queda un personaje, se coloca el nombre del personaje */
     if(pers.size() == 1){
@@ -223,7 +222,7 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
     list<int>:: iterator it_p;
 
     //Relleno las listas de personajes que tienen o no el atributo con mayor entropía
-    for(it_p = pers.begin(), it_p != pers.end(), it_p++){ //Recorro la columna de personajes del atributo
+    for(it_p = pers.begin(); it_p != pers.end(); it_p++){ //Recorro la columna de personajes del atributo
       if(tablero[*it_p][atrib.front()]) //Si el personaje tiene el atributo
         si.push_back(*it_p); //Lo añado a la lista de los que lo tienen
       else //Si no tiene el atributo
@@ -245,7 +244,7 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> &pers, list<int> &atrib){
     return arbol;
 }
 
-bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(list<int> &pers, list<int> &atrib){
+bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(list<int> pers, list<int> atrib){
 
   /*Si sólo queda un personaje, se coloca el nombre del personaje */
   if(pers.size() == 1){
@@ -272,7 +271,7 @@ bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(list<int> &pers, list<int> 
       it_atrib_max_entrop = it_a;
       continua = false;
     }
-    else if((int)abs(suma - objerivo) < mas_cercano){
+    else if((int)abs(suma - objetivo) < mas_cercano){
       mas_cercano = (int)abs(suma - objetivo);
       it_atrib_max_entrop = it_a;
     }
@@ -283,7 +282,7 @@ bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(list<int> &pers, list<int> 
   list<int> no; // Posiciones de los personajes que no lo tienen
 
   //Relleno las listas de personajes que tienen o no el atributo con mayor entropía
-  for(it_p = pers.begin(), it_p != pers.end(), it_p++){ //Recorro la columna de personajes del atributo
+  for(it_p = pers.begin(); it_p != pers.end(); it_p++){ //Recorro la columna de personajes del atributo
     if(tablero[*it_p][*it_atrib_max_entrop]) //Si el personaje tiene el atributo
       si.push_back(*it_p); //Lo añado a la lista de los que lo tienen
     else //Si no tiene el atributo
@@ -334,7 +333,7 @@ set<string> QuienEsQuien::informacion_jugada(bintree<Pregunta>::node jugada_actu
 
   bintree<Pregunta>::const_preorder_iterator it;
 
-  for(it = rama.begin_preorder(); it = rama.end_preorder(), it++){
+  for(it = rama.begin_preorder(); it != rama.end_preorder(); it++){
     if((*it).es_personaje())
       personajes_levantados.insert((*it).obtener_personaje());
   }
@@ -381,7 +380,7 @@ void QuienEsQuien::eliminar_nodos_redundantes(){
         arbol.insert_left((*p).parent(), rama);
       } else{
         arbol.prune_left((*p), rama);
-        arbol.inset_right((*p).parent(), rama);
+        arbol.insert_right((*p).parent(), rama);
       }
       p=NULL;
     }
@@ -412,7 +411,7 @@ float QuienEsQuien::profundidad_promedio_hojas(){
   int suma=0;
   bintree<Pregunta>::const_preorder_iterator it;
 
-  for(it = arbol.begin_preorder(); it = arbol.end_preorder(), it++){
+  for(it = arbol.begin_preorder(); it = arbol.end_preorder(); it++){
     if((*(*it)).es_personaje()){
       suma += profundidad(*it);
     }
@@ -541,12 +540,12 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
 
   Pregunta preg_orig(personajes[i_pers], 1);
 
-  if(caracteristica[i_diff]){
+  if(caracteristicas[i_diff]){
     arbol_diff.insert_left(arbol_diff.root(), preg);
     arbol_diff.insert_right(arbol_diff.root(), preg_orig);
   } else{
-    arbol_diff.insert_right(arbol_diff.root(), personaje);
-    arbol_diff.insert_left(arbol_diff.root(), preg);
+    arbol_diff.insert_right(arbol_diff.root(), preg);
+    arbol_diff.insert_left(arbol_diff.root(), preg_orig);
   }
 
   if(*p==(*p).parent().right()){
