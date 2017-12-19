@@ -558,11 +558,11 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
 
 void QuienEsQuien::elimina_personaje(string nombre){
 
-  bintree<Pregunta>::preorder_iterator it;
+  bintree<Pregunta>::postorder_iterator it;
   bintree<Pregunta>::node *p;
   bool encontrado = false;
 
-  for(it = arbol.begin_preorder(); it != arbol.end_preorder() && !encontrado; it++){
+  for(it = arbol.begin_postorder(); it != arbol.end_postorder() && !encontrado; it++){
     if((*(*it)).es_personaje() && (*(*it)).obtener_personaje() == nombre){
       encontrado = true;
       p = it;

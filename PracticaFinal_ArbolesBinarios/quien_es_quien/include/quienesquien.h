@@ -138,17 +138,17 @@ public:
 
 	/**
  	  * @brief Este método construye el árbol de preguntas para todos los personajes del tablero.
--		* @param pers Lista de índices de los personajes
--		* @param atrib Lista de índices de los atributos
+		* @param pers Lista de índices de los personajes
+		* @param atrib Lista de índices de los atributos
  	  */
--	bintree<Pregunta> crear_arbol(list<int> &pers, list<int> &atrib);
--
--	/**
--		* @brief Este método construye el árbol óptimo de preguntas para todos los personajes del tablero.
--		* @param pers Lista de índices de los personajes
--		* @param atrib Lista de índices de los atributos
--		*/
--	bintree<Pregunta> crear_arbol_mejorado(list<int> &pers, list<int> &atrib);
+	bintree<Pregunta> crear_arbol(list<int> &pers, list<int> &atrib);
+
+	/**
+		* @brief Este método construye el árbol óptimo de preguntas para todos los personajes del tablero.
+		* @param pers Lista de índices de los personajes
+		* @param atrib Lista de índices de los atributos
+		*/
+	bintree<Pregunta> crear_arbol_mejorado(list<int> &pers, list<int> &atrib);
 
 	/**
 	  * @brief Sustituye el árbol actual por el árbol pasado por parámetro.
@@ -187,6 +187,7 @@ public:
 	/**
 	 * @brief Muestra por pantalla todas las preguntas formuladas hasta el momento
 	 * en la partida y su correspondiente respuesta
+	 * @param jugada hasta la que se ha avanzado con las preguntas formuladas
 	 *
 	 */
 	void preguntas_formuladas(bintree<Pregunta>::node jugada);
@@ -223,13 +224,22 @@ public:
 
 	/**
 		* @brief Devuelve el número de personajes
+		* @return Número de personajes
 		*/
 	int size_personajes() const;
 
 	/**
 		* @brief Devuelve el número de atributos
+		* @return Número de atributos
 		*/
 	int size_atributos() const;
+
+	/**
+		* @bief Añade un personaje al árbol
+		* @param nombre del nuevo personaje
+		* @param caracteristicas del nuevo personaje
+		*/
+	void add_personaje(string nombre, vector<bool> caracteristicas);
 };
 
 #endif
