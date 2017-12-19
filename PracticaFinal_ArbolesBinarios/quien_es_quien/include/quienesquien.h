@@ -138,7 +138,8 @@ public:
 
 	/**
 	  * @brief Este método construye el árbol de preguntas para todos los personajes del tablero.
-	  */
+		*
+		*/
 	bintree<Pregunta> crear_arbol();
 
 	/**
@@ -178,6 +179,7 @@ public:
 	/**
 	 * @brief Muestra por pantalla todas las preguntas formuladas hasta el momento
 	 * en la partida y su correspondiente respuesta
+	 * @param jugada hasta la que se ha avanzado con las preguntas formuladas
 	 *
 	 */
 	void preguntas_formuladas(bintree<Pregunta>::node jugada);
@@ -214,13 +216,22 @@ public:
 
 	/**
 		* @brief Devuelve el número de personajes
+		* @return Número de personajes
 		*/
 	int size_personajes() const;
 
 	/**
 		* @brief Devuelve el número de atributos
+		* @return Número de atributos
 		*/
 	int size_atributos() const;
+
+	/**
+		* @bief Añade un personaje al árbol
+		* @param nombre del nuevo personaje
+		* @param caracteristicas del nuevo personaje
+		*/
+	void add_personaje(string nombre, vector<bool> caracteristicas);
 };
 
 #endif
