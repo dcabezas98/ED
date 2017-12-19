@@ -496,6 +496,66 @@ void QuienEsQuien::preguntas_formuladas(bintree<Pregunta>::node jugada){
   cout << "pero aún no sé cuál es.\n";
 }
 
+void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
+
+  Pregunta preg(nombre, 1);
+
+  bintree<Pregunta>:: node *p;
+  int i_atrib, i_pers;
+  bool found;
+
+  while((*(*p)).es_pregunta()){
+
+    for(int i = 0, found = false; i < atributos.size() && !found;  i++){
+        if(atributos[i]==(*(*p)).obtener_pregunta()){
+          found=true;
+          i_atrib=i;
+        }
+    }
+
+    if(caracteristicas[i_atrib]){
+      p=&(*p).left();
+    } else {
+      p=&(*p).right();
+    }
+  }
+
+  for(int i = 0, found = false; i < personajes.size() && !found;  i++){
+      if(personajes[i]==(*(*p)).obtener_personaje()){
+        found=true;
+        i_pers=i;
+      }
+  }
+
+  int i_diff;
+
+  for(int i = 0, found = false; i < atributos.size() && !found;  i++){
+    if(tablero[i_pers][i]!=caracteristicas[i]){
+      found=true;
+      i_diff=i;
+    }
+  }
+
+  Pregunta diferencia(atributos[i_diff], 2);
+  bintree<Pregunta> arbol_diff(diferencia);
+
+  Pregunta preg_orig(personajes[i_pers], 1);
+
+  if(caracteristica[i_diff]){
+    arbol_diff.insert_left(arbol_diff.root(), preg);
+    arbol_diff.insert_right(arbol_diff.root(), preg_orig);
+  } else{
+    arbol_diff.insert_right(arbol_diff.root(), personaje);
+    arbol_diff.insert_left(arbol_diff.root(), preg);
+  }
+
+  if(*p==(*p).parent().right()){
+    arbol.insert_right((*p).parent(), arbol_diff);
+  } else {
+    arbol.insert_left((*p).parent(), arbol_diff);
+  }
+}
+
 void QuienEsQuien::elimina_personaje(string nombre){
 
   bintree<Pregunta>::preorder_iterator it;
