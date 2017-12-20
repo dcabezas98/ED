@@ -234,7 +234,6 @@ void QuienEsQuien::elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<in
     Pregunta pregunta(atributos[atrib.front()], pers.size());
     bintree<Pregunta> tree(pregunta);
     a = tree;
-
     bintree<Pregunta> izda, dcha;
 
     atrib.pop_front();
@@ -319,10 +318,10 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(){
 
 	int i;
 
-	for(i = 0; i < quienEsQuien.size_personajes(); i++);
+	for(i = 0; i < pers.size(); i++);
 		pers.push_back(i);
 
-	for(i = 0; i < quienEsQuien.size_atributos(); i++);
+	for(i = 0; i < atrib.size(); i++);
 		atrib.push_back(i);
 
   elige_preguntas(tree, pers, atrib);
@@ -339,10 +338,10 @@ bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(){
 
 	int i;
 
-	for(i = 0; i < quienEsQuien.size_personajes(); i++);
+	for(i = 0; i < pers.size(); i++);
 		pers.push_back(i);
 
-	for(i = 0; i < quienEsQuien.size_atributos(); i++);
+	for(i = 0; i < atrib.size(); i++);
 		atrib.push_back(i);
 
   elige_preguntas_mejorado(tree, pers, atrib);
