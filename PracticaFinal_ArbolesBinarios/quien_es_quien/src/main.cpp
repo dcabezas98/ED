@@ -71,20 +71,8 @@ int main(int argc, char * argv[]){
 		return 1;
 	}
 
-  // Al iniciar la partida, todos los personajes están elvantados y podemos preguntar por cualquier atributo
-	list<int> pers;
-	list<int> atrib;
-
-	int i;
-
-	for(i = 0; i < quienEsQuien.size_personajes(); i++);
-		pers.push_back(i);
-
-	for(i = 0; i < quienEsQuien.size_atributos(); i++);
-		atrib.push_back(i);
-
 	quienEsQuien.mostrar_estructuras_leidas();
-	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol_mejorado(pers, atrib));
+	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol_mejorado());
 
 	cout << "=========== Arbol en crudo ===========" << endl;
 	quienEsQuien.escribir_arbol_completo();

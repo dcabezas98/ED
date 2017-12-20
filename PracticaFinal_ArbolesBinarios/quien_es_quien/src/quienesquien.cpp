@@ -207,15 +207,16 @@ vector<bool> convertir_a_vector_bool(int n, int digitos) {
   return ret;
 }
 
-bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> pers, list<int> atrib){
+void QuienEsQuien::elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib){
 
-    /*Si sólo queda un personaje, se coloca el nombre del personaje */
-    if(pers.size() == 1){
-      Pregunta pregunta(personajes[pers.front()],1);
-      bintree<Pregunta> arbol(pregunta);
+  /*Si sólo queda un personaje, se coloca el nombre del personaje */
+  if(pers.size() == 1){
+    Pregunta pregunta(personajes[pers.front()],1);
+    bintree<Pregunta> tree(pregunta);
+    a = tree;
+  }
 
-      return arbol;
-    }
+  else{
 
     list<int> si; // Posiciones de los personajes que tienen el primer atributo de la lista
     list<int> no; // Posiciones de los personajes que no tienen el primer atributo de la lista
@@ -231,77 +232,122 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(list<int> pers, list<int> atrib){
 
     /* Asigno la pregunta sobre el primer atributo*/
     Pregunta pregunta(atributos[atrib.front()], pers.size());
+    bintree<Pregunta> tree(pregunta);
+    a = tree;
 
-    bintree<Pregunta> arbol(pregunta); // La pongo en la raíz
+    bintree<Pregunta> izda, dcha;
 
     atrib.pop_front();
 
-    /* A la izquierda, busco la siguiente pregunta para los que tienen este atributo */
-    arbol.insert_left(arbol.root(),crear_arbol(si, atrib));
-    /* A la derecha, busco la siguiente pregunta para los que no lo tienen */
-    arbol.insert_right(arbol.root(),crear_arbol(no, atrib));
+    elige_preguntas(izda, si, atrib);
+    elige_preguntas(dcha, no, atrib);
 
-    return arbol;
+    a.insert_left(a.root(), izda);
+    a.insert_right(a.root(), dcha);
+  }
 }
 
-bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(list<int> pers, list<int> atrib){
+void QuienEsQuien::elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers, list<int> atrib){
 
   /*Si sólo queda un personaje, se coloca el nombre del personaje */
   if(pers.size() == 1){
     Pregunta pregunta(personajes[pers.front()],1);
-    bintree<Pregunta> arbol(pregunta);
-
-    return arbol;
+    bintree<Pregunta> tree(pregunta);
+    a = tree;
   }
 
-  /* Seleccionar pregunta con mayor entropía entre los atributos y personajes
-     dados como argumento, consultando el tablero de juego */
-  float objetivo = pers.size()/2;             // Buscamos el atributo que divida en grupos más similares
-  int suma, mas_cercano = INT_MAX;            // Número de personajes con el atributo y distancia del mejor atributo al objetivo
-  list<int>::iterator it_atrib_max_entrop;  // Iterador al atributo con más entropía
-  bool continua = true;                       // Para evitar ciclos innecesarios
+  else{
 
-	list<int>::iterator it_p, it_a;
+    /* Seleccionar pregunta con mayor entropía entre los atributos y personajes
+       dados como argumento, consultando el tablero de juego */
+    float objetivo = pers.size()/2;             // Buscamos el atributo que divida en grupos más similares
+    int suma, mas_cercano = INT_MAX;            // Número de personajes con el atributo y distancia del mejor atributo al objetivo
+    list<int>::iterator it_atrib_max_entrop;  // Iterador al atributo con más entropía
+    bool continua = true;                       // Para evitar ciclos innecesarios
 
-	for(it_a = atrib.begin(); it_a != atrib.end() && continua; it_a++){
-		for(it_p = pers.begin(), suma = 0 && continua; it_p != pers.end(); it_p++)
-      suma += tablero[*it_p][*it_a];
+  	list<int>::iterator it_p, it_a;
 
-    if((int)abs(suma - objetivo) == 0){ // Es el mejor atributo
-      it_atrib_max_entrop = it_a;
-      continua = false;
+  	for(it_a = atrib.begin(); it_a != atrib.end() && continua; it_a++){
+  		for(it_p = pers.begin(), suma = 0 && continua; it_p != pers.end(); it_p++)
+        suma += tablero[*it_p][*it_a];
+
+      if((int)abs(suma - objetivo) == 0){ // Es el mejor atributo
+        it_atrib_max_entrop = it_a;
+        continua = false;
+      }
+      else if((int)abs(suma - objetivo) < mas_cercano){
+        mas_cercano = (int)abs(suma - objetivo);
+        it_atrib_max_entrop = it_a;
+      }
     }
-    else if((int)abs(suma - objetivo) < mas_cercano){
-      mas_cercano = (int)abs(suma - objetivo);
-      it_atrib_max_entrop = it_a;
+
+    /*Conocido el atributo con mayor entropía, separamos la lista de personajes dada en dos listas*/
+    list<int> si; // Posiciones de los personajes que lo tienen
+    list<int> no; // Posiciones de los personajes que no lo tienen
+
+    //Relleno las listas de personajes que tienen o no el atributo con mayor entropía
+    for(it_p = pers.begin(); it_p != pers.end(); it_p++){ //Recorro la columna de personajes del atributo
+      if(tablero[*it_p][*it_atrib_max_entrop]) //Si el personaje tiene el atributo
+        si.push_back(*it_p); //Lo añado a la lista de los que lo tienen
+      else //Si no tiene el atributo
+        no.push_back(*it_p); //Lo añado a la lista de los que no lo tienen
     }
+
+    /* Asigno la pregunta sobre el primer atributo*/
+    Pregunta pregunta(atributos[atrib.front()], pers.size());
+    bintree<Pregunta> tree(pregunta);
+    a = tree;
+
+    bintree<Pregunta> izda, dcha;
+
+    atrib.pop_front();
+
+    elige_preguntas_mejorado(izda, si, atrib);
+    elige_preguntas_mejorado(dcha, no, atrib);
+
+    a.insert_left(a.root(), izda);
+    a.insert_right(a.root(), dcha);
   }
+}
 
-  /*Conocido el atributo con mayor entropía, separamos la lista de personajes dada en dos listas*/
-  list<int> si; // Posiciones de los personajes que lo tienen
-  list<int> no; // Posiciones de los personajes que no lo tienen
+bintree<Pregunta> QuienEsQuien::crear_arbol(){
 
-  //Relleno las listas de personajes que tienen o no el atributo con mayor entropía
-  for(it_p = pers.begin(); it_p != pers.end(); it_p++){ //Recorro la columna de personajes del atributo
-    if(tablero[*it_p][*it_atrib_max_entrop]) //Si el personaje tiene el atributo
-      si.push_back(*it_p); //Lo añado a la lista de los que lo tienen
-    else //Si no tiene el atributo
-      no.push_back(*it_p); //Lo añado a la lista de los que no lo tienen
-  }
+  bintree<Pregunta> tree;
 
-  /* Asigno la pregunta sobre el atributo con más entropía */
-  Pregunta pregunta(atributos[*it_atrib_max_entrop], pers.size());
+	list<int> pers;
+	list<int> atrib;
 
-  bintree<Pregunta> arbol(pregunta); // La pongo en la raíz
+	int i;
 
-  atrib.erase(it_atrib_max_entrop); // La próxima vez eligiré el atributo con más entropía entre el resto
+	for(i = 0; i < quienEsQuien.size_personajes(); i++);
+		pers.push_back(i);
 
-  /* A la izquierda, busco la mejor pregunta para los que tienen este atributo */
-  arbol.insert_left(arbol.root(),crear_arbol_mejorado(si, atrib));
-  /* A la derecha, busco la mejor pregunta para los que no lo tienen */
-  arbol.insert_right(arbol.root(),crear_arbol_mejorado(no, atrib));
+	for(i = 0; i < quienEsQuien.size_atributos(); i++);
+		atrib.push_back(i);
 
-  return arbol;
+  elige_preguntas(tree, pers, atrib);
+
+  return tree;
+}
+
+bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(){
+
+  bintree<Pregunta> tree;
+
+	list<int> pers;
+	list<int> atrib;
+
+	int i;
+
+	for(i = 0; i < quienEsQuien.size_personajes(); i++);
+		pers.push_back(i);
+
+	for(i = 0; i < quienEsQuien.size_atributos(); i++);
+		atrib.push_back(i);
+
+  elige_preguntas_mejorado(tree, pers, atrib);
+
+  return tree;
 }
 
 void QuienEsQuien::usar_arbol(bintree<Pregunta> arbol_nuevo){
@@ -367,7 +413,7 @@ void QuienEsQuien::escribir_arbol_completo() const{
 void QuienEsQuien::eliminar_nodos_redundantes(){
 
 	bintree<Pregunta>::preorder_iterator it;
-  bintree<Pregunta>:: node *p;
+  bintree<Pregunta>:: node *p=NULL;
   enum lado {dcha, izq};
   bintree<Pregunta> rama;
 
@@ -391,6 +437,28 @@ void QuienEsQuien::eliminar_nodos_redundantes(){
     } else if (!(*it).right().null() && (*it).left().null()){
       p = it;
       l = lado.dcha;
+    }
+  }
+}
+
+
+void QuienEsQuien::eliminar_nodos_redundantes(){
+
+	bintree<Pregunta>::preorder_iterator it;
+  bintree<Pregunta>::node hijo;
+
+  for(it = arbol.begin_preorder(); it != arbol.end_preorder(); it++){
+
+    if(it.right().null() && !it.left().null()){
+      hijo=it.left();
+      hijo.parent(it.parent());
+      it.parent().left(hijo);
+      it.remove();
+    } else if (!it.right().null() && it.left().null()){
+      hijo=it.right();
+      hijo.parent(it.parent());
+      it.parent().right(hijo);
+      it.remove();
     }
   }
 }

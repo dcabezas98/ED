@@ -68,6 +68,10 @@ private:
 		*/
 	int profundidad(bintree<Pregunta>::node nodo);
 
+	void elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
+
+	void elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
+
 public:
 
 	/**
@@ -137,19 +141,9 @@ public:
 	  */
 	void mostrar_estructuras_leidas();
 
-	/**
- 	  * @brief Este método construye el árbol de preguntas para todos los personajes del tablero.
-		* @param pers Lista de índices de los personajes
-		* @param atrib Lista de índices de los atributos
- 	  */
-	bintree<Pregunta> crear_arbol(list<int> pers, list<int> atrib);
+	bintree<Pregunta> crear_arbol();
 
-	/**
-		* @brief Este método construye el árbol óptimo de preguntas para todos los personajes del tablero.
-		* @param pers Lista de índices de los personajes
-		* @param atrib Lista de índices de los atributos
-		*/
-	bintree<Pregunta> crear_arbol_mejorado(list<int> pers, list<int> atrib);
+	bintree<Pregunta> crear_arbol_mejorado();
 
 	/**
 	  * @brief Sustituye el árbol actual por el árbol pasado por parámetro.

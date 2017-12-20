@@ -549,13 +549,13 @@ public:
 
     /**
        @brief Coloca el nodo hijo izquierda de un nodo
-       @param n El nodo que ser~ hijo izquierdo del receptor. No nulo
+       @param n El nodo que será hijo izquierdo del receptor. No nulo
     */
     inline void left(node n);
 
     /**
        @brief Coloca el nodo hijo derecho de un nodo
-       @param n El nodo que ser~ hijo derecho del receptor No nulo
+       @param n El nodo que será hijo derecho del receptor No nulo
     */
     inline void right(node n);
 
