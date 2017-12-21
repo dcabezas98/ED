@@ -72,11 +72,15 @@ int main(int argc, char * argv[]){
 	}
 
 	quienEsQuien.mostrar_estructuras_leidas();
-	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol_mejorado());
+
+	cout << "MOSTRADAS\n";
+	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol());
 
 	cout << "=========== Arbol en crudo ===========" << endl;
 	quienEsQuien.escribir_arbol_completo();
 
+	cout << "LO ESCRIBE\n";
+	/*
 	cout << "Profundidad promedio de las hojas del arbol: ";
 	cout << quienEsQuien.profundidad_promedio_hojas() << endl;
 	cout << "======================================" << endl << endl << endl;
@@ -92,5 +96,6 @@ int main(int argc, char * argv[]){
 	if(jugar){
 		quienEsQuien.iniciar_juego();
 	}
+	*/
 	return 0;
 }

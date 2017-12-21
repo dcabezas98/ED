@@ -63,12 +63,6 @@ private:
 	bintree<Pregunta>::node jugada_actual;
 
 	/**
-		* @brief Devuelve la profundidad de un nodo del árbol de preguntas.
-		*
-		*/
-	int profundidad(bintree<Pregunta>::node n);
-
-	/**
 		* @brief Método que modifica el árbol de preguntas para que haya
 		*       preguntas redundantes.
 		* @post El árbol de preguntas se modifica.
@@ -78,6 +72,17 @@ private:
 	void elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
 
 	void elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
+
+	/**
+		* @brief Devuelve la suma de las profundidades de los nodos hoja de árbol
+		* @param n Nodo a partir del cuál se encuentran las hojas cuyas profundidades
+		* 			 queremos calcular
+		* @param prof_actual Profundidad del nodo n
+		* @param suma_prof Suma de las profundidades de las hojas a partir del nodo n
+		* @prec !n.null()
+		* @prec Árbol ya creado
+		*/
+	void suma_profundidad_hojas(bintree<Pregunta>::node n, int prof_actual, int &suma_prof);
 
 public:
 
@@ -203,7 +208,7 @@ public:
 	/**
 	  * @brief Este método permite calcular la media de la profundidad de las hojas del árbol. Este valor representa el número (promedio) de preguntas necesarias para adivinar cada personaje. A menor profundidad promedio, mejor soluci�n. Esta m�trica es un indicador para evaluar la calidad de vuestra soluci�n.
 	  *
-	  * @return Profundidad media del arbol de preguntas.
+	  * @return Profundidad media de las hojas del arbol de preguntas.
 	  *
 	  * @pre El arbol de preguntas debe haber sido construido previamente.
 	  */

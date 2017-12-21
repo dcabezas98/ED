@@ -209,6 +209,7 @@ vector<bool> convertir_a_vector_bool(int n, int digitos) {
 
 void QuienEsQuien::elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib){
 
+  cout<< "LLAMADA "<< pers.size() << endl;
   /*Si sólo queda un personaje, se coloca el nombre del personaje */
   if(pers.size() == 1){
     Pregunta pregunta(personajes[pers.front()],1);
@@ -318,10 +319,10 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(){
 
 	int i;
 
-	for(i = 0; i < pers.size(); i++);
+	for(i = 0; i < personajes.size(); i++)
 		pers.push_back(i);
 
-	for(i = 0; i < atrib.size(); i++);
+	for(i = 0; i < atributos.size(); i++)
 		atrib.push_back(i);
 
   elige_preguntas(tree, pers, atrib);
@@ -336,12 +337,15 @@ bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(){
 	list<int> pers;
 	list<int> atrib;
 
+  cout << "size personajes " << personajes.size() << endl;
+  cout << "size atributos " << atributos.size() << endl;
+
 	int i;
 
-	for(i = 0; i < pers.size(); i++);
+	for(i = 0; i < personajes.size(); i++);
 		pers.push_back(i);
 
-	for(i = 0; i < atrib.size(); i++);
+	for(i = 0; i < atributos.size(); i++);
 		atrib.push_back(i);
 
   elige_preguntas_mejorado(tree, pers, atrib);
@@ -371,6 +375,7 @@ void QuienEsQuien::iniciar_juego(){
 }
 
 set<string> QuienEsQuien::informacion_jugada(bintree<Pregunta>::node jugada_actual){
+
 	set<string> personajes_levantados;
 
   bintree<Pregunta> rama;
@@ -441,33 +446,28 @@ void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
   }
 }
 
-int QuienEsQuien::profundidad(bintree<Pregunta>::node n){
+void QuienEsQuien::suma_profundidad_hojas(bintree<Pregunta>::node n, int prof_actual, int &suma_prof){
 
-  bintree<Pregunta>::node p = n;
-  int prof = 0;
+  if(n.right().null() && n.left().null())
+    suma_prof += prof_actual;
 
-  while(!p.parent().null()){
-    p = p.parent();
-    prof++;
+  else{
+
+    if(!n.left().null())
+      suma_profundidad_hojas(n.left(), prof_actual+1, suma_prof);
+
+    if(!n.left().null())
+      suma_profundidad_hojas(n.right(), prof_actual+1, suma_prof);
   }
-
-  return prof;
 }
 
-/*
 float QuienEsQuien::profundidad_promedio_hojas(){
 
-  int suma=0;
-  bintree<Pregunta>::const_preorder_iterator it;
+  int prof;
+  suma_profundidad_hojas(arbol.root(), 0, prof);
 
-  for(it = arbol.begin_preorder(); it != arbol.end_preorder(); ++it){
-    if((*it).es_personaje()){
-      suma += profundidad(it);
-    }
-  }
-	return (float)suma/personajes.size();
+  return (float) prof/personajes.size();
 }
-*/
 
 /**
  * @brief Genera numero enteros positivos aleatorios en el rango [min,max).
@@ -629,7 +629,7 @@ void QuienEsQuien::elimina_personaje(string nombre){
         }
     }
 
-    if(caracteristicas[i_atrib])
+    if(tablero[i_pers][i_atrib])
       p = p.left();
     else
       p = p.right();
@@ -642,5 +642,11 @@ void QuienEsQuien::elimina_personaje(string nombre){
   else
     arbol.prune_right(p.parent(), aux);
 
-  arbol.eliminar_nodos_redundantes();
+  eliminar_nodos_redundantes();
+
+  vector<string>::iterator it_p = personajes.begin()+i_pers;
+  vector<vector<bool>>::iterator it_a = tablero.begin()+i_pers;
+
+  personajes.erase(it_p);
+  tablero.erase(it_a);
 }
