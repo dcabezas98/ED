@@ -40,6 +40,10 @@ int Pregunta::obtener_num_personajes() const{
 	return num_personajes;
 }
 
+int& Pregunta::obtener_num_personajes(){
+	return num_personajes;
+}
+
 string Pregunta::obtener_pregunta() const{
 	assert(num_personajes >1);
 
