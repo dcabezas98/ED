@@ -409,6 +409,10 @@ void QuienEsQuien::escribir_arbol_completo() const{
 	escribir_esquema_arbol(cout,this->arbol,this->arbol.root(),pre);
 }
 
+void QuienEsQuien::eliminar_nodos_redundantes(){
+  eliminar_nodos_redundantes(arbol.root());
+}
+
 void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
 
   if((*n).es_pregunta()){
@@ -422,14 +426,6 @@ void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
       arbol.prune_left(n, subtree);
 
       arbol.replace_subtree(n, subtree, subtree.root());
-
-/*
-      if(n == padre.left())
-        arbol.insert_left(padre, subtree);
-
-      else
-        arbol.insert_right(padre, subtree);
-*/
     }
     else if(!n.right().null() && n.left().null()){
 
@@ -438,14 +434,6 @@ void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
       arbol.prune_right(n, subtree);
 
       arbol.replace_subtree(n, subtree, subtree.root());
-
-/*
-      if(n == padre.left())
-        arbol.insert_left(padre, subtree);
-
-      else
-        arbol.insert_right(padre, subtree);
-*/
     }
 
     eliminar_nodos_redundantes(padre.left());
@@ -466,6 +454,7 @@ int QuienEsQuien::profundidad(bintree<Pregunta>::node n){
   return prof;
 }
 
+/*
 float QuienEsQuien::profundidad_promedio_hojas(){
 
   int suma=0;
@@ -478,6 +467,7 @@ float QuienEsQuien::profundidad_promedio_hojas(){
   }
 	return (float)suma/personajes.size();
 }
+*/
 
 /**
  * @brief Genera numero enteros positivos aleatorios en el rango [min,max).
@@ -580,7 +570,7 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
   }
 
   for(int i = 0, found = false; i < personajes.size() && !found;  i++){
-      if(personajes[i]==(*(*p)).obtener_personaje()){
+      if(personajes[i] == (*p).obtener_personaje()){
         found=true;
         i_pers=i;
       }
@@ -589,7 +579,7 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
   int i_diff;
 
   for(int i = 0, found = false; i < atributos.size() && !found;  i++){
-    if(tablero[i_pers][i]!=caracteristicas[i]){
+    if(tablero[i_pers][i] != caracteristicas[i]){
       found=true;
       i_diff=i;
     }
@@ -608,28 +598,49 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
     arbol_diff.insert_left(arbol_diff.root(), preg_orig);
   }
 
-  if(*p==(*p).parent().right()){
-    arbol.insert_right((*p).parent(), arbol_diff);
-  } else {
-    arbol.insert_left((*p).parent(), arbol_diff);
-  }
+  arbol.replace_subtree(p, arbol_diff, arbol_diff.root());
+
+  personajes.push_back(nombre);
+  tablero.push_back(caracteristicas);
 }
 
 void QuienEsQuien::elimina_personaje(string nombre){
 
-  bintree<Pregunta>::postorder_iterator it;
-  bintree<Pregunta>::node *p;
-  bool encontrado = false;
+  int i_pers, i_atrib;
+  bool found;
 
-  for(it = arbol.begin_postorder(); it != arbol.end_postorder() && !encontrado; it++){
-    if((*(*it)).es_personaje() && (*(*it)).obtener_personaje() == nombre){
-      encontrado = true;
-      p = it;
+  for(int i = 0, found = false; i < personajes.size(); i++){
+    if(personajes[i] == nombre){
+      found = true;
+      i_pers = i;
     }
   }
 
-  if(encontrado){
-    p->remove();
-    eliminar_nodos_redundantes();
+  bintree<Pregunta>::node p = arbol.root();
+
+  while((*p).es_pregunta()){
+
+    (*p).obtener_num_personajes()--;
+
+    for(int i = 0, found = false; i < atributos.size() && !found;  i++){
+        if(atributos[i] == (*p).obtener_pregunta()){
+          found=true;
+          i_atrib=i;
+        }
+    }
+
+    if(caracteristicas[i_atrib])
+      p = p.left();
+    else
+      p = p.right();
+
   }
+  bintree<Pregunta> aux;
+
+  if(p == p.parent().left())
+    arbol.prune_left(p.parent(), aux);
+  else
+    arbol.prune_right(p.parent(), aux);
+
+  arbol.eliminar_nodos_redundantes();
 }
