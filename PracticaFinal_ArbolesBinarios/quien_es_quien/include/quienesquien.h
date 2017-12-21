@@ -163,7 +163,7 @@ public:
 	  *       preguntas redundantes.
 	  * @post El árbol de preguntas se modifica.
 		*/
-	void eliminar_nodos_redundantes();
+	void eliminar_nodos_redundantes(bintree<Pregunta>::node n);
 
 	/**
 		* @brief Elimina el personaje con el nombre dado como argumento
