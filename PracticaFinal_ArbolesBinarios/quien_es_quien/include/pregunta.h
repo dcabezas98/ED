@@ -101,7 +101,7 @@ class Pregunta{
 		/**
 		  * @brief Devuelve el número de personajes sin eliminar al llegar a esta pregunta.
 		  */
-		int& Pregunta::obtener_num_personajes()
+		int& obtener_num_personajes();
 
 		/**
 		  * @brief Devuelve true si el nodo es de personaje.

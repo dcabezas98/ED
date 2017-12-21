@@ -66,7 +66,7 @@ private:
 		* @brief Devuelve la profundidad de un nodo del árbol de preguntas.
 		*
 		*/
-	int profundidad(bintree<Pregunta>::node nodo);
+	int profundidad(bintree<Pregunta>::node n);
 
 	void elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
 
@@ -169,7 +169,6 @@ public:
 		* @brief Elimina el personaje con el nombre dado como argumento
 		* @param Nombre del personaje a eliminar
 	  */
-
 	void elimina_personaje(string nombre);
 
 	/**
