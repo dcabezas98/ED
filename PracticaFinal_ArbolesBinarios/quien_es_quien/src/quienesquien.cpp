@@ -378,7 +378,7 @@ set<string> QuienEsQuien::informacion_jugada(bintree<Pregunta>::node jugada_actu
 
   bintree<Pregunta>::const_preorder_iterator it;
 
-  for(it = rama.begin_preorder(); it != rama.end_preorder(); it++){
+  for(it = rama.begin_preorder(); it != rama.end_preorder(); ++it){
     if((*it).es_personaje())
       personajes_levantados.insert((*it).obtener_personaje());
   }
@@ -409,65 +409,57 @@ void QuienEsQuien::escribir_arbol_completo() const{
 	escribir_esquema_arbol(cout,this->arbol,this->arbol.root(),pre);
 }
 
-void QuienEsQuien::eliminar_nodos_redundantes(){
+void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
 
-	bintree<Pregunta>::preorder_iterator it;
-  bintree<Pregunta>:: node *p=NULL;
-  enum lado {dcha, izq};
-  bintree<Pregunta> rama;
+  if((*n).es_pregunta()){
 
-  lado l;
+    bintree<Pregunta>::node padre = n.parent();
 
-  for(it = arbol.begin_preorder(); it != arbol.end_preorder(); it++){
-    if(p!=NULL){
-      if(lado==dcha){
-        arbol.prune_right((*p), rama);
-        arbol.insert_left((*p).parent(), rama);
-      } else{
-        arbol.prune_left((*p), rama);
-        arbol.insert_right((*p).parent(), rama);
-      }
-      p=NULL;
+    if(n.right().null() && !n.left().null()){
+
+      bintree<Pregunta> subtree;
+
+      arbol.prune_left(n, subtree);
+
+      arbol.replace_subtree(n, subtree, subtree.root());
+
+/*
+      if(n == padre.left())
+        arbol.insert_left(padre, subtree);
+
+      else
+        arbol.insert_right(padre, subtree);
+*/
+    }
+    else if(!n.right().null() && n.left().null()){
+
+      bintree<Pregunta> subtree;
+
+      arbol.prune_right(n, subtree);
+
+      arbol.replace_subtree(n, subtree, subtree.root());
+
+/*
+      if(n == padre.left())
+        arbol.insert_left(padre, subtree);
+
+      else
+        arbol.insert_right(padre, subtree);
+*/
     }
 
-    if((*it).right().null() && !(*it).left().null()){
-      p = it;
-      l = lado.izq;
-    } else if (!(*it).right().null() && (*it).left().null()){
-      p = it;
-      l = lado.dcha;
-    }
+    eliminar_nodos_redundantes(padre.left());
+    eliminar_nodos_redundantes(padre.right());
   }
 }
 
+int QuienEsQuien::profundidad(bintree<Pregunta>::node n){
 
-void QuienEsQuien::eliminar_nodos_redundantes(){
-
-	bintree<Pregunta>::preorder_iterator it;
-  bintree<Pregunta>::node hijo;
-
-  for(it = arbol.begin_preorder(); it != arbol.end_preorder(); it++){
-
-    if(it.right().null() && !it.left().null()){
-      hijo=it.left();
-      hijo.parent(it.parent());
-      it.parent().left(hijo);
-      it.remove();
-    } else if (!it.right().null() && it.left().null()){
-      hijo=it.right();
-      hijo.parent(it.parent());
-      it.parent().right(hijo);
-      it.remove();
-    }
-  }
-}
-
-int QuienEsQuien::profundidad(bintree<Pregunta>::node nodo){
-  bintree<Pregunta>::node *p = &nodo;
+  bintree<Pregunta>::node p = n;
   int prof = 0;
 
-  while(!(*p).parent().null()){
-    p = &(*p).parent();
+  while(!p.parent().null()){
+    p = p.parent();
     prof++;
   }
 
@@ -475,12 +467,13 @@ int QuienEsQuien::profundidad(bintree<Pregunta>::node nodo){
 }
 
 float QuienEsQuien::profundidad_promedio_hojas(){
+
   int suma=0;
   bintree<Pregunta>::const_preorder_iterator it;
 
-  for(it = arbol.begin_preorder(); it = arbol.end_preorder(); it++){
-    if((*(*it)).es_personaje()){
-      suma += profundidad(*it);
+  for(it = arbol.begin_preorder(); it != arbol.end_preorder(); ++it){
+    if((*it).es_personaje()){
+      suma += profundidad(it);
     }
   }
 	return (float)suma/personajes.size();
@@ -489,7 +482,6 @@ float QuienEsQuien::profundidad_promedio_hojas(){
 /**
  * @brief Genera numero enteros positivos aleatorios en el rango [min,max).
 **/
-
 int generaEntero(int min, int max){
     int tam= max -min;
     return ((rand()%tam)+min);
@@ -566,24 +558,25 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
 
   Pregunta preg(nombre, 1);
 
-  bintree<Pregunta>:: node *p;
+  bintree<Pregunta>:: node p = arbol.root();
   int i_atrib, i_pers;
   bool found;
 
-  while((*(*p)).es_pregunta()){
+  while((*p).es_pregunta()){
+
+    (*p).obtener_num_personajes()++;
 
     for(int i = 0, found = false; i < atributos.size() && !found;  i++){
-        if(atributos[i]==(*(*p)).obtener_pregunta()){
+        if(atributos[i] == (*p).obtener_pregunta()){
           found=true;
           i_atrib=i;
         }
     }
 
-    if(caracteristicas[i_atrib]){
-      p=&(*p).left();
-    } else {
-      p=&(*p).right();
-    }
+    if(caracteristicas[i_atrib])
+      p = p.left();
+    else
+      p = p.right();
   }
 
   for(int i = 0, found = false; i < personajes.size() && !found;  i++){
