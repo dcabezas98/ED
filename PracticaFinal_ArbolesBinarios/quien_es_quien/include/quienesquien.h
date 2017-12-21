@@ -68,6 +68,13 @@ private:
 		*/
 	int profundidad(bintree<Pregunta>::node n);
 
+	/**
+		* @brief Método que modifica el árbol de preguntas para que haya
+		*       preguntas redundantes.
+		* @post El árbol de preguntas se modifica.
+		*/
+	void eliminar_nodos_redundantes(bintree<Pregunta>::node n);
+
 	void elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
 
 	void elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
@@ -159,13 +166,6 @@ public:
 	void escribir_arbol_completo() const;
 
 	/**
-	  * @brief Método que modifica el árbol de preguntas para que haya
-	  *       preguntas redundantes.
-	  * @post El árbol de preguntas se modifica.
-		*/
-	void eliminar_nodos_redundantes(bintree<Pregunta>::node n);
-
-	/**
 		* @brief Elimina el personaje con el nombre dado como argumento
 		* @param Nombre del personaje a eliminar
 	  */
@@ -208,6 +208,13 @@ public:
 	  * @pre El arbol de preguntas debe haber sido construido previamente.
 	  */
 	float profundidad_promedio_hojas();
+
+	/**
+		* @brief Método que modifica el árbol de preguntas para que haya
+		*       preguntas redundantes.
+		* @post El árbol de preguntas se modifica.
+		*/
+	void eliminar_nodos_redundantes();
 
 	/**
 	  * @brief Rellena los datos del QuienEsQuien con un tablero calculado aleatoriamente.
