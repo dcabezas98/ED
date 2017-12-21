@@ -209,7 +209,6 @@ vector<bool> convertir_a_vector_bool(int n, int digitos) {
 
 void QuienEsQuien::elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib){
 
-  cout<< "LLAMADA "<< pers.size() << endl;
   /*Si sólo queda un personaje, se coloca el nombre del personaje */
   if(pers.size() == 1){
     Pregunta pregunta(personajes[pers.front()],1);
@@ -225,8 +224,10 @@ void QuienEsQuien::elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<in
 
     //Relleno las listas de personajes que tienen o no el atributo con mayor entropía
     for(it_p = pers.begin(); it_p != pers.end(); it_p++){ //Recorro la columna de personajes del atributo
+
       if(tablero[*it_p][atrib.front()]) //Si el personaje tiene el atributo
-        si.push_back(*it_p); //Lo añado a la lista de los que lo tienen
+        si.push_back(*it_p);
+
       else //Si no tiene el atributo
         no.push_back(*it_p); //Lo añado a la lista de los que no lo tienen
     }
@@ -239,8 +240,11 @@ void QuienEsQuien::elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<in
 
     atrib.pop_front();
 
-    elige_preguntas(izda, si, atrib);
-    elige_preguntas(dcha, no, atrib);
+    if(si.size() > 0)
+      elige_preguntas(izda, si, atrib);
+
+    if(no.size() > 0)
+      elige_preguntas(dcha, no, atrib);
 
     a.insert_left(a.root(), izda);
     a.insert_right(a.root(), dcha);
@@ -337,15 +341,12 @@ bintree<Pregunta> QuienEsQuien::crear_arbol_mejorado(){
 	list<int> pers;
 	list<int> atrib;
 
-  cout << "size personajes " << personajes.size() << endl;
-  cout << "size atributos " << atributos.size() << endl;
-
 	int i;
 
-	for(i = 0; i < personajes.size(); i++);
+	for(i = 0; i < personajes.size(); i++)
 		pers.push_back(i);
 
-	for(i = 0; i < atributos.size(); i++);
+	for(i = 0; i < atributos.size(); i++)
 		atrib.push_back(i);
 
   elige_preguntas_mejorado(tree, pers, atrib);
