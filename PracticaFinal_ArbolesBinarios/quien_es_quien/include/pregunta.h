@@ -8,14 +8,14 @@
 using namespace std;
 
 /**
-  * @brief En cada estructura pregunta se almacena la cadena de la pregunta y el 
-  *        número de personajes que aún no han sido eliminados. Si el 
-  *        número de personajes es 1, entonces la cadena pregunta 
+  * @brief En cada estructura pregunta se almacena la cadena de la pregunta y el
+  *        número de personajes que aún no han sido eliminados. Si el
+  *        número de personajes es 1, entonces la cadena pregunta
   *        contiene el nombre del personaje.
   */
 class Pregunta{
 
-	private: 
+	private:
 		/**
 		  * @brief Atributo sobre el que se pregunta en este nodo. En el caso de que haya un único
 		  *        personaje restante, este campo almacena su nombre.
@@ -38,7 +38,7 @@ class Pregunta{
 		/**
 	      * @brief Constructor de copias
 	      * @param pregunta Pregunta a copiar
-	      * 
+	      *
 	      * Construye la pregunta duplicando el contenido de @e pregunta en la pregunta
 	      * receptora.
 	      */
@@ -97,6 +97,11 @@ class Pregunta{
 		  * @brief Devuelve el número de personajes sin eliminar al llegar a esta pregunta.
 		  */
 		int obtener_num_personajes() const;
+
+		/**
+		  * @brief Devuelve el número de personajes sin eliminar al llegar a esta pregunta.
+		  */
+		int& Pregunta::obtener_num_personajes()
 
 		/**
 		  * @brief Devuelve true si el nodo es de personaje.
