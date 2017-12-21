@@ -421,11 +421,15 @@ void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
 
       arbol.prune_left(n, subtree);
 
+      arbol.replace_subtree(n, subtree, subtree.root());
+
+/*
       if(n == padre.left())
         arbol.insert_left(padre, subtree);
 
-      else(n == padre.right())
+      else
         arbol.insert_right(padre, subtree);
+*/
     }
     else if(!n.right().null() && n.left().null()){
 
@@ -433,11 +437,15 @@ void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
 
       arbol.prune_right(n, subtree);
 
+      arbol.replace_subtree(n, subtree, subtree.root());
+
+/*
       if(n == padre.left())
         arbol.insert_left(padre, subtree);
 
-      else(n == padre.right())
+      else
         arbol.insert_right(padre, subtree);
+*/
     }
 
     eliminar_nodos_redundantes(padre.left());
@@ -445,13 +453,13 @@ void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
   }
 }
 
-int QuienEsQuien::profundidad(bintree<Pregunta>::node nodo){
+int QuienEsQuien::profundidad(bintree<Pregunta>::node n){
 
-  bintree<Pregunta>::node *p = &nodo;
+  bintree<Pregunta>::node p = n;
   int prof = 0;
 
-  while(!(*p).parent().null()){
-    p = &(*p).parent();
+  while(!p.parent().null()){
+    p = p.parent();
     prof++;
   }
 
@@ -459,12 +467,13 @@ int QuienEsQuien::profundidad(bintree<Pregunta>::node nodo){
 }
 
 float QuienEsQuien::profundidad_promedio_hojas(){
+
   int suma=0;
   bintree<Pregunta>::const_preorder_iterator it;
 
-  for(it = arbol.begin_preorder(); it = arbol.end_preorder(); it++){
-    if((*(*it)).es_personaje()){
-      suma += profundidad(*it);
+  for(it = arbol.begin_preorder(); it != arbol.end_preorder(); ++it){
+    if((*it).es_personaje()){
+      suma += profundidad(it);
     }
   }
 	return (float)suma/personajes.size();
@@ -549,24 +558,25 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
 
   Pregunta preg(nombre, 1);
 
-  bintree<Pregunta>:: node *p;
+  bintree<Pregunta>:: node p = arbol.root();
   int i_atrib, i_pers;
   bool found;
 
-  while((*(*p)).es_pregunta()){
+  while((*p).es_pregunta()){
+
+    (*p).obtener_num_personajes()++;
 
     for(int i = 0, found = false; i < atributos.size() && !found;  i++){
-        if(atributos[i]==(*(*p)).obtener_pregunta()){
+        if(atributos[i] == (*p).obtener_pregunta()){
           found=true;
           i_atrib=i;
         }
     }
 
-    if(caracteristicas[i_atrib]){
-      p=&(*p).left();
-    } else {
-      p=&(*p).right();
-    }
+    if(caracteristicas[i_atrib])
+      p = p.left();
+    else
+      p = p.right();
   }
 
   for(int i = 0, found = false; i < personajes.size() && !found;  i++){
