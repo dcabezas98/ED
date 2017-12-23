@@ -94,12 +94,14 @@ class Pregunta{
 		string obtener_personaje() const;
 
 		/**
-		  * @brief Devuelve el número de personajes sin eliminar al llegar a esta pregunta.
+		  * @brief Devuelve el número de personajes sin eliminar al llegar a esta pregunta, en modo constante,
+			* 			luego es una función de consulta. Si es un nodo personaje, devuelve 1.
 		  */
 		int obtener_num_personajes() const;
 
 		/**
 		  * @brief Devuelve el número de personajes sin eliminar al llegar a esta pregunta.
+			*  			Si es un nodo personaje, devuelve 1.
 		  */
 		int& obtener_num_personajes();
 
