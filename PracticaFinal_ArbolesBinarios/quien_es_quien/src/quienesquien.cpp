@@ -362,6 +362,7 @@ void QuienEsQuien::iniciar_juego(){
   bool answer;
 
   while((*jugada_actual).es_pregunta()){
+    preguntas_formuladas(jugada_actual);
     cout << *jugada_actual;
     cin >> answer;
 
@@ -561,6 +562,8 @@ void QuienEsQuien::preguntas_formuladas(bintree<Pregunta>::node jugada){
 
     else
       cout << "No\n";
+
+      p=p.parent();
   }
 
   cout << "pero aún no sé cuál es.\n";
