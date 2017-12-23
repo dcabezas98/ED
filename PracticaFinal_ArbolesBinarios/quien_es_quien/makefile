@@ -49,10 +49,7 @@ $(OBJ)/pregunta.o: $(SRC)/pregunta.cpp
 
 # ************ Limpieza y encapsulado ************
 clean :
-	-rm -r $(OBJ)/* $(BIN)/* $(ZIP)/*
-
-mrproper : clean
-	-rm -r $(BIN)/* documentacion/html documentacion/latex doc/man
+	-rm -r $(OBJ)/* $(BIN)/* $(ZIP)/* documentacion/html documentacion/latex doc/man
 
 zip : clean
 	zip -r $(ZIP)/$(PRJ).zip *

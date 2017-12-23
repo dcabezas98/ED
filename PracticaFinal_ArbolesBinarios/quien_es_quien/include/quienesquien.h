@@ -202,7 +202,7 @@ public:
 
 	/**
 		* @brief Elimina el personaje con el nombre dado como argumento
-		* @param Nombre del personaje a eliminar
+		* @param nombre del personaje a eliminar
 	  */
 	void elimina_personaje(string nombre);
 
@@ -216,7 +216,7 @@ public:
 	/**
 	 * @brief Muestra por pantalla todas las preguntas formuladas hasta el momento
 	 * 				en la partida y su correspondiente respuesta
-	 * @param nodo del árbol de preguntas hasta el que se ha avanzado con las preguntas formuladas
+	 * @param jugada hasta la que se ha avanzado con las preguntas formuladas
 	 *
 	 */
 	void preguntas_formuladas(bintree<Pregunta>::node jugada);
@@ -274,7 +274,7 @@ public:
 	int size_atributos() const;
 
 	/**
-		* @bief Añade un personaje al árbol
+		* @brief Añade un personaje al árbol
 		* @param nombre del nuevo personaje
 		* @param caracteristicas del nuevo personaje
 		*/
