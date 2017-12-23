@@ -63,14 +63,36 @@ private:
 	bintree<Pregunta>::node jugada_actual;
 
 	/**
-		* @brief Método que modifica el árbol de preguntas para que haya
+		* @brief Método que modifica el árbol de preguntas para que no haya
 		*       preguntas redundantes.
+		* @param n Nodo a partir del cual comprobamos si hay preguntas redundantes.
+		* @pre La raíz no puede ser un nodo redundante.
 		* @post El árbol de preguntas se modifica.
 		*/
 	void eliminar_nodos_redundantes(bintree<Pregunta>::node n);
 
+	/**
+		* @brief Elige como pregunta el próximo atributo y coloca los personajes a la
+		*				izquierda o derecha de un nodo con dicha pregunta según si tienen el
+		*				atrubuto o no
+		* @param a Árbol de preguntas que estamos creando.
+		* @param pers Índices de los personajes del vector de personajes
+		* @param atrib Índices de los atributos del vector de atrbutos que quedan sin colocar
+		* @post El árbol a se modifica
+		* @post La lista atrib se modifica
+		*/
 	void elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
 
+	/**
+		* @brief Elige como pregunta el atributo óptimo y coloca los personajes a la
+		*				izquierda o derecha de un nodo con dicha pregunta según si tienen el
+		*				atrubuto o no
+		* @param a Árbol de preguntas que estamos creando.
+		* @param pers Índices de los personajes del vector de personajes
+		* @param atrib Índices de los atributos del vector de atrbutos que quedan sin colocar
+		* @post El árbol a se modifica
+		* @post La lista atrib se modifica
+		*/
 	void elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers, list<int> atrib);
 
 	/**
@@ -153,8 +175,16 @@ public:
 	  */
 	void mostrar_estructuras_leidas();
 
+	/**
+		* @brief Crea el árbol de preguntas a partir de los datos del tablero
+		* @post El árbol de preguntas se modifica
+		*/
 	bintree<Pregunta> crear_arbol();
 
+	/**
+		* @brief Crea el árbol de preguntas óptimo a partir de los datos del tablero
+		* @post El árbol de preguntas se modifica
+		*/
 	bintree<Pregunta> crear_arbol_mejorado();
 
 	/**
@@ -185,8 +215,8 @@ public:
 
 	/**
 	 * @brief Muestra por pantalla todas las preguntas formuladas hasta el momento
-	 * en la partida y su correspondiente respuesta
-	 * @param jugada hasta la que se ha avanzado con las preguntas formuladas
+	 * 				en la partida y su correspondiente respuesta
+	 * @param nodo del árbol de preguntas hasta el que se ha avanzado con las preguntas formuladas
 	 *
 	 */
 	void preguntas_formuladas(bintree<Pregunta>::node jugada);
@@ -206,7 +236,10 @@ public:
 	set<string> informacion_jugada(bintree<Pregunta>::node jugada_actual);
 
 	/**
-	  * @brief Este método permite calcular la media de la profundidad de las hojas del árbol. Este valor representa el número (promedio) de preguntas necesarias para adivinar cada personaje. A menor profundidad promedio, mejor soluci�n. Esta m�trica es un indicador para evaluar la calidad de vuestra soluci�n.
+	  * @brief Este método permite calcular la media de la profundidad de las hojas del árbol.
+		*				Este valor representa el número (promedio) de preguntas necesarias para adivinar cada personaje.
+		*			 	A menor profundidad promedio, mejor solución. Esta métrica es un indicador para evaluar la calidad
+		*				de vuestra solución.
 	  *
 	  * @return Profundidad media de las hojas del arbol de preguntas.
 	  *
@@ -215,7 +248,7 @@ public:
 	float profundidad_promedio_hojas();
 
 	/**
-		* @brief Método que modifica el árbol de preguntas para que haya
+		* @brief Método que modifica el árbol de preguntas para que no haya
 		*       preguntas redundantes.
 		* @post El árbol de preguntas se modifica.
 		*/
