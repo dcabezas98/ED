@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} % page
+                                                             % settings
+\usepackage{amsmath} % provides many mathematical environments & tools
+\usepackage[spanish]{babel}
+\usepackage[doument]{ragged2e}
+
+% Code
+\usepackage{listings}
+\usepackage{xcolor}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\newcommand{\n}[1]{{\color{gray}#1}}
+\lstset{numbers=left,numberstyle=\small\color{gray}}
+
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+\setlength{\parindent}{0mm}
+
+\begin{document}
+
+\title{Reto 5: Tablas Hash}
+\author{David Cabezas Berrido}
+\date{\today}
+\maketitle
+
+\begin{justify}
+  He adjuntado un programa en $Python3$ que admite como
+  argumento un número primo e imprime las parejas $(a, c)$ que
+  permiten un hashing válido.
+\end{justify}
+
+\begin{justify}
+  Sólo necesitamos buscar valores de $a$ y $c$ entre $0$ y $M-1$, ya
+  que $d_i$ será reducido en módulo $M$.
+\end{justify}
+
+\begin{justify}
+  Tras varias pruebas he llegado a la conclusión de que las parejas
+  válidas son las de la forma $(1, c)$ con $c = 1,\ldots,M-1$. Excepto
+  para $M = 2$, que admite las parejas $(0,1)$ y $(1,1)$. Ya que al
+  existir sólo dos posiciones y valer $c = 1$, $d_0$ y $d_1$ toman los
+  valores $0$ y $1$, dependiendo del valor de $a$.
+\end{justify}
+
+\begin{justify}
+  Las parejas $(1, c)$ son solución porque cada uno de los $d_i$
+  salta de $c$ en $c$, y como $M$ es primo, $mcd(c,M)=1$ y por
+  tanto se tiene acceso a todas las posiciones de la tabla.
+\end{justify}
+
+\begin{justify}
+  Obviamente debe darse $c \neq 0$, ya que de lo contrario todos los
+  $d_i$ serían iguales y no se podría acceder a todas las posiciones
+  de la tabla.
+\end{justify}
+
+\end{document}
+
