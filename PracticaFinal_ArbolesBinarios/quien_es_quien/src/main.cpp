@@ -112,6 +112,27 @@ int main(int argc, char * argv[]){
 
 	quienEsQuien.mostrar_estructuras_leidas();
 
+	vector<bool> atribut2;
+	string nombre2="Siham";
+
+	for(int i=0; i<quienEsQuien.size_atributos(); i++){
+		if(i%2==0){
+			atribut2.push_back(0);
+		} else {
+			atribut2.push_back(1);
+		}
+	}
+
+	quienEsQuien.add_personaje(nombre2, atribut2);
+
+	cout << "=========== Arbol con personaje añadido ===================="<<endl;
+	quienEsQuien.escribir_arbol_completo();
+	cout << "Profundidad promedio de las hojas del arbol: ";
+	cout << quienEsQuien.profundidad_promedio_hojas()<<endl;
+	cout << "======================================" << endl << endl << endl;
+
+	quienEsQuien.mostrar_estructuras_leidas();
+/*
 	quienEsQuien.elimina_personaje(nombre);
 	quienEsQuien.eliminar_nodos_redundantes();
 
@@ -122,7 +143,7 @@ int main(int argc, char * argv[]){
 	cout << "Profundidad promedio de las hojas del arbol: ";
 	cout << quienEsQuien.profundidad_promedio_hojas()<<endl;
 	cout << "======================================" << endl << endl << endl;
-
+*/
 	if(jugar){
 		quienEsQuien.iniciar_juego();
 	}
