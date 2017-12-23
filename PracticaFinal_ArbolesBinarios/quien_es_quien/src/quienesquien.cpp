@@ -362,13 +362,28 @@ void QuienEsQuien::iniciar_juego(){
   bool answer;
 
   while((*jugada_actual).es_pregunta()){
+    preguntas_formuladas(jugada_actual);
+    set<string> perso=informacion_jugada(jugada_actual);
+
+    set<string>::iterator p;
+    p=perso.begin();
+
+    cout<<"Personajes levantados: "<<endl;
+    while (p!=perso.end()) {
+      cout << *p <<endl;
+      p++;
+    }
+
     cout << *jugada_actual;
     cin >> answer;
 
-    if(answer)
+    if(answer){
       jugada_actual = jugada_actual.left();
-    else
+      cout<< "El padre izq es nulo: " << jugada_actual.parent().null() <<endl;
+    } else {
       jugada_actual = jugada_actual.right();
+      cout<< "El padre derecha es nulo: " << jugada_actual.parent().null() <<endl;
+    }
   }
 
   cout << "Ya lo sé: " << (*jugada_actual).obtener_personaje() << endl;
@@ -558,9 +573,10 @@ void QuienEsQuien::preguntas_formuladas(bintree<Pregunta>::node jugada){
 
     if(p == p.parent().left())
       cout << "Sí\n";
-
     else
       cout << "No\n";
+
+      p=p.parent();
   }
 
   cout << "pero aún no sé cuál es.\n";

@@ -28,6 +28,9 @@ using namespace std;
  * @brief T.D.A. QuienEsQuien
  *
  * Conjunto de personajes con sus atributos.
+ *
+ * @author Patricia Córdoba Hidalgo y David Cabezas Berrido
+ * @date Diciembre 2017
  */
 class QuienEsQuien{
 private:
