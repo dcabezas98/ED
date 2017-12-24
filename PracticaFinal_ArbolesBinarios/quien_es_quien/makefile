@@ -5,6 +5,7 @@ SRC = ./src
 INC = ./include
 CXX = g++
 ZIP = ./zip
+PRJ = guesswho
 # Opciones de compilación
 CPPFLAGS = -g  -I$(INC) -std=c++11
 
