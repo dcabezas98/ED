@@ -73,17 +73,16 @@ int main(int argc, char * argv[]){
 
 	quienEsQuien.mostrar_estructuras_leidas();
 
+	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol_mejorado());
+/*
 	quienEsQuien.usar_arbol(quienEsQuien.crear_arbol());
-	//quienEsQuien.usar_arbol(quienEsQuien.crear_arbol_mejorado());
-
 	cout << "=========== Arbol en crudo ===========" << endl;
 	quienEsQuien.escribir_arbol_completo();
-
 	cout << "Profundidad promedio de las hojas del arbol: ";
 	cout << quienEsQuien.profundidad_promedio_hojas() << endl;
 	cout << "======================================" << endl << endl << endl;
-
 	quienEsQuien.eliminar_nodos_redundantes();
+*/
 
 	cout << "=========== Arbol ===================="<<endl;
 	quienEsQuien.escribir_arbol_completo();
@@ -94,56 +93,27 @@ int main(int argc, char * argv[]){
 	vector<bool> atribut;
 	string nombre="Jorge";
 
-	for(int i=0; i<quienEsQuien.size_atributos(); i++){
-		if(i%2==0){
-			atribut.push_back(1);
-		} else {
-			atribut.push_back(0);
-		}
-	}
+	for(int i=0; i<quienEsQuien.size_atributos(); i++)
+			atribut.push_back(!(i%2));
 
 	quienEsQuien.add_personaje(nombre, atribut);
 
+	quienEsQuien.mostrar_estructuras_leidas();
 	cout << "=========== Arbol con personaje añadido ===================="<<endl;
 	quienEsQuien.escribir_arbol_completo();
 	cout << "Profundidad promedio de las hojas del arbol: ";
 	cout << quienEsQuien.profundidad_promedio_hojas()<<endl;
 	cout << "======================================" << endl << endl << endl;
 
-	quienEsQuien.mostrar_estructuras_leidas();
-
-	vector<bool> atribut2;
-	string nombre2="Siham";
-
-	for(int i=0; i<quienEsQuien.size_atributos(); i++){
-		if(i%2==0){
-			atribut2.push_back(0);
-		} else {
-			atribut2.push_back(1);
-		}
-	}
-
-	quienEsQuien.add_personaje(nombre2, atribut2);
-
-	cout << "=========== Arbol con personaje añadido ===================="<<endl;
-	quienEsQuien.escribir_arbol_completo();
-	cout << "Profundidad promedio de las hojas del arbol: ";
-	cout << quienEsQuien.profundidad_promedio_hojas()<<endl;
-	cout << "======================================" << endl << endl << endl;
-
-	quienEsQuien.mostrar_estructuras_leidas();
-/*
 	quienEsQuien.elimina_personaje(nombre);
-	quienEsQuien.eliminar_nodos_redundantes();
 
 	quienEsQuien.mostrar_estructuras_leidas();
-
-	cout << "=========== Arbol con personaje añadido ===================="<<endl;
+	cout << "=========== Arbol con personaje eliminado ===================="<<endl;
 	quienEsQuien.escribir_arbol_completo();
 	cout << "Profundidad promedio de las hojas del arbol: ";
 	cout << quienEsQuien.profundidad_promedio_hojas()<<endl;
 	cout << "======================================" << endl << endl << endl;
-*/
+
 	if(jugar){
 		quienEsQuien.iniciar_juego();
 	}

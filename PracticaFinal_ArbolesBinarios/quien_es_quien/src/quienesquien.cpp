@@ -362,7 +362,14 @@ void QuienEsQuien::iniciar_juego(){
   bool answer;
 
   while((*jugada_actual).es_pregunta()){
+/*
+    cout << "Personajes levantados:" << endl;
+    set<string> personajes_levantados = informacion_jugada(jugada_actual);
+    for(set<string>::iterator it = personajes_levantados.begin(); it != personajes_levantados.end(); it++)
+      cout << *it << endl;
 
+    preguntas_formuladas(jugada_actual);
+*/
     cout << *jugada_actual;
     cin >> answer;
 
