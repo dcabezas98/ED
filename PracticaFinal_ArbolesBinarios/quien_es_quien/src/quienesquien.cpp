@@ -362,28 +362,15 @@ void QuienEsQuien::iniciar_juego(){
   bool answer;
 
   while((*jugada_actual).es_pregunta()){
-    preguntas_formuladas(jugada_actual);
-    set<string> perso=informacion_jugada(jugada_actual);
-
-    set<string>::iterator p;
-    p=perso.begin();
-
-    cout<<"Personajes levantados: "<<endl;
-    while (p!=perso.end()) {
-      cout << *p <<endl;
-      p++;
-    }
 
     cout << *jugada_actual;
     cin >> answer;
 
-    if(answer){
+    if(answer)
       jugada_actual = jugada_actual.left();
-      cout<< "El padre izq es nulo: " << jugada_actual.parent().null() <<endl;
-    } else {
+
+    else
       jugada_actual = jugada_actual.right();
-      cout<< "El padre derecha es nulo: " << jugada_actual.parent().null() <<endl;
-    }
   }
 
   cout << "Ya lo sé: " << (*jugada_actual).obtener_personaje() << endl;
@@ -430,6 +417,7 @@ void QuienEsQuien::escribir_arbol_completo() const{
 }
 
 void QuienEsQuien::eliminar_nodos_redundantes(){
+
   bool check_root=true;
 
   while(check_root){
@@ -450,30 +438,33 @@ void QuienEsQuien::eliminar_nodos_redundantes(){
 
 void QuienEsQuien::eliminar_nodos_redundantes(bintree<Pregunta>::node n){
 
-  bool red=false;
+  bool red=false; // Para comprobar si hemos o no quitado n
 
   if((*n).es_pregunta()){
+
+    bintree<Pregunta> subtree;
 
     bintree<Pregunta>::node padre = n.parent();
 
     if(n.right().null() && !n.left().null()){
 
-      bintree<Pregunta> subtree;
-
       arbol.prune_left(n, subtree);
-      arbol.replace_subtree(n, subtree, subtree.root());
       red=true;
     }
     else if(!n.right().null() && n.left().null()){
 
-      bintree<Pregunta> subtree;
-
       arbol.prune_right(n, subtree);
-      arbol.replace_subtree(n, subtree, subtree.root());
       red=true;
     }
 
     if(red){
+
+      if(n == n.parent().left())
+        arbol.insert_left(n.parent(), subtree);
+
+      else
+        arbol.insert_right(n.parent(), subtree);
+
       eliminar_nodos_redundantes(padre.left());
       eliminar_nodos_redundantes(padre.right());
     } else {
@@ -584,7 +575,7 @@ void QuienEsQuien::preguntas_formuladas(bintree<Pregunta>::node jugada){
 
 void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
 
-  Pregunta preg(nombre, 1);
+  Pregunta nuevo(nombre, 1);
 
   bintree<Pregunta>:: node p = arbol.root();
   int i_atrib, i_pers;
@@ -626,17 +617,21 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
   Pregunta diferencia(atributos[i_diff], 2);
   bintree<Pregunta> arbol_diff(diferencia);
 
-  Pregunta preg_orig(personajes[i_pers], 1);
+  Pregunta original(personajes[i_pers], 1);
 
   if(caracteristicas[i_diff]){
-    arbol_diff.insert_left(arbol_diff.root(), preg);
-    arbol_diff.insert_right(arbol_diff.root(), preg_orig);
+    arbol_diff.insert_left(arbol_diff.root(), nuevo);
+    arbol_diff.insert_right(arbol_diff.root(), original);
   } else{
-    arbol_diff.insert_right(arbol_diff.root(), preg);
-    arbol_diff.insert_left(arbol_diff.root(), preg_orig);
+    arbol_diff.insert_right(arbol_diff.root(), nuevo);
+    arbol_diff.insert_left(arbol_diff.root(), original);
   }
 
-  arbol.replace_subtree(p, arbol_diff, arbol_diff.root());
+  if(p == p.parent().left())
+    arbol.insert_left(p.parent(), arbol_diff);
+
+  else
+    arbol.insert_right(p.parent(), arbol_diff);
 
   personajes.push_back(nombre);
   tablero.push_back(caracteristicas);
@@ -676,15 +671,19 @@ void QuienEsQuien::elimina_personaje(string nombre){
   bintree<Pregunta> aux;
 
   if(p == p.parent().left())
-    arbol.prune_left(p.parent(), aux);
-  else
     arbol.prune_right(p.parent(), aux);
+
+  else
+    arbol.prune_left(p.parent(), aux);
+
+  if(p.parent() == p.parent().parent().left())
+        arbol.insert_left(p.parent().parent(), aux);
+
+  else
+    arbol.insert_right(p.parent().parent(), aux);
 
   vector<string>::iterator it_p = personajes.begin()+i_pers;
   vector<vector<bool>>::iterator it_a = tablero.begin()+i_pers;
-
   personajes.erase(it_p);
   tablero.erase(it_a);
-
-  eliminar_nodos_redundantes();
 }
