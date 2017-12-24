@@ -27,7 +27,7 @@
   Si !r.laraiz.null(),
   -   r.laraiz.parent().null().
 
-  Para cualquier nodo n del ��rbol:
+  Para cualquier nodo n del árbol:
   Si !n.left().null()
       n.left().parent() == n;
   Si !n.right().null()
@@ -73,7 +73,8 @@ void bintree<T>::copy(bintree<T>::node & dest, const bintree<T>::node & orig)
       copy (aux, orig.right());
       dest.right(aux);
       if (!dest.right().null())
-	dest.right().parent(dest);
+	      dest.right().parent(dest);
+      }
     }
 }
 
