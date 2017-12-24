@@ -74,7 +74,6 @@ void bintree<T>::copy(bintree<T>::node & dest, const bintree<T>::node & orig)
       dest.right(aux);
       if (!dest.right().null())
 	      dest.right().parent(dest);
-      }
     }
 }
 
