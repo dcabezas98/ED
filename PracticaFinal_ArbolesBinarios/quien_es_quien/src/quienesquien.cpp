@@ -271,7 +271,7 @@ void QuienEsQuien::elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers
   	list<int>::iterator it_p, it_a;
 
   	for(it_a = atrib.begin(); it_a != atrib.end() && continua; it_a++){
-  		for(it_p = pers.begin(), suma = 0 && continua; it_p != pers.end(); it_p++)
+  		for(it_p = pers.begin(), suma = 0; it_p != pers.end(); it_p++)
         suma += tablero[*it_p][*it_a];
 
       if((int)abs(suma - objetivo) == 0){ // Es el mejor atributo
@@ -303,7 +303,7 @@ void QuienEsQuien::elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers
 
     bintree<Pregunta> izda, dcha;
 
-    atrib.pop_front();
+    atrib.erase(it_atrib_max_entrop);
 
     elige_preguntas_mejorado(izda, si, atrib);
     elige_preguntas_mejorado(dcha, no, atrib);
@@ -589,7 +589,7 @@ void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
   bool found;
 
   while((*p).es_pregunta()){
-
+    
     (*p).obtener_num_personajes()++;
 
     for(int i = 0, found = false; i < atributos.size() && !found;  i++){
