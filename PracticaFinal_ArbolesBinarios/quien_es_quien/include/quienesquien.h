@@ -206,7 +206,6 @@ public:
 	/**
 		* @brief Elimina el personaje con el nombre dado como argumento
 		* @param nombre del personaje a eliminar
-		* @pre El personaje debe existir en el árbol
 	  */
 	void elimina_personaje(string nombre);
 
@@ -281,7 +280,6 @@ public:
 		* @brief Añade un personaje al árbol
 		* @param nombre del nuevo personaje
 		* @param caracteristicas del nuevo personaje
-		* @pre No existe un personaje con atributos identicos en el árbol
 		*/
 	void add_personaje(string nombre, vector<bool> caracteristicas);
 };

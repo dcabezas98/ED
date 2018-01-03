@@ -94,7 +94,8 @@ int main(int argc, char * argv[]){
 	string nombre="Jorge";
 
 	for(int i=0; i<quienEsQuien.size_atributos(); i++)
-			atribut.push_back(!(i%2));
+			//atribut.push_back(!(i%2));
+			atribut.push_back(0);
 
 	quienEsQuien.add_personaje(nombre, atribut);
 

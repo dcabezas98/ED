@@ -362,8 +362,8 @@ void QuienEsQuien::iniciar_juego(){
   bool answer;
 
   while((*jugada_actual).es_pregunta()){
-/*
-    cout << "Personajes levantados:" << endl;
+
+/*    cout << "Personajes levantados:" << endl;
     set<string> personajes_levantados = informacion_jugada(jugada_actual);
     for(set<string>::iterator it = personajes_levantados.begin(); it != personajes_levantados.end(); it++)
       cout << *it << endl;
@@ -582,115 +582,125 @@ void QuienEsQuien::preguntas_formuladas(bintree<Pregunta>::node jugada){
 
 void QuienEsQuien::add_personaje(string nombre, vector<bool> caracteristicas){
 
-  Pregunta nuevo(nombre, 1);
+  if(find(tablero.begin(), tablero.end(), caracteristicas) == tablero.end()){
 
-  bintree<Pregunta>:: node p = arbol.root();
-  int i_atrib, i_pers;
-  bool found;
+    Pregunta nuevo(nombre, 1);
 
-  while((*p).es_pregunta()){
-    
-    (*p).obtener_num_personajes()++;
+    bintree<Pregunta>:: node p = arbol.root();
+    int i_atrib, i_pers;
+    bool found;
 
-    for(int i = 0, found = false; i < atributos.size() && !found;  i++){
-        if(atributos[i] == (*p).obtener_pregunta()){
+    while((*p).es_pregunta()){
+
+      (*p).obtener_num_personajes()++;
+
+      for(int i = 0, found = false; i < atributos.size() && !found;  i++){
+          if(atributos[i] == (*p).obtener_pregunta()){
+            found=true;
+            i_atrib=i;
+          }
+      }
+
+      if(caracteristicas[i_atrib])
+        p = p.left();
+      else
+        p = p.right();
+    }
+
+    for(int i = 0, found = false; i < personajes.size() && !found;  i++){
+        if(personajes[i] == (*p).obtener_personaje()){
           found=true;
-          i_atrib=i;
+          i_pers=i;
         }
     }
 
-    if(caracteristicas[i_atrib])
-      p = p.left();
-    else
-      p = p.right();
-  }
+    int i_diff;
 
-  for(int i = 0, found = false; i < personajes.size() && !found;  i++){
-      if(personajes[i] == (*p).obtener_personaje()){
+    for(int i = 0, found = false; i < atributos.size() && !found;  i++){
+      if(tablero[i_pers][i] != caracteristicas[i]){
         found=true;
-        i_pers=i;
+        i_diff=i;
       }
-  }
-
-  int i_diff;
-
-  for(int i = 0, found = false; i < atributos.size() && !found;  i++){
-    if(tablero[i_pers][i] != caracteristicas[i]){
-      found=true;
-      i_diff=i;
     }
-  }
 
-  Pregunta diferencia(atributos[i_diff], 2);
-  bintree<Pregunta> arbol_diff(diferencia);
+    Pregunta diferencia(atributos[i_diff], 2);
+    bintree<Pregunta> arbol_diff(diferencia);
 
-  Pregunta original(personajes[i_pers], 1);
+    Pregunta original(personajes[i_pers], 1);
 
-  if(caracteristicas[i_diff]){
-    arbol_diff.insert_left(arbol_diff.root(), nuevo);
-    arbol_diff.insert_right(arbol_diff.root(), original);
+    if(caracteristicas[i_diff]){
+      arbol_diff.insert_left(arbol_diff.root(), nuevo);
+      arbol_diff.insert_right(arbol_diff.root(), original);
+    } else{
+      arbol_diff.insert_right(arbol_diff.root(), nuevo);
+      arbol_diff.insert_left(arbol_diff.root(), original);
+    }
+
+    if(p == p.parent().left())
+      arbol.insert_left(p.parent(), arbol_diff);
+
+    else
+      arbol.insert_right(p.parent(), arbol_diff);
+
+    personajes.push_back(nombre);
+    tablero.push_back(caracteristicas);
   } else{
-    arbol_diff.insert_right(arbol_diff.root(), nuevo);
-    arbol_diff.insert_left(arbol_diff.root(), original);
+    cout<<"Ese personaje ya existe"<<endl;
   }
-
-  if(p == p.parent().left())
-    arbol.insert_left(p.parent(), arbol_diff);
-
-  else
-    arbol.insert_right(p.parent(), arbol_diff);
-
-  personajes.push_back(nombre);
-  tablero.push_back(caracteristicas);
 }
 
 void QuienEsQuien::elimina_personaje(string nombre){
 
-  int i_pers, i_atrib;
-  bool found;
+  if(find(personajes.begin(), personajes.end(), nombre) != personajes.end()){
 
-  for(int i = 0, found = false; i < personajes.size(); i++){
-    if(personajes[i] == nombre){
-      found = true;
-      i_pers = i;
-    }
-  }
+    int i_pers, i_atrib;
+    bool found;
 
-  bintree<Pregunta>::node p = arbol.root();
-
-  while((*p).es_pregunta()){
-
-    for(int i = 0, found = false; i < atributos.size() && !found;  i++){
-        if(atributos[i] == (*p).obtener_pregunta()){
-          found=true;
-          i_atrib=i;
-        }
+    for(int i = 0, found = false; i < personajes.size(); i++){
+      if(personajes[i] == nombre){
+        found = true;
+        i_pers = i;
+      }
     }
 
-    (*p).obtener_num_personajes()--;
+    bintree<Pregunta>::node p = arbol.root();
 
-    if(tablero[i_pers][i_atrib])
-      p = p.left();
+    while((*p).es_pregunta()){
+
+      for(int i = 0, found = false; i < atributos.size() && !found;  i++){
+          if(atributos[i] == (*p).obtener_pregunta()){
+            found=true;
+            i_atrib=i;
+          }
+      }
+
+      (*p).obtener_num_personajes()--;
+
+      if(tablero[i_pers][i_atrib])
+        p = p.left();
+      else
+        p = p.right();
+    }
+
+    bintree<Pregunta> aux;
+
+    if(p == p.parent().left())
+      arbol.prune_right(p.parent(), aux);
+
     else
-      p = p.right();
+      arbol.prune_left(p.parent(), aux);
+
+    if(p.parent() == p.parent().parent().left())
+          arbol.insert_left(p.parent().parent(), aux);
+
+    else
+      arbol.insert_right(p.parent().parent(), aux);
+
+    vector<string>::iterator it_p = personajes.begin()+i_pers;
+    vector<vector<bool>>::iterator it_a = tablero.begin()+i_pers;
+    personajes.erase(it_p);
+    tablero.erase(it_a);
+  } else{
+    cout<<"Ese personaje no existe"<<endl;
   }
-
-  bintree<Pregunta> aux;
-
-  if(p == p.parent().left())
-    arbol.prune_right(p.parent(), aux);
-
-  else
-    arbol.prune_left(p.parent(), aux);
-
-  if(p.parent() == p.parent().parent().left())
-        arbol.insert_left(p.parent().parent(), aux);
-
-  else
-    arbol.insert_right(p.parent().parent(), aux);
-
-  vector<string>::iterator it_p = personajes.begin()+i_pers;
-  vector<vector<bool>>::iterator it_a = tablero.begin()+i_pers;
-  personajes.erase(it_p);
-  tablero.erase(it_a);
 }
