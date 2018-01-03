@@ -263,9 +263,9 @@ void QuienEsQuien::elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers
 
     /* Seleccionar pregunta con mayor entropía entre los atributos y personajes
        dados como argumento, consultando el tablero de juego */
-    float objetivo = pers.size()/2;             // Buscamos el atributo que divida en grupos más similares
+    float objetivo = (float) pers.size()/2;             // Buscamos el atributo que divida en grupos más similares
     int suma, mas_cercano = INT_MAX;            // Número de personajes con el atributo y distancia del mejor atributo al objetivo
-    list<int>::iterator it_atrib_max_entrop;  // Iterador al atributo con más entropía
+    list<int>::iterator it_atrib_max_entrop;    // Iterador al atributo con más entropía
     bool continua = true;                       // Para evitar ciclos innecesarios
 
   	list<int>::iterator it_p, it_a;
