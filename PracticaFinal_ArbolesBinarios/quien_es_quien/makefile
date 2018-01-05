@@ -33,6 +33,9 @@ aleatorio: $(BIN)/quienesquien
 documentacion: $(SRC)/main.cpp $(SRC)/pregunta.cpp $(SRC)/quienesquien.cpp $(INC)/pregunta.h $(INC)/quienesquien.h
 	doxygen doc/doxys/Doxyfile
 
+memoria: Crear_arbol.md
+	pandoc Crear_arbol.md -o crear_arbol.pdf --from markdown --template eisvogel --listings
+
 # ************ Compilación de módulos ************
 $(BIN)/quienesquien: $(OBJ)/main.o $(OBJ)/quienesquien.o
 	$(CXX) $(OBJ)/main.o $(OBJ)/quienesquien.o $(OBJ)/pregunta.o -o $(BIN)/quienesquien $(CPPFLAGS)
