@@ -27,8 +27,6 @@ La función *crear_arbol* llama a la función *elige_preguntas*, dando
 como argumento: dos listas con todos los índices de los atributos y
 personajes del tablero y un árbol, el cual es devuelto por la función.
 
-\newpage
-
 ```cpp
 void QuienEsQuien::elige_preguntas(bintree<Pregunta> &a, list<int> pers, list<int> atrib){
 
@@ -96,7 +94,6 @@ bintree<Pregunta> QuienEsQuien::crear_arbol(){
   return tree;
 }
 ```
-\newpage
 
 ## Mejora:
 
@@ -111,7 +108,6 @@ para adivinar el personaje.
 
 La función *crear_arbol_mejorado* es igual que la función
 *crear_arbol*, salvo por que llama a *elige_preguntas_mejorado*.
-
 
 ```cpp
 void QuienEsQuien::elige_preguntas_mejorado(bintree<Pregunta> &a, list<int> pers, list<int> atrib){
