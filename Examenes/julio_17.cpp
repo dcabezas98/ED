@@ -232,7 +232,7 @@ public:
       map<string, set<int> > datos;
     .............  
     .............  
-  } 
+  }; 
 
   Se pide implementar el TDA indice::iterator deseado, de forma que el
   operator* devuelva tanto la palabra como el número de página (que ha
@@ -240,4 +240,105 @@ public:
   iterador, se deben implementar las funciones begin() y end().
 **************************************************************************/
 
+class indices{
+  
+private:
+  
+  map<string, set<int> > datos;
 
+public:
+
+  .............  
+  .............
+  
+  class iterator_impar{
+
+  private:
+
+    friend class indices;
+    map<string, set<int> >::iterator it_map;
+    set<int>::iterator it_set;
+
+  public:
+
+    iterator_impar() : it_map(), it_set(){}
+
+    iterator_impar(const iterator_impar & it)
+
+      : it_map(it.it_map),
+	it_set(it.it_set){
+    }
+
+    iterator_impar & operator=(const iterator_impar & it){
+
+      if(this != &it){
+	
+	it_map = it.it_map;
+	it_set = it.it_set;
+      }
+
+      return *this;
+    }
+
+    bool operator!=(const iterator_impar & it){
+
+      return it_map != it.it_map || it_set != it.it_set;
+    }
+
+    bool operator==(const iterator_impar & it){
+
+      return it_map == it.it_map && it_set == it.it_set;
+    }
+
+    pair<string, int> & operator*(){
+
+      pair<string, int> ocurrencia(*it_map, *it_set);
+      
+      return ocurrencia;
+    }
+
+    iterator_impar & operator++(){
+
+      map<string, set<int> >::iterator empty_map_it;
+
+      if(it_map == empty_map_it)
+	return *this;
+
+      bool stop = false;
+
+      while(!stop){
+
+	while((it_set != (*it_map).second.end()) && *it_set % 2)
+	  it_set++;
+
+	if(it_set == (*it_map).second.end() && it_map != datos.end())
+	  it_map++;
+
+	else stop = true;
+
+	if(it_map == datos.end()) stop = true;
+      }
+
+      return *this;
+    }
+
+    iterator_impar begin(){
+
+      iterator_impar it;
+
+      it.it_map = datos.begin();
+      it.it_set = (*it.it_map).second.begin();
+
+      return it;
+    }
+
+    iterator_impar end(){
+
+      iterator_impar it;
+
+      it.it_map = datos.end();
+
+      return it;
+    }    
+  }:
+};
