@@ -143,6 +143,7 @@ public:
   private:
 
     map<int, list<string>> it;
+    friend class Diccionario;
 
   public:
  

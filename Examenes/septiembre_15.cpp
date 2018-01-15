@@ -155,7 +155,8 @@ class Diccionario{
   
 private:
   map<int, list<string> > datos;
-
+  friend class Diccionario;
+  
 public:
   
   class iterator{  
