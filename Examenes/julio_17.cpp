@@ -240,6 +240,8 @@ public:
   iterador, se deben implementar las funciones begin() y end().
 **************************************************************************/
 
+#include <iterator> // Para next
+
 class indices{
   
 private:
@@ -248,33 +250,34 @@ private:
 
 public:
 
-  .............  
-  .............
-  
   class iterator_impar{
 
   private:
 
     friend class indices;
-    map<string, set<int> >::iterator it_map;
-    set<int>::iterator it_set;
+    map<string, set<int> >::iterator palabra;
+    set<int>::iterator paginas;
 
   public:
 
-    iterator_impar() : it_map(), it_set(){}
+    iterator_impar() : palabra(), paginas(){}
 
     iterator_impar(const iterator_impar & it)
 
-      : it_map(it.it_map),
-	it_set(it.it_set){
-    }
+      : palabra(it.palabra),
+	paginas(it.paginas){}
+
+    iterator_impar(const map<string, set<int>>::iterator & itm,
+		   const set<int>::iterator & its)
+      : palabra(itm),
+	paginas(its){}
 
     iterator_impar & operator=(const iterator_impar & it){
 
       if(this != &it){
 	
-	it_map = it.it_map;
-	it_set = it.it_set;
+	palabra = it.palabra;
+	paginas = it.paginas;
       }
 
       return *this;
@@ -282,46 +285,48 @@ public:
 
     bool operator!=(const iterator_impar & it){
 
-      return it_map != it.it_map || it_set != it.it_set;
+      return palabra != it.palabra || paginas != it.paginas;
     }
 
     bool operator==(const iterator_impar & it){
 
-      return it_map == it.it_map && it_set == it.it_set;
+      return palabra == it.palabra && paginas == it.paginas;
     }
 
     pair<string, int> & operator*(){
 
-      pair<string, int> ocurrencia(*it_map, *it_set);
+      pair<string, int> ocurrencia((*palabra).first, *paginas);
+      
+      return ocurrencia;
+    }
+
+    const pair<string, int> & operator*() const{
+
+      pair<string, int> ocurrencia((*palabra).first, *paginas);
       
       return ocurrencia;
     }
 
     iterator_impar & operator++(){
+      
+      paginas++;
+      
+      while(palabra != datos.end()){
+	while(paginas != (*palabra).second.end() && !(*paginas%2))
+	  paginas++;
 
-      map<string, set<int> >::iterator empty_map_it;
-
-      if(it_map == empty_map_it)
-	return *this;
-
-      bool stop = false;
-
-      while(!stop){
-
-	while((it_set != (*it_map).second.end()) && *it_set % 2)
-	  it_set++;
-
-	if(it_set == (*it_map).second.end() && it_map != datos.end())
-	  it_map++;
-
-	else stop = true;
-
-	if(it_map == datos.end()) stop = true;
+	if(paginas == (*palabra).second.end()){
+	  palabra++;
+	  if(palabra != datos.end())
+	    paginas = (*palabra).second.begin();
+	}
+	else
+	  return *this;
       }
-
+      
       return *this;
     }
-
+      
     iterator_impar begin(){
 
       iterator_impar it;
@@ -340,5 +345,22 @@ public:
 
       return it;
     }    
-  }:
+  };
+
+  iterator_impar begin(){
+
+    iterator_impar it(datos.begin(), (*datos.begin()).second.begin());
+
+    if(!((*it).second%2))
+      it++;
+    
+    return it;     
+  }
+
+  iterator_impar end(){
+
+    iterator_impar it(datos.end(), (*next(datos.begin(), datos.size()-1)).second.end());
+
+    return it;
+  }  
 };
