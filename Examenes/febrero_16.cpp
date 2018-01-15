@@ -21,7 +21,7 @@ public:
 
     unordered_map<string, persona*>::iterator it;
       
-    if((it = nombres.find()) != nombres.end())
+    if((it = nombres.find(nom)) != nombres.end())
       return *(*it).second;
   }
 
@@ -29,7 +29,7 @@ public:
 
     unordered_map<string, persona*>::iterator it;
     
-    if((it = nums_telefono.find()) != nums_telefono.end())
+    if((it = nums_telefono.find(num)) != nums_telefono.end())
       return *(*it).second;
   }
 
