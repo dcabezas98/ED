@@ -1,7 +1,7 @@
 /**********************************************************
-Dado un árbol binario de enteros, obtener todos los caminos
-que contengan un valor concreto. (Los caminos han de llegar 
-esta una hoja)
+  Dado un árbol binario de enteros, obtener todos los caminos
+  que contengan un valor concreto. (Los caminos han de llegar 
+  esta una hoja)
 **********************************************************/
 
 // Unión de conjuntos
@@ -69,4 +69,48 @@ multiset<list<int>> caminos(bintree<int> a, int valor){
   return paths;
 }
 
+/***********************************************************
+  Implementa el operador++ del inorder_iterator.
+***********************************************************/
 
+bintree<T>::inorder_iterator & operator++(){
+
+  if(n.null())
+    return *this;
+
+  if(!n.right().null()){
+    n = n.right();
+
+    while(!n.left().null()){
+      n = n.left();
+    }
+
+    return *this;
+  }
+
+  if(n.parent().null()){ // Fin del recorrido
+    n = bintree<T>::node();
+    
+    return *this;
+  }
+
+  if(n == n.parent().left()){
+    n = n.parent();
+
+    return *this;
+  }
+
+  n = n.parent();
+  
+  while(!n.parent().null()){
+    if(n == n.parent.left()){
+      n = n.parent;
+      return *this;
+    }
+    n = n.parent();
+  }
+
+  n = bintree<T>::node();
+
+  return *this;  
+}
