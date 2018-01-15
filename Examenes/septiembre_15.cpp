@@ -174,7 +174,7 @@ public:
       return *this;
     }
     
-    pair<int, list<string>> operator*(){
+    pair<int, list<string>> & operator*(){
       return *it;
     }
     

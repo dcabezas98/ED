@@ -169,7 +169,11 @@ public:
       }while(it != datos.end() && !primo(*it));
 
       return *this;
-    }    
+    }
+
+    pair<int, list<string>> & operator*(){
+      return *it;
+    }
   };
 
   iterador_primo begin(){
