@@ -83,7 +83,7 @@ o los personajes que aun están levantados.
 El programa incluye un modo para generar tableros con personajes aleatorios, otro para simplemente
 cargar un tablero y otro para jugar.
 
-#### Retos propuestos por el profesor:
+#### Retos propuestos por el profesor
 
 Contiene los enunciados y mis soluciones de los retos y ejercicios voluntarios
 planteados por el profesor.
