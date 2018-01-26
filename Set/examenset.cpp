@@ -21,6 +21,10 @@ ostream & operator<<(ostream & s, const set<T> & c){
   return s;
 }
 
+/*
+  Intersección de tres subconjuntos.
+ */
+
 template <class T>
 void interseccion(const set<T> &s1, const set<int> &s2, const set<T> &s3, set<T> &res){
 
@@ -32,6 +36,11 @@ void interseccion(const set<T> &s1, const set<int> &s2, const set<T> &s3, set<T>
       res.insert(*it);
   }
 }
+
+/*
+  Dados tres conjuntos, devuelve un conjunto fomado por los elementos
+  que solamente están en uno de los tres.
+ */
 
 template <class T>
 void union_diferencial(const set<T> &s1, const set<int> &s2, const set<T> &s3, set<T> &res){
