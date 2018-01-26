@@ -87,3 +87,8 @@ cargar un tablero y otro para jugar.
 
 Contiene los enunciados y mis soluciones de los retos y ejercicios voluntarios
 planteados por el profesor.
+
+#### Set
+
+Contiene mi resolución del exámen práctico, sobre el tipo *Set* de la **STL**
+y un ejercicio de práctica.
